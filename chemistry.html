@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemistry | JEE Material</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #080d18;
+  --sidebar: #0d1525;
+  --card: #111c30;
+  --border: #243249;
+  --text: #e8edf7;
+  --muted: #91a0b7;
+  --accent: #60a5fa;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  padding: 40px 7%;
+}
+
+header {
+  max-width: 1100px;
+  margin: 0 auto 45px;
+}
+
+.back {
+  display: inline-block;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.back:hover {
+  color: var(--accent);
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: clamp(36px, 6vw, 56px);
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+.materials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 23px;
+  text-decoration: none;
+  color: var(--text);
+  transition: .2s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 155px;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  background: #15233b;
+}
+
+.type {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  margin-bottom: 17px;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 9px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.open {
+  color: var(--accent);
+  font-size: 13px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+footer {
+  max-width: 1100px;
+  margin: 65px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media(max-width:600px) {
+  body {
+    padding: 25px 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="back" href="index.html">← Back to Main Website</a>
+
+  <p class="eyebrow">JEE MATERIAL / SUBJECT LIBRARY</p>
+  <h1>Chemistry</h1>
+  <p class="subtitle">
+    Your collection of Chemistry formula booklets, reaction references,
+    reagents and advanced study material.
+  </p>
+</header>
+
+<main>
+  <h2 class="section-title">Chemistry Materials</h2>
+
+  <div class="materials">
+
+    <a class="card" href="Chemistry_Formula_Booklet.html">
+      <span class="type">HTML BOOKLET</span>
+      <h3>Chemistry Formula Booklet</h3>
+      <p>Chapter-wise Chemistry formulas and important concepts.</p>
+      <span class="open">Open booklet →</span>
+    </a>
+
+    <a class="card" href="HSAB_Hard_Soft_Acids_Bases.pdf" target="_blank">
+      <span class="type">PDF RESOURCE</span>
+      <h3>HSAB — Hard Soft Acids & Bases</h3>
+      <p>Hard and soft acids and bases reference material.</p>
+      <span class="open">Open PDF →</span>
+    </a>
+
+    <a class="card" href="JEE_Reaction_Book_Dark_Edition.pdf" target="_blank">
+      <span class="type">PDF RESOURCE</span>
+      <h3>JEE Reaction Book</h3>
+      <p>Organic Chemistry reactions and reference material.</p>
+      <span class="open">Open PDF →</span>
+    </a>
+
+    <a class="card" href="Chemistry_Reagents.pdf" target="_blank">
+      <span class="type">PDF RESOURCE</span>
+      <h3>Chemistry Reagents</h3>
+      <p>Reagents with reaction mechanisms and explanations.</p>
+      <span class="open">Open PDF →</span>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  JEE MATERIAL · Study smarter.
+</footer>
+
+</body>
+</html>
