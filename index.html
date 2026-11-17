@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEE Material</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #080d18;
+  color: #f1f5f9;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  padding: 25px 8%;
+  border-bottom: 1px solid #1e293b;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: #60a5fa;
+}
+
+.hero {
+  text-align: center;
+  padding: 90px 20px 65px;
+}
+
+.tag {
+  display: inline-block;
+  color: #60a5fa;
+  background: #14233b;
+  padding: 9px 17px;
+  border-radius: 30px;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: clamp(40px, 7vw, 65px);
+  letter-spacing: -2px;
+  margin-bottom: 18px;
+}
+
+h1 span {
+  color: #60a5fa;
+}
+
+.hero p {
+  color: #94a3b8;
+  line-height: 1.8;
+}
+
+.books {
+  max-width: 1050px;
+  margin: auto;
+  padding: 20px 25px 90px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: #111a2b;
+  border: 1px solid #253249;
+  padding: 30px 25px;
+  border-radius: 16px;
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #60a5fa;
+}
+
+.icon {
+  font-size: 35px;
+  margin-bottom: 22px;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.card p {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: block;
+  background: #2563eb;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 13px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background: #3b82f6;
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  padding: 25px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media(max-width: 700px) {
+  .books {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">JEE <span>Material.</span></div>
+</header>
+
+<section class="hero">
+  <div class="tag">YOUR JEE PREPARATION HUB</div>
+
+  <h1>Study Smarter.<br>
+  <span>Score Higher.</span></h1>
+
+  <p>
+    Your preparation, organised in one place.<br>
+    Access Physics, Chemistry and Mathematics resources.
+  </p>
+</section>
+
+<section class="books">
+
+  <div class="card">
+    <div class="icon">⚛️</div>
+    <h2>Physics</h2>
+    <p>Important formulas and concepts for JEE Physics revision.</p>
+    <a href="Physics%20Formula%20Booklet.html" class="btn">Open Physics →</a>
+  </div>
+
+  <div class="card">
+    <div class="icon">🧪</div>
+    <h2>Chemistry</h2>
+    <p>Essential Chemistry notes and formula collections.</p>
+    <a href="Chemistry_Formula_Booklet.html" class="btn">Open Chemistry →</a>
+  </div>
+
+  <div class="card">
+    <div class="icon">∑</div>
+    <h2>Mathematics</h2>
+    <p>Mathematical formulas and revision material for JEE.</p>
+    <a href="Mathematics%20Formula%20Booklet.html" class="btn">Open Mathematics →</a>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 JEE Material. Made for JEE aspirants.
+</footer>
+
+</body>
+</html>
