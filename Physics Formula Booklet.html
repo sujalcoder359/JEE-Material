@@ -1129,7 +1129,7 @@ Also \(\delta_{min}=(n-1)A\) for small \(A\).</li><li>For a thin prism (\(A\le10
 </div>
 <script>
 window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{R:'\\mathbb{R}'}},svg:{fontCache:'global'},options:{skipHtmlTags:['script','noscript','style','textarea']}};
-(function(){
+window.addEventListener('DOMContentLoaded', function(){
   var groups=[['g1','Mechanics'],['g2','Oscillations, waves & heat'],['g3','Electricity & magnetism'],['g4','Optics & modern physics'],['g5','Gravitation, fluids & waves'],['g6','Measurement & electronics']];
   var secs=[].slice.call(document.querySelectorAll('section.ch'));
   var toc=document.getElementById('toc'),nav=document.getElementById('nav');
@@ -1168,7 +1168,7 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macr
     })},{rootMargin:'-20% 0px -70% 0px'});
     secs.forEach(function(s){io.observe(s)});
   }
-})();
+});
 </script>
 <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
 
