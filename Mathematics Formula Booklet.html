@@ -84,9 +84,30 @@ th{background:var(--soft);font-weight:500}
 footer{padding-block:48px 64px;color:var(--muted);font-size:.85rem;grid-column:1/-1;text-align:center}
 @media print{.bar,.nav{display:none}.c{break-inside:avoid}.ch{break-before:page}body{background:#fff}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.subject-back {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: var(--surface);
+  text-decoration: none;
+  font: 500 13px var(--f-body);
+  flex-shrink: 0;
+}
+
+.subject-back:hover {
+  color: var(--fg);
+  background: var(--soft);
+  border-color: var(--line);
+}
 </style>
 <div class="shell" id="top">
-<div class="bar"><b>Maths Formulae</b><input id="q" type="search" placeholder="Search formulas, e.g. tangent, Bayes, sphere" aria-label="Search formulas" autocomplete="off"><a class="home" href="#top">Contents</a></div>
+<div class="bar">
+<a href="mathematics.html" class="subject-back">← Back</a>
+<b>Maths Formulae</b><input id="q" type="search" placeholder="Search formulas, e.g. tangent, Bayes, sphere" aria-label="Search formulas" autocomplete="off"><a class="home" href="#top">Contents</a></div>
 <nav class="nav" id="nav" aria-label="Chapters"></nav>
 <main id="main" style="min-width:0">
 <header class="cover"><div class="eyebrow">33 chapters · coordinate geometry to sets and relations</div><h1>Mathematics Formula Booklet</h1><p>Every formula from the original booklet, plus the topics and results it left out, regrouped by branch, set in cards you can scan, and searchable. Key results are tinted in each chapter.</p></header>
