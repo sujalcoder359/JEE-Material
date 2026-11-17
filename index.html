@@ -13,486 +13,153 @@
   box-sizing: border-box;
 }
 
-:root {
-  --bg: #080d18;
-  --sidebar: #0d1525;
-  --card: #111c2e;
-  --border: #243249;
-  --blue: #3b82f6;
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-}
-
 body {
-  background: var(--bg);
-  color: var(--text);
+  min-height: 100vh;
+  background: #080d18;
+  color: #e8edf7;
   font-family: Arial, sans-serif;
+  padding: 60px 7%;
 }
 
-/* SIDEBAR */
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 220px;
-  height: 100vh;
-  background: #0d1525;
-  border-right: 1px solid #243249;
-  padding: 28px 16px;
-  display: flex;
-  flex-direction: column;
-  z-index: 100;
-  font-family: Arial, sans-serif;
+header {
+  margin-bottom: 55px;
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: 800;
-  color: white;
-  padding: 0 10px 35px;
-}
-
-.logo span {
   color: #60a5fa;
-}
-
-.nav-label {
-  color: #64748b;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: bold;
-  letter-spacing: 1.5px;
-  padding: 0 10px;
-  margin-bottom: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 35px;
 }
 
-.sidebar a {
-  display: block;
-  padding: 13px 12px;
-  margin-bottom: 6px;
-  border-radius: 8px;
-  color: #aab8ca;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.sidebar a:hover,
-.sidebar a.active {
-  background: #1d3b67;
-  color: white;
-}
-
-.sidebar-bottom {
-  margin-top: auto;
-  padding: 18px 10px;
-  border-top: 1px solid var(--border);
-  color: #64748b;
-  font-size: 11px;
-  line-height: 1.8;
-}
-
-/* MAIN CONTENT */
-.main {
-  margin-left: 255px;
-  min-height: 100vh;
-}
-
-.topbar {
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 45px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8,13,24,0.95);
-}
-
-.topbar-title {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.status {
-  color: #4ade80;
-  font-size: 12px;
-  background: #10271f;
-  padding: 8px 13px;
-  border-radius: 20px;
-}
-
-.content {
-  max-width: 1200px;
-  margin: auto;
-  padding: 55px 45px;
-}
-
-/* HERO */
-.hero {
-  padding: 55px 45px;
-  border: 1px solid #263b5b;
-  border-radius: 18px;
-  background: linear-gradient(120deg, #132849, #101b30 65%, #111827);
-  margin-bottom: 45px;
-}
-
-.tag {
-  display: inline-block;
-  color: #93c5fd;
-  background: #1d3b67;
-  padding: 9px 15px;
-  border-radius: 30px;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 24px;
-}
-
-.hero h1 {
-  font-size: clamp(35px, 5vw, 58px);
-  line-height: 1.15;
+h1 {
+  font-size: clamp(38px, 7vw, 58px);
   letter-spacing: -2px;
-  margin-bottom: 17px;
 }
 
-.hero h1 span {
+h1 span {
   color: #60a5fa;
 }
 
-.hero p {
-  color: #a8b8ce;
-  line-height: 1.8;
+.subtitle {
+  color: #94a3b8;
+  margin-top: 14px;
   font-size: 15px;
-  max-width: 550px;
+  line-height: 1.6;
 }
 
-/* SECTION */
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 22px;
+.section-title {
+  font-size: 13px;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 
-.section-heading h2 {
-  font-size: 21px;
-}
-
-.section-heading span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* SUBJECT HEADINGS */
-.subject-heading {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 32px 0 18px;
-  padding-bottom: 13px;
-  border-bottom: 1px solid var(--border);
-}
-
-.subject-heading h3 {
-  font-size: 17px;
-}
-
-.subject-heading span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* RESOURCE CARDS */
-.books {
+.subjects {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 20px;
 }
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 27px;
+.subject {
+  display: block;
+  padding: 30px 25px;
+  background: #111c30;
+  border: 1px solid #243249;
   border-radius: 14px;
-  transition: 0.25s;
+  text-decoration: none;
+  color: #e8edf7;
+  transition: 0.2s ease;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  border-color: #3b82f6;
+.subject:hover {
+  transform: translateY(-5px);
+  border-color: #60a5fa;
+  background: #16243b;
 }
 
-.icon {
-  font-size: 32px;
-  margin-bottom: 19px;
+.subject .number {
+  color: #60a5fa;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
 }
 
-.card h3 {
-  font-size: 19px;
+.subject h2 {
+  font-size: 25px;
   margin-bottom: 10px;
 }
 
-/* AI GENERATED TAG */
-.ai-tag {
-  display: inline-block;
-  color: #93c5fd;
-  background: #1d3b67;
-  padding: 5px 9px;
-  border-radius: 20px;
-  font-size: 9px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
-}
-
-.card p {
-  color: var(--muted);
+.subject p {
+  color: #94a3b8;
   font-size: 13px;
-  line-height: 1.7;
-  min-height: 44px;
-  margin-bottom: 22px;
+  line-height: 1.6;
 }
 
-.btn {
+.open {
   display: inline-block;
-  background: #2563eb;
-  color: white;
-  text-decoration: none;
-  padding: 11px 17px;
-  border-radius: 8px;
+  margin-top: 25px;
+  color: #60a5fa;
   font-size: 13px;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.btn:hover {
-  background: #3b82f6;
 }
 
 footer {
-  margin-top: 55px;
+  margin-top: 90px;
   padding-top: 22px;
-  border-top: 1px solid var(--border);
-  color: #64748b;
+  border-top: 1px solid #243249;
+  color: #526078;
   font-size: 12px;
-}
-
-/* MOBILE */
-.menu-toggle {
-  display: none;
-  background: #172337;
-  color: white;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  padding: 9px 12px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-@media(max-width: 850px) {
-  .sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.25s;
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
-  .main {
-    margin-left: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .topbar {
-    padding: 0 20px;
-  }
-
-  .content {
-    padding: 30px 20px;
-  }
-
-  .hero {
-    padding: 38px 25px;
-  }
-}
-
-@media(max-width: 550px) {
-  .books {
-    grid-template-columns: 1fr;
-  }
-
-  .status {
-    display: none;
-  }
+  letter-spacing: 2px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LEFT SIDEBAR -->
-<aside class="sidebar" id="sidebar">
-  <div class="logo">JEE <span>Material.</span></div>
-  <div class="nav-label">MAIN MENU</div>
+<header>
+  <div class="logo">JEE MATERIAL</div>
 
-  <a href="index.html" class="active">Home</a>
-  <a href="Physics%20Formula%20Booklet.html">Physics</a>
-  <a href="Chemistry_Formula_Booklet.html">Chemistry</a>
-  <a href="Mathematics%20Formula%20Booklet.html">Mathematics</a>
-  <a href="Chemistry_Reagents.pdf" target="_blank">Reagents</a>
+  <h1>Your JEE <span>Library.</span></h1>
 
-  <div class="sidebar-bottom">
-    JEE MATERIAL<br>
-    Your preparation, organised.
+  <p class="subtitle">
+    A collection of formula booklets, notes and reference material
+    for JEE Main and Advanced.
+  </p>
+</header>
+
+<main>
+  <div class="section-title">SELECT A SUBJECT</div>
+
+  <div class="subjects">
+
+    <a class="subject" href="physics.html">
+      <div class="number">01 / PHYSICS</div>
+      <h2>Physics</h2>
+      <p>Formula booklets and important physics reference material.</p>
+      <span class="open">Explore Materials →</span>
+    </a>
+
+    <a class="subject" href="chemistry.html">
+      <div class="number">02 / CHEMISTRY</div>
+      <h2>Chemistry</h2>
+      <p>Formulas, reactions, reagents and chemistry reference material.</p>
+      <span class="open">Explore Materials →</span>
+    </a>
+
+    <a class="subject" href="mathematics.html">
+      <div class="number">03 / MATHEMATICS</div>
+      <h2>Mathematics</h2>
+      <p>Formula booklets and JEE Advanced mathematics resources.</p>
+      <span class="open">Explore Materials →</span>
+    </a>
+
   </div>
-</aside>
+</main>
 
-<!-- MAIN AREA -->
-<div class="main">
-
-  <div class="topbar">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <div class="topbar-title">Your Study Dashboard</div>
-    <div class="status">● Study Resources</div>
-  </div>
-
-  <main class="content">
-
-    <section class="hero">
-      <div class="tag">YOUR JEE PREPARATION HUB</div>
-
-      <h1>Study Smarter.<br>
-      <span>Score Higher.</span></h1>
-
-      <p>
-        Everything you need for your JEE preparation,
-        organised in one place. Access your subject-wise
-        formula booklets and revision resources.
-      </p>
-    </section>
-
-    <div class="section-heading">
-      <h2>Your Resources</h2>
-      <span>9 resources available</span>
-    </div>
-
-    <!-- PHYSICS -->
-    <div class="subject-heading">
-      <h3>⚛️ Physics</h3>
-      <span>1 resource</span>
-    </div>
-
-    <section class="books">
-
-      <div class="card">
-        <div class="icon">⚛️</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>Physics Formula Booklet</h3>
-        <p>Important formulas and concepts for JEE Physics revision.</p>
-        <a href="Physics%20Formula%20Booklet.html" class="btn">Open Physics →</a>
-      </div>
-
-    </section>
-
-    <!-- CHEMISTRY -->
-    <div class="subject-heading">
-      <h3>🧪 Chemistry</h3>
-      <span>4 resources</span>
-    </div>
-
-    <section class="books">
-
-      <div class="card">
-        <div class="icon">🧪</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>Chemistry Formula Booklet</h3>
-        <p>Essential Chemistry notes and formula collections.</p>
-        <a href="Chemistry_Formula_Booklet.html" class="btn">Open Chemistry →</a>
-      </div>
-
-      <div class="card">
-        <div class="icon">📘</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>HSAB – Hard Soft Acids Bases</h3>
-        <p>Study material covering Hard and Soft Acids and Bases.</p>
-        <a href="HSAB_Hard_Soft_Acids_Bases.pdf" target="_blank" class="btn">Open PDF →</a>
-      </div>
-
-      <div class="card">
-        <div class="icon">⚗️</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>JEE Reaction Book</h3>
-        <p>Organic Chemistry reactions and revision material.</p>
-        <a href="JEE_Reaction_Book_Dark_Edition.pdf" target="_blank" class="btn">Open PDF →</a>
-      </div>
-
-      <div class="card">
-        <div class="icon">📄</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>Chemistry Reagents</h3>
-        <p>Reagents, reaction mechanisms and Chemistry revision material.</p>
-        <a href="Chemistry_Reagents.pdf" target="_blank" class="btn">Open PDF →</a>
-      </div>
-
-    </section>
-
-    <!-- MATHEMATICS -->
-    <div class="subject-heading">
-      <h3>∑ Mathematics</h3>
-      <span>4 resources</span>
-    </div>
-
-    <section class="books">
-
-      <div class="card">
-        <div class="icon">∑</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>Mathematics Formula Booklet</h3>
-        <p>Mathematical formulas and revision material for JEE.</p>
-        <a href="Mathematics%20Formula%20Booklet.html" class="btn">Open Mathematics →</a>
-      </div>
-
-      <div class="card">
-        <div class="icon">∫</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>JEE Advanced Calculus</h3>
-        <p>Complete Calculus study material for JEE Advanced.</p>
-        <a href="JEE_Advanced_Calculus_Complete.pdf" target="_blank" class="btn">Open PDF →</a>
-      </div>
-
-      <div class="card">
-        <div class="icon">📐</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>JEE Advanced Conic Sections</h3>
-        <p>Complete Conic Sections study material.</p>
-        <a href="JEE_Advanced_Conic_Sections_Complete.pdf" target="_blank" class="btn">Open PDF →</a>
-      </div>
-
-      <div class="card">
-        <div class="icon">📊</div>
-        <div class="ai-tag">AI GENERATED</div>
-        <h3>JEE Advanced Trigonometry</h3>
-        <p>Complete Trigonometry study material.</p>
-        <a href="JEE_Advanced_Trigonometry_Complete.pdf" target="_blank" class="btn">Open PDF →</a>
-      </div>
-
-    </section>
-
-    <footer>
-      © 2026 JEE Material. Made for JEE aspirants.
-    </footer>
-
-  </main>
-</div>
-
-<script>
-function toggleMenu() {
-  document.getElementById("sidebar").classList.toggle("open");
-}
-</script>
+<footer>
+  JEE MATERIAL · STUDY SMARTER
+</footer>
 
 </body>
 </html>
