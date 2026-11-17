@@ -1,4 +1,17 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+  <aside class="site-sidebar">
+  <div class="site-logo">JEE <span>Material.</span></div>
+
+  <p class="site-label">MAIN MENU</p>
+
+  <a href="index.html">⌂ &nbsp; Home</a>
+  <a href="Physics%20Formula%20Booklet.html" class="selected">⚛ &nbsp; Physics</a>
+  <a href="Chemistry_Formula_Booklet.html">🧪 &nbsp; Chemistry</a>
+  <a href="Mathematics%20Formula%20Booklet.html">∑ &nbsp; Mathematics</a>
+  <a href="Chemistry_Reagents.pdf">📄 &nbsp; Reagents</a>
+
+  <div class="site-footer">JEE MATERIAL<br>Study smarter.</div>
+</aside>
 <title>Physics Formula Booklet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,24 +34,6 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0;padding-inline:16px}
-
-<a href="index.html" style="
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 20px;
-  padding: 11px 20px;
-  background: #1d3555;
-  color: #bfdbfe;
-  text-decoration: none;
-  border-radius: 9px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-">
-  ← Home
-</a>
-
 a{color:inherit}
 .shell{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:1fr;gap:0 40px}
 @media(min-width:1000px){.shell{grid-template-columns:230px minmax(0,1fr)}}
@@ -102,6 +97,97 @@ th{background:var(--soft);font-weight:500}
 footer{padding-block:48px 64px;color:var(--muted);font-size:.85rem;grid-column:1/-1;text-align:center}
 @media print{.bar,.nav{display:none}.c{break-inside:avoid}.ch{break-before:page}body{background:#fff}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* JEE MATERIAL MAIN SIDEBAR */
+.site-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+  background: #0d1525;
+  border-right: 1px solid #243249;
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  font-family: Arial, sans-serif;
+}
+
+.site-logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  padding: 0 10px 35px;
+}
+
+.site-logo span {
+  color: #60a5fa;
+}
+
+.site-label {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 0 10px;
+  margin-bottom: 12px;
+}
+
+.site-sidebar a {
+  display: block;
+  padding: 13px 12px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  color: #aab8ca;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.site-sidebar a:hover,
+.site-sidebar a.selected {
+  background: #1d3b67;
+  color: white;
+}
+
+.site-footer {
+  margin-top: auto;
+  padding: 18px 10px;
+  border-top: 1px solid #243249;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+@media (min-width: 1000px) {
+  body {
+    padding-left: 220px;
+  }
+}
+
+@media (max-width: 999px) {
+  .site-sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .site-logo {
+    padding-bottom: 15px;
+  }
+
+  .site-label,
+  .site-footer {
+    display: none;
+  }
+
+  .site-sidebar a {
+    display: inline-block;
+    margin: 3px;
+    padding: 10px;
+  }
+}
 </style>
 <div class="shell" id="top">
 <div class="bar"><b>Physics Formulae</b><input id="q" type="search" placeholder="Search formulas, e.g. Bernoulli, Doppler, torque" aria-label="Search formulas" autocomplete="off"><a class="home" href="#top">Contents</a></div>
