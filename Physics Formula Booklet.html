@@ -87,37 +87,15 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.85rem;grid-column:1
 .subject-back {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin: 12px 0 16px;
-  padding: 8px 12px;
+  white-space: nowrap;
+  padding: 7px 11px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--muted);
-  background: transparent;
-  text-decoration: none;
-  font: 500 13px var(--f-body);
-  transition: 0.2s ease;
-}
-
-.subject-back:hover {
-  color: var(--fg);
-  background: var(--soft);
-  border-color: var(--line);
-}
-.subject-back {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  padding: 7px 12px;
-  margin: 0 0 18px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 7px;
   color: var(--muted);
   background: var(--surface);
   text-decoration: none;
   font: 500 13px var(--f-body);
-  grid-column: 1;
-justify-self: start;
+  flex-shrink: 0;
 }
 
 .subject-back:hover {
@@ -126,8 +104,9 @@ justify-self: start;
 }
 </style>
 <div class="shell">
-<a href="physics.html" class="subject-back">← Back to Physics Materials</a>
-<div class="bar"><b>Physics Formulae</b><input id="q" type="search" placeholder="Search formulas, e.g. Bernoulli, Doppler, torque" aria-label="Search formulas" autocomplete="off"><a class="home" href="#top">Contents</a></div>
+<div class="bar">
+<b>Physics Formulae</b>
+<a href="physics.html" class="subject-back">← Back</a><input id="q" type="search" placeholder="Search formulas, e.g. Bernoulli, Doppler, torque" aria-label="Search formulas" autocomplete="off"><a class="home" href="#top">Contents</a></div>
 <nav class="nav" id="nav" aria-label="Chapters"></nav>
 <main id="main" style="min-width:0">
 <header class="cover"><div class="eyebrow">36 chapters · units and vectors to digital electronics</div><h1>Physics Formula Booklet</h1><p>Every formula from the original booklet, plus the topics and results it left out, grouped by branch, set in cards you can scan, and searchable. Key results are tinted in each chapter.</p></header>
