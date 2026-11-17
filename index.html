@@ -65,13 +65,7 @@ body {
   margin-bottom: 12px;
 }
 
-.nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.nav-links a {
+.sidebar a {
   display: block;
   padding: 13px 12px;
   margin-bottom: 6px;
@@ -80,20 +74,12 @@ body {
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
-  transition: 0.2s;
 }
 
-.nav-links a:hover,
-.nav-links a.active,
-.nav-links a.selected {
+.sidebar a:hover,
+.sidebar a.active {
   background: #1d3b67;
   color: white;
-}
-
-.nav-icon {
-  font-size: 19px;
-  width: 23px;
-  text-align: center;
 }
 
 .sidebar-bottom {
@@ -105,6 +91,12 @@ body {
   line-height: 1.8;
 }
 
+/* MAIN CONTENT */
+.main {
+  margin-left: 220px;
+  min-height: 100vh;
+}
+  
 /* MAIN CONTENT */
 .main {
   margin-left: 255px;
@@ -317,40 +309,20 @@ footer {
 
 <!-- LEFT SIDEBAR -->
 <aside class="sidebar" id="sidebar">
-
   <div class="logo">JEE <span>Material.</span></div>
-
   <div class="nav-label">MAIN MENU</div>
 
-  <nav class="nav-links">
-    <a href="index.html" class="active">
-      <span class="nav-icon">⌂</span> Home
-    </a>
-
-    <a href="Physics%20Formula%20Booklet.html">
-      <span class="nav-icon">⚛</span> Physics
-    </a>
-
-    <a href="Chemistry_Formula_Booklet.html">
-      <span class="nav-icon">🧪</span> Chemistry
-    </a>
-
-    <a href="Mathematics%20Formula%20Booklet.html">
-      <span class="nav-icon">∑</span> Mathematics
-    </a>
-
-    <a href="Chemistry_Reagents.pdf" target="_blank">
-      <span class="nav-icon">📄</span> Reagents
-    </a>
-  </nav>
+  <a href="index.html" class="active">Home</a>
+  <a href="Physics%20Formula%20Booklet.html">Physics</a>
+  <a href="Chemistry_Formula_Booklet.html">Chemistry</a>
+  <a href="Mathematics%20Formula%20Booklet.html">Mathematics</a>
+  <a href="Chemistry_Reagents.pdf" target="_blank">Reagents</a>
 
   <div class="sidebar-bottom">
-    <strong>JEE MATERIAL</strong><br>
+    JEE MATERIAL<br>
     Your preparation, organised.
   </div>
-
 </aside>
-
 <!-- MAIN AREA -->
 <div class="main">
 
