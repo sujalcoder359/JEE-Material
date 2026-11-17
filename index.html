@@ -34,20 +34,22 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  width: 200px;
+  width: 220px;
   height: 100vh;
-  background: var(--sidebar);
-  border-right: 1px solid var(--border);
+  background: #0d1525;
+  border-right: 1px solid #243249;
   padding: 28px 16px;
   display: flex;
   flex-direction: column;
   z-index: 100;
+  font-family: Arial, sans-serif;
 }
 
 .logo {
-  font-size: 23px;
+  font-size: 22px;
   font-weight: 800;
-  padding: 0 12px 35px;
+  color: white;
+  padding: 0 10px 35px;
 }
 
 .logo span {
@@ -59,7 +61,7 @@ body {
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 1.5px;
-  padding: 0 12px;
+  padding: 0 10px;
   margin-bottom: 12px;
 }
 
@@ -73,18 +75,19 @@ body {
   display: block;
   padding: 13px 12px;
   margin-bottom: 6px;
+  border-radius: 8px;
   color: #aab8ca;
   text-decoration: none;
-  border-radius: 8px;
   font-size: 14px;
   font-weight: bold;
   transition: 0.2s;
 }
 
 .nav-links a:hover,
-.nav-links a.active {
+.nav-links a.active,
+.nav-links a.selected {
   background: #1d3b67;
-  color: #ffffff;
+  color: white;
 }
 
 .nav-icon {
@@ -95,11 +98,11 @@ body {
 
 .sidebar-bottom {
   margin-top: auto;
-  padding: 18px 12px 5px;
-  border-top: 1px solid var(--border);
+  padding: 18px 10px;
+  border-top: 1px solid #243249;
   color: #64748b;
-  font-size: 12px;
-  line-height: 1.7;
+  font-size: 11px;
+  line-height: 1.8;
 }
 
 /* MAIN CONTENT */
