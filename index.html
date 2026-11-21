@@ -21,13 +21,11 @@
   --soft:#1e2438;
 
   --f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;
-  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --f-body:'IBM Plex Sans',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,monospace;
 }
 
-* {
-  box-sizing:border-box;
-}
+* {box-sizing:border-box}
 
 html {
   scroll-behavior:smooth;
@@ -54,7 +52,7 @@ a {
   margin-inline:auto;
 }
 
-/* TOP BAR */
+/* HEADER */
 
 .bar {
   position:sticky;
@@ -74,9 +72,7 @@ a {
   display:flex;
   align-items:center;
   gap:11px;
-  font-family:var(--f-display);
-  font-size:17px;
-  font-weight:700;
+  font:700 17px var(--f-display);
   white-space:nowrap;
 }
 
@@ -101,14 +97,14 @@ a {
 .bar-right a {
   color:var(--muted);
   font-size:.85rem;
-  white-space:nowrap;
+  transition:color .2s;
 }
 
 .bar-right a:hover {
-  color:var(--fg);
+  color:#a9c9fa;
 }
 
-/* COVER */
+/* HERO */
 
 .cover {
   max-width:850px;
@@ -124,10 +120,7 @@ a {
 
 .cover h1 {
   margin:15px 0 13px;
-  font-family:var(--f-display);
-  font-size:clamp(2.7rem,6vw,4.3rem);
-  font-weight:700;
-  line-height:1;
+  font:700 clamp(2.7rem,6vw,4.3rem)/1 var(--f-display);
   letter-spacing:-.035em;
 }
 
@@ -139,11 +132,10 @@ a {
   max-width:43rem;
   margin:0;
   color:var(--muted);
-  font-size:1rem;
   line-height:1.75;
 }
 
-/* LIBRARY HEADING */
+/* SECTION HEADING */
 
 .library-heading {
   display:flex;
@@ -155,10 +147,7 @@ a {
 
 .library-heading h2 {
   margin:0;
-  font-family:var(--f-display);
-  font-size:1.65rem;
-  font-weight:700;
-  letter-spacing:-.02em;
+  font:700 1.65rem var(--f-display);
 }
 
 .library-heading p {
@@ -170,10 +159,9 @@ a {
 .count {
   color:var(--muted);
   font:400 .75rem var(--f-mono);
-  white-space:nowrap;
 }
 
-/* SUBJECT GRID */
+/* SUBJECT CARDS */
 
 .subjects {
   display:grid;
@@ -184,17 +172,16 @@ a {
 
 .subject {
   --accent:#a5bce0;
-  min-width:0;
   display:flex;
   flex-direction:column;
+  min-width:0;
   padding:19px 0 15px;
   border-top:2px solid var(--accent);
   border-bottom:1px solid var(--line);
-  transition:background .2s;
-}
-
-.subject:hover {
-  background:rgba(255,255,255,.018);
+  transition:
+    background .25s ease,
+    border-color .25s ease,
+    padding .25s ease;
 }
 
 .subject.physics {--accent:#a4c5f4}
@@ -204,7 +191,6 @@ a {
 
 .subject-meta {
   display:flex;
-  align-items:center;
   justify-content:space-between;
   gap:10px;
   color:var(--accent);
@@ -215,14 +201,13 @@ a {
 
 .subject-number {
   color:var(--muted);
+  transition:color .25s;
 }
 
 .subject h3 {
   margin:19px 0 7px;
-  font-family:var(--f-display);
-  font-size:1.55rem;
-  font-weight:700;
-  line-height:1.2;
+  font:700 1.55rem/1.2 var(--f-display);
+  transition:color .25s;
 }
 
 .subject p {
@@ -231,30 +216,58 @@ a {
   color:var(--muted);
   font-size:.9rem;
   line-height:1.65;
+  transition:color .25s;
 }
 
 .subject-bottom {
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   margin-top:19px;
   padding-top:12px;
   border-top:1px solid var(--line);
-  color:var(--accent);
+  color:var(--muted);
   font:500 .7rem var(--f-mono);
   letter-spacing:.07em;
+  transition:color .25s,border-color .25s;
 }
 
 .subject-bottom span:last-child {
   font-size:1rem;
-  transition:transform .2s;
+  transition:transform .25s;
+}
+
+/* HOVER EFFECT */
+
+.subject:hover,
+.subject:focus-visible {
+  background:var(--soft);
+  border-bottom-color:var(--accent);
+}
+
+.subject:hover h3,
+.subject:focus-visible h3,
+.subject:hover .subject-bottom,
+.subject:focus-visible .subject-bottom,
+.subject:hover .subject-number,
+.subject:focus-visible .subject-number {
+  color:var(--accent);
+}
+
+.subject:hover .subject-bottom {
+  border-top-color:var(--accent);
 }
 
 .subject:hover .subject-bottom span:last-child {
   transform:translate(3px,-2px);
 }
 
-/* ADDITIONAL INFO */
+.subject:focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:5px;
+}
+
+/* ADDITIONAL INFORMATION */
 
 .info {
   display:grid;
@@ -271,8 +284,8 @@ a {
 }
 
 .info-block strong {
-  font:500 .7rem var(--f-mono);
   color:#a5bce0;
+  font:500 .7rem var(--f-mono);
   letter-spacing:.1em;
   text-transform:uppercase;
 }
@@ -295,71 +308,38 @@ footer {
 /* RESPONSIVE */
 
 @media(max-width:600px) {
-  body {
-    padding-inline:13px;
-  }
+  body {padding-inline:13px}
 
-  .bar {
-    min-height:54px;
-  }
+  .bar {min-height:54px}
 
-  .brand {
-    font-size:15px;
-  }
+  .brand {font-size:15px}
 
-  .bar-right {
-    gap:12px;
-  }
+  .bar-right {gap:12px}
 
-  .bar-right a {
-    font-size:.78rem;
-  }
+  .bar-right a {font-size:.78rem}
 
-  .cover {
-    padding-block:49px 36px;
-  }
+  .cover {padding-block:49px 36px}
 
-  .cover h1 {
-    font-size:2.8rem;
-  }
+  .cover h1 {font-size:2.8rem}
 
-  .cover p {
-    font-size:.9rem;
-  }
+  .cover p {font-size:.9rem}
 
-  .library-heading h2 {
-    font-size:1.4rem;
-  }
+  .library-heading h2 {font-size:1.4rem}
 
-  .subjects {
-    gap:19px;
-  }
+  .subjects {gap:19px}
 
-  .subject {
-    padding-top:16px;
-  }
+  .subject {padding-top:16px}
 
-  .subject h3 {
-    font-size:1.4rem;
-  }
+  .subject h3 {font-size:1.4rem}
 
-  .subject p {
-    min-height:0;
-  }
+  .subject p {min-height:0}
 
-  .count {
-    display:none;
-  }
+  .count {display:none}
 }
 
 @media(prefers-reduced-motion:reduce) {
-  html {
-    scroll-behavior:auto;
-  }
-
-  * {
-    transition:none!important;
-  }
+  html {scroll-behavior:auto}
+  * {transition:none!important}
 }
 </style>
 </head>
@@ -404,7 +384,6 @@ footer {
       <h2>Explore your subjects</h2>
       <p>Select a subject to browse its study materials.</p>
     </div>
-
     <span class="count">04 SUBJECTS</span>
   </div>
 
@@ -415,13 +394,8 @@ footer {
         <span>Physics</span>
         <span class="subject-number">01</span>
       </div>
-
       <h3>Physics</h3>
-
-      <p>
-        Formula booklets and important physics reference material.
-      </p>
-
+      <p>Formula booklets and important physics reference material.</p>
       <div class="subject-bottom">
         <span>EXPLORE MATERIALS</span>
         <span>↗</span>
@@ -433,13 +407,8 @@ footer {
         <span>Chemistry</span>
         <span class="subject-number">02</span>
       </div>
-
       <h3>Chemistry</h3>
-
-      <p>
-        Formulas, reactions, reagents and chemistry reference material.
-      </p>
-
+      <p>Formulas, reactions, reagents and chemistry reference material.</p>
       <div class="subject-bottom">
         <span>EXPLORE MATERIALS</span>
         <span>↗</span>
@@ -451,13 +420,8 @@ footer {
         <span>Mathematics</span>
         <span class="subject-number">03</span>
       </div>
-
       <h3>Mathematics</h3>
-
-      <p>
-        Formula booklets and JEE Advanced mathematics resources.
-      </p>
-
+      <p>Formula booklets and JEE Advanced mathematics resources.</p>
       <div class="subject-bottom">
         <span>EXPLORE MATERIALS</span>
         <span>↗</span>
@@ -469,13 +433,8 @@ footer {
         <span>HSC Computer Science</span>
         <span class="subject-number">04</span>
       </div>
-
       <h3>HSC CS</h3>
-
-      <p>
-        CS-1 and CS-2 syllabus with separate chapter-wise resources.
-      </p>
-
+      <p>CS-1 and CS-2 syllabus with separate chapter-wise resources.</p>
       <div class="subject-bottom">
         <span>EXPLORE CHAPTERS</span>
         <span>↗</span>
@@ -486,7 +445,6 @@ footer {
 </section>
 
 <section class="info" id="about">
-
   <div class="info-block">
     <strong>JEE PREPARATION</strong>
     <span>Physics, Chemistry and Mathematics</span>
@@ -496,7 +454,6 @@ footer {
     <strong>HSC COMPUTER SCIENCE</strong>
     <span>CS-1 and CS-2 chapter resources</span>
   </div>
-
 </section>
 
 </main>
@@ -506,6 +463,5 @@ footer {
 </footer>
 
 </div>
-
 </body>
 </html>
