@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CS-1 Chapter 3: C++ Programming – Full Beginner Guide</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1d2330;--mut:#5a6372;--card:#fff;--ac:#2a5bd7;--bd:#dde1e8;--code:#f0f2f6;--hl:#eef3ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171d;--fg:#e6e9ef;--mut:#9aa3b2;--card:#1c2028;--ac:#7ea2ff;--bd:#2c323d;--code:#10131a;--hl:#1b2540}}
+:root[data-theme="dark"]{--bg:#14171d;--fg:#e6e9ef;--mut:#9aa3b2;--card:#1c2028;--ac:#7ea2ff;--bd:#2c323d;--code:#10131a;--hl:#1b2540}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 Georgia,serif}
+main{max-width:760px;margin:auto;padding:16px}
+h1,h2,h3,nav{font-family:system-ui,sans-serif}
+h1{font-size:1.6rem}h2{font-size:1.3rem;border-bottom:2px solid var(--ac);padding-bottom:4px;margin-top:2rem}h3{font-size:1.05rem;color:var(--ac)}
+pre{background:var(--code);padding:12px;border-radius:8px;overflow-x:auto;font-size:.85rem;line-height:1.45}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.9em}pre code{padding:0;background:none}
+.tip,.warn{background:var(--hl);border-left:4px solid var(--ac);padding:10px 14px;border-radius:6px;margin:12px 0}.warn{border-color:#d97706}
+.w{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left}th{background:var(--hl)}
+nav{display:flex;flex-wrap:wrap;gap:8px}nav a{padding:5px 11px;border:1px solid var(--bd);border-radius:18px;text-decoration:none;color:var(--ac);font-size:.85rem}
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap"><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036;color-scheme:dark}html{background:var(--bg)}body{font:16px/1.7 Inter,system-ui,sans-serif;background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}main{padding:20px 18px 60px}h1{font-size:1.9rem;font-weight:800;line-height:1.2;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}h1 small{display:block;margin-top:6px;font-size:.9rem;-webkit-text-fill-color:var(--mut)}h2{font-size:1.25rem;margin-top:2.4rem;padding:10px 14px;border:0;background:linear-gradient(90deg,#6ee7d822,transparent);border-left:4px solid var(--ac);border-radius:6px}h3{color:var(--ac2)}h1,h2,h3,nav{font-family:Inter,system-ui,sans-serif}b{color:#fff}pre,code{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}pre{border:1px solid var(--bd);border-radius:12px}code{color:var(--ac)}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;box-shadow:0 6px 24px #0006}.warn{border-left-color:#fbbf24}th{background:#1c2845;color:var(--ac)}nav{overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}nav a{white-space:nowrap;background:var(--card);border-color:var(--bd);color:var(--ac)}</style><style>html:root:root{--bg:#13121a;--fg:#ece9f1;--mut:#a09bb3;--card:#1c1b27;--ac:#f2c078;--ac2:#f19bb0;--bd:#2f2d3f;--code:#0f0e15;--hl:#221f31}body{background:radial-gradient(900px 420px at 90% -5%,#4a306a40,transparent),radial-gradient(700px 400px at 0 0,#6a3a2a26,transparent),var(--bg)}h2{background:linear-gradient(90deg,#f2c07820,transparent)}th{background:#272438}b{color:#fff6e6}</style><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036}body{background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#f4f7ff;-webkit-text-fill-color:#f4f7ff;padding-bottom:12px;border-bottom:3px solid var(--ac)}h1 small{-webkit-text-fill-color:var(--ac);color:var(--ac)}h2{color:#fff;background:#17223a;border-left:5px solid var(--ac)}h3{color:#c4b5fd}th{background:#1c2845}b{color:#fff}</style><style>html:root:root{--bg:#0d111c;--fg:#e6eaf3;--mut:#8f9ab0;--card:#121827;--ac:#86e3a3;--ac2:#8fb0f0;--bd:#202840;--code:#0a0e17;--hl:#141c2e}body{background:var(--bg)}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:34px;border-bottom:1px solid var(--bd);font:500 .78rem 'JetBrains Mono',monospace}.top .brand{display:flex;align-items:center;gap:9px;color:#fff;font:700 .9rem Inter,sans-serif}.top i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ac),var(--ac2))}.top a{color:var(--mut);text-decoration:none}h1{display:flex;flex-direction:column;font-size:2.4rem;letter-spacing:-.03em;line-height:1.08;border:0;padding:0;color:#f4f6fb;-webkit-text-fill-color:#f4f6fb}h1 small{order:-1;margin:0 0 14px;font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}h2{font-size:1.4rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:14px 0 0;color:#fff}h3{color:var(--ac2)}code{color:var(--ac2)}pre{border-radius:8px}th{background:var(--hl);color:var(--ac);font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:6px;box-shadow:none}.warn{border-top-color:#f5b85c}nav a{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;color:var(--mut);background:var(--card)}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>html:root:root{--bg:#0f1320;--fg:#e8ebf4;--mut:#9aa3b8;--card:#171c2d;--bd:#2a3148;--hl:#1e2438;--ac:#91d69d;--ac2:#91d69d;--code:#0b0f1a;--f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;--f-body:'IBM Plex Sans',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace}
+html{scroll-padding-top:5rem}body{background:var(--bg);font-family:var(--f-body);line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-bottom:40px;border-bottom:1px solid var(--bd);background:var(--bg)}
+.bar .brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);white-space:nowrap;text-decoration:none}
+.brand-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--bd);border-radius:7px;background:var(--card);color:var(--ac);font-size:19px}
+.back{color:var(--mut);font-size:.85rem;text-decoration:none}.back:hover{color:var(--ac)}
+h1{display:flex;flex-direction:column;font:700 clamp(2.2rem,6vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.035em;color:var(--fg);-webkit-text-fill-color:var(--fg);background:none;border:0;padding:0;margin:0 0 22px}
+h1 small{order:-1;margin:0 0 15px;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}
+h2,h3,nav{font-family:var(--f-display)}h2{font-size:1.5rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:16px 0 0;color:var(--fg)}h3{color:var(--ac);font-size:1.12rem}b{color:#fff}
+code,pre{font-family:var(--f-mono)}code{color:var(--ac);background:var(--code)}pre{background:var(--code);border:1px solid var(--bd);border-radius:6px}
+th{background:var(--hl);color:var(--ac);font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase}td,th{border-color:var(--bd)}
+.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:0;box-shadow:none}.warn{border-top-color:#f5b85c}
+nav a{font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;border-radius:0;color:var(--mut);background:none;border:1px solid var(--bd)}nav a:hover{color:var(--ac);border-color:var(--ac)}</style></head><body><main><div class="bar"><a class="brand" href="https://sujalcoder359.github.io/JEE-Material/index.html"><span class="brand-symbol">⌬</span><span>JEE MATERIAL</span></a><a class="back" href="https://sujalcoder359.github.io/JEE-Material/hsc-cs.html">← Back to Computer Science</a></div>
+<h1>C++ Programming<small>CS-1 · Chapter 03 · 41 marks with options</small></h1>
+<nav><a href="#a">1 Big picture</a><a href="#b">2 First program</a><a href="#c">3 Variables</a><a href="#d">4 Operators</a><a href="#e">5 Decisions</a><a href="#f">6 Loops</a><a href="#g">7 Arrays</a><a href="#h">8 Functions</a><a href="#i">9 Structures</a><a href="#j">10 Pointers</a><a href="#k">11 OOP</a><a href="#l">12 Files</a><a href="#m">13 Practice</a></nav>
+
+<h2 id="a">1. The big picture</h2>
+<p>A computer only understands 0s and 1s (<b>machine language</b>). Humans write in a readable language like C++ (<b>source code</b>, saved as <code>.cpp</code>). A <b>compiler</b> translates the whole file into machine language; if you made a grammar mistake it shows a <b>syntax error</b> and refuses. A <b>logic error</b> means it runs but gives wrong answers. The cycle is: <b>write → compile → run → fix</b>.</p>
+<p>C++ is called <b>object-oriented</b>: you model real things (a student, a bank account) as <i>objects</i>. Before that, learn the basics, which are the same in many languages.</p>
+
+<h3>Procedural vs Object-Oriented approach</h3><div class="w"><table><tr><th>Procedural (C)</th><th>Object-Oriented (C++)</th></tr><tr><td>Program = list of functions</td><td>Program = objects that talk to each other</td></tr><tr><td>Focus on steps (top-down)</td><td>Focus on data (bottom-up)</td></tr><tr><td>Data is global and unsafe</td><td>Data is hidden inside objects (safe)</td></tr><tr><td>Hard to reuse or extend</td><td>Reuse through inheritance</td></tr></table></div><p><b>Features of OOP:</b> objects, classes, data abstraction, encapsulation, inheritance, polymorphism, <b>dynamic binding</b> (which function runs is decided at run time) and <b>message passing</b> (objects communicate by calling each other’s functions). <b>Advantages:</b> reusability, easy maintenance, data security, real-world modelling, easy to extend. <b>Disadvantage:</b> bigger programs, needs more planning.</p><h2 id="b">2. Your first program, line by line</h2>
+<pre><code>#include &lt;iostream&gt;   // 1
+using namespace std;   // 2
+int main()             // 3
+{                      // 4
+    cout &lt;&lt; "Hello";   // 5
+    return 0;          // 6
+}                      // 7</code></pre>
+<ol><li><code>#include</code> copies a ready-made library into your program. <code>iostream</code> gives <code>cin</code> (keyboard input) and <code>cout</code> (screen output).</li><li>Lets you write <code>cout</code> instead of <code>std::cout</code>.</li><li><code>main()</code> is where every program starts. <code>int</code> means it hands back a whole number when finished.</li><li>4 &amp; 7: <code>{ }</code> mark the start and end of a block.</li><li><code>&lt;&lt;</code> sends text to the screen. Every statement ends with a <b>semicolon ;</b>.</li><li>0 tells the system “finished without trouble”.</li></ol>
+<div class="tip"><b>Comments</b> are notes ignored by the compiler: <code>// one line</code> or <code>/* many lines */</code>. <code>endl</code> or <code>"\n"</code> moves to a new line.</div>
+
+<h2 id="c">3. Variables, data types, constants</h2>
+<p>A <b>variable</b> is a named box in memory that stores a value. You must <b>declare</b> it (say its type) before use: <code>int age = 17;</code></p>
+<div class="w"><table><tr><th>Type</th><th>Stores</th><th>Example</th></tr><tr><td>int</td><td>whole numbers</td><td>45, -3</td></tr><tr><td>float / double</td><td>decimals (double is more precise)</td><td>3.14</td></tr><tr><td>char</td><td>a single character in ' '</td><td>'A'</td></tr><tr><td>bool</td><td>true or false</td><td>true</td></tr><tr><td>string</td><td>text in " " (needs &lt;string&gt;)</td><td>"Asha"</td></tr></table></div>
+<p><b>Identifier rules</b> (names): letters, digits, underscore only; cannot start with a digit; no spaces; cannot be a <b>keyword</b> (reserved word such as <code>int</code>, <code>if</code>, <code>class</code>); C++ is <b>case-sensitive</b> (<code>Age</code> ≠ <code>age</code>). A <b>constant</b> never changes: <code>const float PI = 3.14;</code>. <b>Type casting</b> converts a type: <code>(float)5/2</code> gives 2.5, while <code>5/2</code> gives 2 because int divided by int drops the decimal.</p>
+<h3>More about types, tokens and output</h3><p><b>Tokens</b> (smallest units) are: keywords, identifiers, constants (literals), operators, punctuators/separators. <b>Types</b> are of three groups: <b>built-in</b> (int, float, char, bool, void), <b>derived</b> (array, function, pointer, reference) and <b>user-defined</b> (structure, union, enum, class).</p><ul><li><b>enum</b> gives names to numbers: <code>enum day {MON, TUE, WED};</code> (MON=0, TUE=1…).</li><li><b>union</b> is like a structure but all members share the <i>same</i> memory, so only one holds a value at a time.</li><li><b>typedef</b> makes a new name: <code>typedef unsigned int uint;</code></li><li><b>Reference variable</b> is a second name for the same variable: <code>int &amp;r = a;</code></li><li><b>Escape sequences:</b> \n new line, \t tab, \\ backslash, \" quote, \0 null.</li><li><b>Manipulators</b> (&lt;iomanip&gt;): <code>endl</code>, <code>setw(8)</code> (field width), <code>setprecision(2)</code>.</li><li><b>Type conversion:</b> <i>implicit</i> (automatic, smaller to bigger type) and <i>explicit</i> (casting by you).</li><li><b>Scope resolution</b> <code>::</code> reaches a global variable hidden by a local one, or a class member defined outside the class.</li><li><b>Library functions:</b> &lt;cmath&gt; sqrt(), pow(), abs(); &lt;cctype&gt; isalpha(), isdigit(), toupper(), tolower(); &lt;cstdlib&gt; exit(), rand(); also <code>goto label;</code> jumps to a label (avoid it).</li></ul><h3>Input and output</h3>
+<pre><code>int a;
+cout &lt;&lt; "Enter number: ";
+cin &gt;&gt; a;                 // reads from keyboard
+cout &lt;&lt; "You typed " &lt;&lt; a;</code></pre>
+<p>Remember the arrows: <code>cout &lt;&lt;</code> (data goes <i>out</i> to the screen) and <code>cin &gt;&gt;</code> (data comes <i>in</i> to the variable).</p>
+
+<h2 id="d">4. Operators</h2>
+<div class="w"><table><tr><th>Kind</th><th>Symbols</th><th>Notes</th></tr>
+<tr><td>Arithmetic</td><td>+ − * / %</td><td><code>%</code> = remainder: 7 % 3 = 1</td></tr>
+<tr><td>Relational</td><td>&lt; &gt; &lt;= &gt;= == !=</td><td>result is true/false. <code>==</code> compares, <code>=</code> assigns!</td></tr>
+<tr><td>Logical</td><td>&amp;&amp; (and) || (or) ! (not)</td><td><code>age&gt;12 &amp;&amp; age&lt;20</code></td></tr>
+<tr><td>Assignment</td><td>= += −= *= /=</td><td><code>x += 5</code> means x = x + 5</td></tr>
+<tr><td>Increment</td><td>++ −−</td><td><code>i++</code> adds 1. <code>++i</code> adds first then uses; <code>i++</code> uses then adds</td></tr>
+<tr><td>Conditional</td><td>? :</td><td><code>big = (a&gt;b) ? a : b;</code></td></tr></table></div>
+<p><b>Precedence</b> (who goes first): brackets, then * / %, then + −, then comparisons, then &amp;&amp;, then ||. When unsure, use brackets.</p>
+
+<h2 id="e">5. Decisions: if, else, switch</h2>
+<pre><code>if (marks &gt;= 75) cout &lt;&lt; "Distinction";
+else if (marks &gt;= 35) cout &lt;&lt; "Pass";
+else cout &lt;&lt; "Fail";</code></pre>
+<p>The computer checks conditions top to bottom and runs only the first true one. Use <code>{ }</code> if more than one statement belongs inside. An <b>if inside an if</b> is called <i>nested if</i>.</p>
+<pre><code>switch (choice) {
+  case 1: cout &lt;&lt; "Add"; break;     // break stops falling into next case
+  case 2: cout &lt;&lt; "Subtract"; break;
+  default: cout &lt;&lt; "Invalid";       // when nothing matches
+}</code></pre>
+<p><code>switch</code> works with int/char values, not ranges. Forgetting <code>break</code> is a classic mistake.</p>
+
+<h2 id="f">6. Loops: repeating work</h2>
+<pre><code>for (int i = 1; i &lt;= 3; i++)     // start; keep-going condition; step
+    cout &lt;&lt; i &lt;&lt; " ";            // prints 1 2 3</code></pre>
+<p><b>Trace it like the computer:</b> i=1 → 1≤3 true → print 1 → i becomes 2 → print 2 → i becomes 3 → print 3 → i becomes 4 → 4≤3 false → stop.</p>
+<div class="w"><table><tr><th>Loop</th><th>Use when</th><th>Checks condition</th></tr><tr><td>for</td><td>you know how many times</td><td>before each round</td></tr><tr><td>while</td><td>unknown number of times</td><td>before each round</td></tr><tr><td>do-while</td><td>must run at least once (menus)</td><td>after each round</td></tr></table></div>
+<pre><code>int n = 5, fact = 1;
+while (n &gt; 1) { fact *= n; n--; }   // fact = 5*4*3*2 = 120</code></pre>
+<p><code>break</code> exits a loop; <code>continue</code> skips to the next round. A loop inside a loop (<b>nested</b>) is used for patterns and tables: the inner loop completes fully for every one step of the outer loop.</p>
+<pre><code>for (int r = 1; r &lt;= 3; r++) {
+  for (int c = 1; c &lt;= r; c++) cout &lt;&lt; "*";
+  cout &lt;&lt; endl;
+}   // *  then **  then ***</code></pre>
+
+<h2 id="g">7. Arrays and strings</h2>
+<p>An <b>array</b> stores many same-type values under one name: <code>int m[4] = {50, 60, 70, 80};</code>. Positions (<b>index</b>) start at <b>0</b>, so <code>m[0]</code> is 50 and the last is <code>m[3]</code>. Using <code>m[4]</code> is out of range (a bug).</p>
+<pre><code>int sum = 0;
+for (int i = 0; i &lt; 4; i++) sum += m[i];   // total of all marks</code></pre>
+<p><b>2-D array</b> (rows and columns, like a table/matrix): <code>int t[2][3]; t[1][2] = 9;</code>. A <b>string</b> in C is a char array ending with a hidden <code>'\0'</code> (null) character: <code>char name[10] = "Ravi";</code>. Handy functions from &lt;cstring&gt;: <code>strlen(s)</code> length, <code>strcpy(a,b)</code> copy, <code>strcat(a,b)</code> join, <code>strcmp(a,b)</code> compare.</p><p><b>Reading strings:</b> <code>cin &gt;&gt; s</code> stops at a space, so for a full line use <code>cin.getline(s, 30);</code> or <code>gets(s);</code>. A string can also be handled with a pointer: <code>char *p = "Hello";</code>. The C++ <code>string</code> class (<code>#include &lt;string&gt;</code>) lets you join with <code>+</code>, compare with <code>==</code> and use <code>s.length()</code>.</p>
+
+<h2 id="h">8. Functions</h2>
+<p>A <b>function</b> is a named, reusable block of code. It avoids repeating yourself and makes programs easier to read.</p>
+<pre><code>int add(int x, int y) {      // x, y = parameters
+    return x + y;            // sends result back
+}
+int main() { cout &lt;&lt; add(3, 4); }   // 3, 4 = arguments; prints 7</code></pre>
+<p><b>Parts:</b> return type, name, parameters, body. <code>void</code> means “returns nothing”. A <b>prototype</b> (<code>int add(int,int);</code>) placed above main tells the compiler the function exists. <b>Pass by value</b>: a copy is sent, original unchanged. <b>Pass by reference</b> (<code>void f(int &amp;x)</code>): the original is changed. <b>Scope</b>: a variable inside a function is <i>local</i> (visible only there); one declared outside all functions is <i>global</i>. <b>Function overloading</b>: same name, different parameters. <b>Default arguments</b>: <code>void f(int a, int b = 10)</code>. <b>Recursion</b>: a function calling itself (e.g. factorial) – it must have a stopping case.</p>
+
+<h3>More on functions (often asked)</h3><ul><li><b>Inline function:</b> <code>inline int sq(int x){return x*x;}</code> – compiler pastes the code at each call, which saves call time (good for tiny functions; not for big or recursive ones).</li><li><b>Return by reference</b>: <code>int &amp;big(int &amp;a,int &amp;b)</code> returns the variable itself, not a copy.</li><li><b>Passing arrays</b>: send the array name (its address), so the function can change the original: <code>void show(int a[], int n)</code>.</li><li><b>Call by pointer</b>: <code>void swap(int *x,int *y){int t=*x;*x=*y;*y=t;}</code> called as <code>swap(&amp;a,&amp;b);</code></li><li><b>Types of functions:</b> library (built-in) and user-defined.</li><li><b>Overloading rule:</b> parameters must differ in number or type; return type alone is not enough.</li></ul><h2 id="i">9. Structures</h2>
+<p>An array holds same-type data. A <b>structure</b> groups <i>different</i> types into one unit:</p>
+<pre><code>struct Student { int roll; char name[20]; float per; };
+Student s1 = {1, "Asha", 88.5};
+cout &lt;&lt; s1.name;          // dot operator reaches a member</code></pre>
+<p>A structure is the stepping stone to a class: a class is a structure that also contains functions and can hide data.</p>
+
+<h2 id="j">10. Pointers</h2>
+<p>Every variable lives at a memory <b>address</b>. A <b>pointer</b> is a variable that stores an address.</p>
+<pre><code>int a = 10;
+int *p = &amp;a;     // &amp; = "address of a"; p now points to a
+cout &lt;&lt; *p;      // * = "value at that address" → 10
+*p = 20;         // changes a itself to 20</code></pre>
+<p>Pointers and arrays are linked: an array name is the address of its first element, so <code>*(m+1)</code> equals <code>m[1]</code>. <b>Dynamic memory</b>: <code>int *q = new int;</code> grabs memory while the program runs; <code>delete q;</code> gives it back. A pointer to a pointer, <code>this</code> pointer (the object itself) and <code>null</code> pointer (points nowhere) also come up in exams.</p>
+
+<h3>More on pointers</h3><ul><li><b>Pointer arithmetic:</b> <code>p++</code> moves to the next element (jumps by the size of the type, e.g. 4 bytes for int). Allowed: +, −, ++, −−. Not allowed: adding two pointers.</li><li><b>Array of pointers</b>: <code>char *names[3] = {"Ram","Sita","Gita"};</code></li><li><b>Pointer to a function</b>: <code>int (*fp)(int,int) = add; fp(2,3);</code></li><li><b>Dynamic array</b>: <code>int *a = new int[5]; delete [] a;</code></li><li><b><code>this</code> pointer</b>: a hidden pointer in every member function that holds the address of the calling object; <code>this-&gt;roll</code> is the object’s own roll.</li><li><b>Pointer vs reference:</b> a pointer can be changed to point elsewhere and can be null; a reference is fixed to one variable for life.</li><li><b>Uses of pointers:</b> dynamic memory, passing by address, arrays and strings, linked lists and trees.</li></ul><h2 id="k">11. Object-Oriented Programming</h2>
+<h3>The idea</h3>
+<p>Think of a <b>Car</b>. The <i>blueprint</i> says every car has a colour and speed (data) and can start and brake (actions). Each real car built from it is different. In C++: blueprint = <b>class</b>; real car = <b>object</b>; data = <b>data members</b>; actions = <b>member functions</b>.</p>
+<pre><code>class Student {
+  private:                       // hidden from outside
+    int roll; float per;
+  public:                        // usable from outside
+    void set(int r, float p) { roll = r; per = p; }
+    void show() { cout &lt;&lt; roll &lt;&lt; " " &lt;&lt; per; }
+};
+int main() {
+    Student s;          // object
+    s.set(1, 90.5);     // call member function with dot
+    s.show();
+}</code></pre>
+<p>Functions can also be defined outside the class using the <b>scope resolution operator</b>: <code>void Student::show() {...}</code>.</p>
+<h3>Access specifiers</h3>
+<p><b>private</b>: only inside the class (default). <b>public</b>: anywhere. <b>protected</b>: inside the class and its child classes.</p>
+<h3>The four pillars</h3>
+<div class="w"><table><tr><th>Pillar</th><th>Meaning</th><th>Real-life</th></tr><tr><td>Encapsulation</td><td>bundle data + functions, hide data</td><td>medicine capsule</td></tr><tr><td>Abstraction</td><td>show essentials, hide details</td><td>you press a TV remote without knowing the circuits</td></tr><tr><td>Inheritance</td><td>child class reuses parent class</td><td>child gets traits from parents</td></tr><tr><td>Polymorphism</td><td>one name, many behaviours</td><td>“+” adds numbers and joins words</td></tr></table></div>
+<h3>Constructor and destructor</h3>
+<p>A <b>constructor</b> has the class’s name, no return type, and runs <i>automatically</i> when an object is created (used to set starting values). Types: default (no parameters), parameterised, copy. A <b>destructor</b> <code>~Student()</code> runs automatically when the object dies (cleanup).</p>
+<pre><code>class Box {
+  int l;
+ public:
+  Box() { l = 1; }            // default constructor
+  Box(int x) { l = x; }       // parameterised
+  ~Box() { cout &lt;&lt; "bye"; }   // destructor
+};
+Box a;  Box b(5);</code></pre>
+<h3>Inheritance</h3>
+<pre><code>class Person { public: char name[20]; };
+class Student : public Person {   // Student is the child
+  public: int roll;               // has name AND roll
+};</code></pre>
+<p>Types: <b>single</b> (A→B), <b>multilevel</b> (A→B→C), <b>multiple</b> (A and B→C), <b>hierarchical</b> (A→B and A→C), <b>hybrid</b> (mix). Benefit: <b>code reuse</b>.</p>
+<h3>Polymorphism</h3>
+<p><b>Compile-time</b>: function overloading and operator overloading (making + work on your own objects). <b>Run-time</b>: <b>virtual functions</b> – the right function is chosen while the program runs, based on the actual object. </p><h3>Class vs structure; objects in detail</h3><p>In a structure members are <b>public</b> by default and it normally has only data; in a class members are <b>private</b> by default and it holds data + functions. You can make an <b>array of objects</b> (<code>Student s[3];</code> then <code>s[1].show();</code>), pass an object to a function, and return an object from a function. <b>Record</b> = a group of related fields about one entity (a structure variable).</p><h3>Constructors in full</h3><ul><li><b>Default</b>: no parameters. <b>Parameterised</b>: takes values. <b>Copy constructor</b>: makes a new object from an old one: <code>Box(Box &amp;b){ l=b.l; }</code> used as <code>Box c(a);</code></li><li><b>Characteristics:</b> same name as class; no return type (not even void); called automatically; usually public; can be overloaded; cannot be inherited or virtual.</li><li><b>Destructor characteristics:</b> name is <code>~ClassName</code>; no arguments and no return type; only <b>one</b> per class (cannot be overloaded); called automatically when the object goes out of scope or is deleted; objects are destroyed in <b>reverse</b> order of creation.</li></ul><h3>Static members and friend function</h3><pre><code>class Count {
+  static int n;                 // ONE copy shared by all objects
+ public:
+  Count() { n++; }
+  static void show() { cout &lt;&lt; n; }   // can use only static data
+};
+int Count::n = 0;               // must define outside the class
+</code></pre><p>A <b>friend function</b> is <i>not</i> a member, but the class gives it permission to read private data. Declared with the keyword <code>friend</code> inside the class; called like a normal function (no dot); it receives the object as an argument.</p><pre><code>class Box {
+  int l;
+ public:
+  Box(int x) { l = x; }
+  friend void print(Box b);     // permission slip
+};
+void print(Box b) { cout &lt;&lt; b.l; }   // reaches private l
+</code></pre><h3>Friend class and ++ overloading (extra)</h3>
+<p><b>Friend class:</b> <code>class A { friend class B; ... };</code> lets every member function of B use A’s private data. <b>Overloading ++:</b> prefix <code>Num operator++() { ++v; return *this; }</code>; postfix has a dummy int: <code>Num operator++(int) { Num t=*this; v++; return t; }</code>. <b>Object assignment:</b> <code>a = b;</code> copies every data member from b to a (same class).</p>
+<h3>Inheritance in full</h3><div class="w"><table><tr><th>Mode</th><th>Parent’s public becomes</th><th>Parent’s protected becomes</th></tr><tr><td>public</td><td>public</td><td>protected</td></tr><tr><td>protected</td><td>protected</td><td>protected</td></tr><tr><td>private</td><td>private</td><td>private</td></tr></table></div><p>Parent’s <i>private</i> members are never directly accessible in the child. Terms: <b>base/parent/super</b> class and <b>derived/child/sub</b> class. <b>Constructor order:</b> base constructor runs first, then derived; destructors run in reverse. <b>Ambiguity</b> in multiple inheritance is solved with <code>::</code>. In hybrid/diamond inheritance, a <b>virtual base class</b> (<code>class B : virtual public A</code>) keeps just one copy of A. <b>Advantages:</b> reuse, less code, easy extension, real-world hierarchy.</p><h3>Polymorphism in full</h3><ul><li><b>Function overloading</b> – same name, different parameters (compile time).</li><li><b>Operator overloading</b> – give a new meaning to an operator for objects, with the keyword <code>operator</code>. Cannot overload: <code>::</code> <code>.</code> <code>.*</code> <code>?:</code> <code>sizeof</code>.<pre><code>class P { int x; public: P(int a=0){x=a;}
+  P operator+(P o){ return P(x+o.x); }  // p3 = p1 + p2;
+};</code></pre></li><li><b>Virtual function</b> – declared with <code>virtual</code> in the parent; when a parent pointer points to a child object, the <i>child’s</i> version runs (run time, “late binding”). <b>Pure virtual</b>: <code>virtual void f() = 0;</code>. A class with one is an <b>abstract class</b>: you cannot make objects of it; children must define the function.</li><li><b>Compile-time (early/static) binding</b> vs <b>run-time (late/dynamic) binding</b> is a common one-line question.</li></ul><h3>Operator overloading in detail</h3><p>Rules: only existing operators can be overloaded (you cannot invent new ones); at least one operand must be a user-defined type (an object); the operator’s precedence and number of operands cannot change. A <b>member</b> function gets the left object as itself (so a unary operator takes 0 arguments, a binary operator takes 1); a <b>friend</b> function takes all operands as arguments (unary 1, binary 2).</p><pre><code>class Num { int v; public: Num(int a=0){v=a;}
+  void operator-() { v = -v; }            // unary: -n1;
+  Num operator+(Num o){ return Num(v+o.v);} // binary member
+  friend Num operator*(Num a, Num b);       // binary friend
+};
+Num operator*(Num a, Num b){ return Num(a.v*b.v); }</code></pre><h3>Type conversion with classes</h3><p>Built-in types convert automatically, but for your own classes you must tell C++ how:</p><ul><li><b>Basic to class</b> – use a <b>constructor</b> with one argument: <code>Num n = 5;</code> calls <code>Num(int)</code>.</li><li><b>Class to basic</b> – use a <b>conversion (casting) operator function</b> inside the class: <code>operator int() { return v; }</code> so <code>int x = n;</code> works. It has no return type and no arguments.</li><li><b>Class to class</b> – either a constructor in the destination class that takes the source object, or a conversion operator in the source class.</li></ul><h3>Other class topics from the syllabus</h3><ul><li><b>Constructor overloading and default arguments:</b> <code>Box(); Box(int); Box(int a, int b=1);</code></li><li><b>Dynamic constructor:</b> allocates memory with <code>new</code> inside the constructor (e.g. a name of any length); the destructor then uses <code>delete</code>.</li><li><b>Object as a member of another class</b> (nested objects / containership) – “has-a” relation, versus inheritance which is “is-a”.</li><li><b>Pointer to object:</b> <code>Student s, *p = &amp;s; p-&gt;show();</code> (arrow <code>-&gt;</code> replaces the dot).</li><li><b>Virtual destructor:</b> make the parent’s destructor <code>virtual</code> so deleting a child through a parent pointer destroys the child properly. Virtual functions cannot be static or constructors.</li></ul><p><b>Inline functions:</b> see Section 8.</p>
+
+<h2 id="l">12. File handling</h2>
+<p>Variables vanish when a program ends. A <b>file</b> on disk keeps data permanently. Include <code>&lt;fstream&gt;</code>.</p>
+<pre><code>ofstream out("stud.txt");     // output file stream: WRITE
+out &lt;&lt; "Asha 90";
+out.close();
+
+ifstream in("stud.txt");      // input file stream: READ
+char n[20]; int m;
+in &gt;&gt; n &gt;&gt; m;
+in.close();</code></pre>
+<p>Remember: open → use → close. <code>fstream</code> does both. Modes: <code>ios::in</code> (read), <code>ios::out</code> (write, erases old), <code>ios::app</code> (add at end), <code>ios::binary</code>. Useful: <code>eof()</code> (end reached?), <code>get()/put()</code> (one character), <code>read()/write()</code> (whole objects), <code>seekg/seekp</code> (jump to position), <code>tellg/tellp</code> (current position).</p>
+
+<h3>File handling – the complete picture</h3><ul><li><b>Stream classes</b> (from &lt;fstream&gt;): <code>ifstream</code> (read), <code>ofstream</code> (write), <code>fstream</code> (both). They come from <code>istream</code>/<code>ostream</code>.</li><li><b>Two ways to open:</b> constructor <code>ofstream f("a.txt");</code> or <code>f.open("a.txt", ios::app);</code>. Check success with <code>if(!f) cout &lt;&lt; "cannot open";</code></li><li><b>Text file</b>: stores readable characters. <b>Binary file</b>: stores raw bytes (faster, smaller; use <code>ios::binary</code>).</li><li><b>Sequential access:</b> read/write from start to end. <b>Random access:</b> jump anywhere with <code>seekg()/seekp()</code> and find the position with <code>tellg()/tellp()</code> (g = get/read pointer, p = put/write pointer). <code>ios::beg</code>, <code>ios::cur</code>, <code>ios::end</code> say where to count from.</li></ul><pre><code>Student s;                         // write and read whole objects
+ofstream o("st.dat", ios::binary);
+o.write((char*)&amp;s, sizeof(s));  o.close();
+ifstream i("st.dat", ios::binary);
+while (i.read((char*)&amp;s, sizeof(s))) s.show();   // loop ends at end of file
+i.close();</code></pre><p>Other names: <code>eof()</code> true at end, <code>fail()</code> true on error, <code>close()</code> saves and releases the file.</p><h3>Extra topics from the revised syllabus</h3>
+<ul><li><b>Applications of OOP:</b> simulation, CAD/CAM, games, databases, real-time systems, GUI systems, AI.</li><li><b>Nested class:</b> a class declared inside another. <b>Memory for objects:</b> each object has its own copy of the data members; member functions are stored once and shared; a static member has one copy for all.</li><li><b>Independent reference:</b> a reference declared as a separate variable, <code>int &amp;r = a;</code> (must be initialised, cannot be changed to refer elsewhere).</li><li><b>Pointer to derived class:</b> a base-class pointer can hold the address of a derived object, but without <code>virtual</code> it reaches only base members.</li><li><b>Rules for virtual functions:</b> must be members of a class, cannot be static, are called through a base pointer, prototypes must match exactly, constructors cannot be virtual (destructors can).</li><li><b>Steps to overload an operator:</b> (1) create the class; (2) declare the <code>operator</code> function (member or friend); (3) define it; (4) use the operator on objects.</li><li><b>String functions</b> (&lt;cstring&gt;): <code>strlen, strcpy, strncpy, strcat, strcmp, strchr, strstr</code> (Turbo C++ also has <code>strrev, strupr, strlwr</code>).</li><li><b>Derived-class constructors:</b> base constructor runs first; pass its arguments with <code>Derived(int a,int b) : Base(a) { ... }</code>. Destructors run in reverse order.</li><li><b>Inheritance conflict (ambiguity):</b> two parents with the same member name; fix with <code>A::show();</code> or a virtual base class.</li><li><b>Command-line arguments:</b> <code>int main(int argc, char *argv[])</code>; <b>argc</b> = number of arguments, <b>argv[ ]</b> = the arguments as strings, argv[0] = program name.</li></ul>
+<h2 id="m">13. Practice list and exam tips</h2>
+<div class="tip"><b>Write these yourself without looking:</b> sum of two numbers · even/odd · largest of three · factorial · Fibonacci · prime check · reverse a number · palindrome · sum and average of array · star patterns · swap using a function · simple class with constructor · inheritance example · write a file and read it back.</div>
+<div class="tip"><b>Questions asked in recent board papers (checklist):</b> define class, object, data encapsulation, data abstraction · what is a record · friend function with example · what is a destructor and four characteristics · types of inheritance · constructors and their types · features of OOP · pointer, <code>this</code> pointer, <code>new</code>/<code>delete</code> · function overloading vs operator overloading · virtual function · output of a short program · write a program using a class or file. Practise definitions in 1–2 lines, then one small example each.</div><div class="warn"><b>Common mistakes:</b> missing semicolon · <code>=</code> instead of <code>==</code> · array index starting at 1 · forgetting <code>break</code> in switch · integer division (5/2 = 2) · forgetting to close a file · writing <code>class</code> without the final <code>;</code> after <code>}</code>.</div>
+<p style="color:var(--mut);font-size:.85rem">Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</p>
+</main></body></html>

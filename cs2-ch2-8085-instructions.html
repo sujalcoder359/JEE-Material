@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CS-2 Chapter 6: Instruction Set and Programming of 8085</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap">
+<style>
+:root{--bg:#13121a;--fg:#ece9f1;--mut:#a09bb3;--card:#1c1b27;--ac:#f2c078;--ac2:#f19bb0;--bd:#2f2d3f;--code:#0f0e15;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;color:var(--fg);font:16px/1.7 Inter,system-ui,sans-serif;background:radial-gradient(900px 420px at 90% -5%,#4a306a40,transparent),radial-gradient(700px 400px at 0 0,#6a3a2a26,transparent),var(--bg)}
+main{max-width:760px;margin:auto;padding:20px 18px 60px}
+h1{font-size:1.9rem;font-weight:800;line-height:1.2;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 small{display:block;margin-top:6px;font-size:.9rem;font-weight:400;-webkit-text-fill-color:var(--mut)}
+h2{font-size:1.25rem;margin-top:2.4rem;padding:10px 14px;background:linear-gradient(90deg,#f2c07820,transparent);border-left:4px solid var(--ac);border-radius:6px}
+h3{color:var(--ac2)}b{color:#fff6e6}h1,h2,h3,nav{font-family:Inter,system-ui,sans-serif}
+pre,code{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}
+pre{background:var(--code);border:1px solid var(--bd);border-radius:12px;padding:12px;overflow-x:auto;font-size:.8rem;line-height:1.5}
+code{color:var(--ac);background:var(--code);padding:1px 5px;border-radius:4px;font-size:.88em}
+.tip{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;padding:12px 16px;margin:14px 0;box-shadow:0 6px 24px #0006}
+.w{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.88rem}th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left}th{background:#272438;color:var(--ac)}
+nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}nav a{white-space:nowrap;padding:6px 13px;background:var(--card);border:1px solid var(--bd);border-radius:20px;color:var(--ac);text-decoration:none;font-size:.85rem}
+</style><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036}body{background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#f4f7ff;-webkit-text-fill-color:#f4f7ff;padding-bottom:12px;border-bottom:3px solid var(--ac)}h1 small{-webkit-text-fill-color:var(--ac);color:var(--ac)}h2{color:#fff;background:#17223a;border-left:5px solid var(--ac)}h3{color:#c4b5fd}th{background:#1c2845}b{color:#fff}</style><style>html:root:root{--bg:#0d111c;--fg:#e6eaf3;--mut:#8f9ab0;--card:#121827;--ac:#86e3a3;--ac2:#8fb0f0;--bd:#202840;--code:#0a0e17;--hl:#141c2e}body{background:var(--bg)}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:34px;border-bottom:1px solid var(--bd);font:500 .78rem 'JetBrains Mono',monospace}.top .brand{display:flex;align-items:center;gap:9px;color:#fff;font:700 .9rem Inter,sans-serif}.top i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ac),var(--ac2))}.top a{color:var(--mut);text-decoration:none}h1{display:flex;flex-direction:column;font-size:2.4rem;letter-spacing:-.03em;line-height:1.08;border:0;padding:0;color:#f4f6fb;-webkit-text-fill-color:#f4f6fb}h1 small{order:-1;margin:0 0 14px;font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}h2{font-size:1.4rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:14px 0 0;color:#fff}h3{color:var(--ac2)}code{color:var(--ac2)}pre{border-radius:8px}th{background:var(--hl);color:var(--ac);font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:6px;box-shadow:none}.warn{border-top-color:#f5b85c}nav a{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;color:var(--mut);background:var(--card)}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>html:root:root{--bg:#0f1320;--fg:#e8ebf4;--mut:#9aa3b8;--card:#171c2d;--bd:#2a3148;--hl:#1e2438;--ac:#91d69d;--ac2:#91d69d;--code:#0b0f1a;--f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;--f-body:'IBM Plex Sans',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace}
+html{scroll-padding-top:5rem}body{background:var(--bg);font-family:var(--f-body);line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-bottom:40px;border-bottom:1px solid var(--bd);background:var(--bg)}
+.bar .brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);white-space:nowrap;text-decoration:none}
+.brand-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--bd);border-radius:7px;background:var(--card);color:var(--ac);font-size:19px}
+.back{color:var(--mut);font-size:.85rem;text-decoration:none}.back:hover{color:var(--ac)}
+h1{display:flex;flex-direction:column;font:700 clamp(2.2rem,6vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.035em;color:var(--fg);-webkit-text-fill-color:var(--fg);background:none;border:0;padding:0;margin:0 0 22px}
+h1 small{order:-1;margin:0 0 15px;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}
+h2,h3,nav{font-family:var(--f-display)}h2{font-size:1.5rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:16px 0 0;color:var(--fg)}h3{color:var(--ac);font-size:1.12rem}b{color:#fff}
+code,pre{font-family:var(--f-mono)}code{color:var(--ac);background:var(--code)}pre{background:var(--code);border:1px solid var(--bd);border-radius:6px}
+th{background:var(--hl);color:var(--ac);font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase}td,th{border-color:var(--bd)}
+.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:0;box-shadow:none}.warn{border-top-color:#f5b85c}
+nav a{font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;border-radius:0;color:var(--mut);background:none;border:1px solid var(--bd)}nav a:hover{color:var(--ac);border-color:var(--ac)}</style></head><body><main><div class="bar"><a class="brand" href="https://sujalcoder359.github.io/JEE-Material/index.html"><span class="brand-symbol">⌬</span><span>JEE MATERIAL</span></a><a class="back" href="https://sujalcoder359.github.io/JEE-Material/hsc-cs.html">← Back to Computer Science</a></div>
+<h1>Instruction Set and Programming of 8085<small>CS-2 · Chapter 02 · 23 marks (43 with options)</small></h1>
+<nav><a href="#a">1 Basics</a><a href="#b">2 Addressing</a><a href="#c">3 Programming model</a><a href="#d">4 Instruction set</a><a href="#e">5 Programs</a><a href="#f">6 Revision</a></nav>
+
+<h2 id="a">1. Basics you need first</h2>
+<p>The CPU only understands <b>binary</b>. We write <b>hexadecimal</b> (base 16: digits 0–9, A–F; suffix <b>H</b>, e.g. 2050H, FFH) because it is short. One hex digit = 4 bits, so 2 digits = 1 byte. <b>Machine language</b> = binary codes. <b>Assembly language</b> = short words called <b>mnemonics</b> (ADD, MOV) that stand for those codes; an <b>assembler</b> converts it to machine code. <b>Opcode</b> = the operation part; <b>operand</b> = the data or address it works on.</p>
+<p>A line of assembly: <code>LABEL: MNEMONIC operand1, operand2 ; comment</code>. Example: <code>LOOP: MVI A, 05H ; load 5 into A</code>.</p>
+<p><b>Instruction size:</b> <b>1-byte</b> (opcode only: MOV, ADD, INR), <b>2-byte</b> (opcode + 8-bit data/port: MVI, ADI, IN, OUT), <b>3-byte</b> (opcode + 16-bit address/data, low byte first: LXI, LDA, STA, LHLD, JMP, CALL).</p>
+
+<h2 id="b">2. Addressing modes in 8085</h2>
+<p>An <b>addressing mode</b> is the way an instruction tells where its data is.</p>
+<div class="w"><table><tr><th>Mode</th><th>Meaning</th><th>Example</th></tr>
+<tr><td><b>Immediate</b></td><td>data is inside the instruction</td><td><code>MVI B, 32H</code>, <code>LXI H, 2050H</code></td></tr>
+<tr><td><b>Register</b></td><td>data is in a register</td><td><code>MOV A, B</code>, <code>ADD C</code></td></tr>
+<tr><td><b>Direct</b></td><td>instruction gives the memory address</td><td><code>LDA 2050H</code>, <code>STA 2060H</code></td></tr>
+<tr><td><b>Register indirect</b></td><td>a register pair holds the memory address</td><td><code>MOV A, M</code> (HL), <code>LDAX B</code></td></tr>
+<tr><td><b>Implied (implicit)</b></td><td>operand is understood, none written</td><td><code>CMA</code>, <code>RAL</code>, <code>STC</code></td></tr></table></div>
+
+<h2 id="c">3. Programming model of 8085</h2>
+<p>What a programmer can use: <b>Accumulator A</b> (8-bit); <b>B, C, D, E, H, L</b> (8-bit, or pairs BC, DE, HL); <b>flags</b> S, Z, AC, P, CY; <b>PC</b> and <b>SP</b> (16-bit); <b>memory</b> up to 64 KB (0000H–FFFFH), where <b>M</b> means the byte at the address in HL; <b>256 input and 256 output ports</b> (00H–FFH). Also see Chapter 5.</p>
+
+<h2 id="d">4. Study of the instruction set</h2>
+<p>Notation: <b>R</b> = register A,B,C,D,E,H,L · <b>RP</b> = pair BC, DE, HL (or SP/PSW) · <b>M</b> = memory at HL · <b>(addr)</b> = contents of that address.</p>
+<h3>Data transfer (no flags change)</h3>
+<div class="w"><table><tr><th>Instruction</th><th>Action</th></tr>
+<tr><td>MOV R1,R2 / MOV R,M / MOV M,R</td><td>copy second into first</td></tr>
+<tr><td>MVI R,data8 / MVI M,data8</td><td>load 8-bit number</td></tr>
+<tr><td>LXI RP,data16</td><td>load 16-bit number into pair (or SP)</td></tr>
+<tr><td>LDA addr / STA addr</td><td>A ← (addr) / (addr) ← A</td></tr>
+<tr><td>LDAX B or D / STAX B or D</td><td>A ← ((BC or DE)) / store A there</td></tr>
+<tr><td>LHLD addr / SHLD addr</td><td>L ← (addr), H ← (addr+1) / store L, H there</td></tr>
+<tr><td>XCHG</td><td>swap HL and DE</td></tr></table></div>
+<h3>Arithmetic</h3>
+<div class="w"><table><tr><th>Instruction</th><th>Action</th></tr>
+<tr><td>ADD R/M, ADI data</td><td>A ← A + R/M/data</td></tr>
+<tr><td>ADC R/M, ACI data</td><td>A ← A + R/data + CY (add with carry)</td></tr>
+<tr><td>SUB R/M, SUI data</td><td>A ← A − R/M/data</td></tr>
+<tr><td>SBB R/M, SBI data</td><td>A ← A − R/data − CY (borrow)</td></tr>
+<tr><td>INR R/M, DCR R/M</td><td>add/subtract 1 (CY unaffected)</td></tr>
+<tr><td>INX RP, DCX RP</td><td>add/subtract 1 on a 16-bit pair (no flags)</td></tr>
+<tr><td>DAD RP</td><td>HL ← HL + RP (only CY affected)</td></tr>
+<tr><td>DAA</td><td>decimal adjust A after BCD addition</td></tr></table></div>
+<p>Arithmetic ADD/SUB etc. change all five flags (S, Z, AC, P, CY).</p>
+<h3>Logical</h3>
+<div class="w"><table><tr><th>Instruction</th><th>Action</th></tr>
+<tr><td>ANA R/M, ANI data</td><td>A ← A AND … (CY = 0, AC = 1)</td></tr>
+<tr><td>ORA R/M, ORI data</td><td>A ← A OR … (CY = AC = 0)</td></tr>
+<tr><td>XRA R/M, XRI data</td><td>A ← A XOR … (<code>XRA A</code> clears A)</td></tr>
+<tr><td>CMP R/M, CPI data</td><td>compare: A − operand, A unchanged. Z = 1 if equal; CY = 1 if A is smaller</td></tr>
+<tr><td>CMA / CMC / STC</td><td>complement A / complement carry / set carry</td></tr>
+<tr><td>RLC / RRC</td><td>rotate A left / right (CY = the bit that moved out)</td></tr>
+<tr><td>RAL / RAR</td><td>rotate A left / right <i>through</i> the carry (9-bit rotation)</td></tr></table></div>
+<h3>Branching</h3>
+<p>Normally the PC goes to the next instruction; branching changes it. <b>Unconditional:</b> <code>JMP addr</code>, <code>CALL addr</code> (jump to subroutine, saving the return address on the stack), <code>RET</code> (come back), <code>PCHL</code> (PC ← HL). <b>Conditional</b> (jump only if the flag condition is true):</p>
+<div class="w"><table><tr><th>JC</th><th>JNC</th><th>JZ</th><th>JNZ</th><th>JP</th><th>JM</th><th>JPE</th><th>JPO</th></tr><tr><td>CY=1</td><td>CY=0</td><td>Z=1</td><td>Z=0</td><td>S=0 (plus)</td><td>S=1 (minus)</td><td>P=1 (even)</td><td>P=0 (odd)</td></tr></table></div>
+<p>Conditional calls (CZ, CNZ, CC…) and returns (RZ, RNZ, RC…) work the same way. <b>Loop idea:</b> load a counter, do the work, <code>DCR C</code>, then <code>JNZ LOOP</code> (repeat until C = 0).</p>
+<h3>Stack</h3>
+<p>The <b>stack</b> is a memory area, last-in first-out, pointed to by SP, growing <b>downward</b>. <code>PUSH RP</code> (BC, DE, HL or PSW = A+flags): high byte to SP−1, low byte to SP−2, SP decreases by 2. <code>POP RP</code>: reverse, SP increases by 2. <code>XTHL</code> swaps HL with the top of stack; <code>SPHL</code> copies HL to SP. Set the stack first: <code>LXI SP, 27FFH</code>.</p>
+<h3>I/O and machine control</h3>
+<p><code>IN port</code> (A ← data from port), <code>OUT port</code> (port ← A), <code>EI</code> / <code>DI</code> (enable / disable interrupts), <code>HLT</code> (stop), <code>NOP</code> (do nothing for one cycle), <code>RIM</code> / <code>SIM</code> (read / set interrupt mask and serial lines). <code>RST n</code> (n = 0 to 7) is a one-byte CALL to address 8 × n (e.g. RST 1 jumps to 0008H); used for software interrupts.</p>
+
+<h2 id="e">5. Assembly language programs</h2>
+<p>Steps to write any program: 1) understand the task, 2) decide where data lives (memory addresses), 3) write the logic, 4) end with <code>HLT</code>. Standard layout: program from 2000H, data from 2050H. Note: the board says programs should not exceed about 20–29 instructions.</p>
+<h3>1. Add two 8-bit numbers (with carry)</h3>
+<pre>LXI H, 2050H   ; HL points to the first number
+MOV A, M       ; A = first
+INX H
+ADD M          ; A = A + second
+INX H
+MOV M, A       ; store sum at 2052H
+MVI A, 00H
+ADC A          ; A = 0 + 0 + CY = carry
+INX H
+MOV M, A       ; store carry at 2053H
+HLT</pre>
+<h3>2. Subtract two 8-bit numbers</h3>
+<pre>LXI H, 2050H
+MOV A, M       ; A = first
+INX H
+SUB M          ; A = first - second
+INX H
+MOV M, A       ; result at 2052H
+HLT</pre>
+<h3>3. Add two 16-bit numbers</h3>
+<pre>LHLD 2050H     ; HL = first 16-bit number
+XCHG           ; DE = first
+LHLD 2052H     ; HL = second
+DAD D          ; HL = HL + DE
+SHLD 2054H     ; store result (low, high)
+HLT</pre>
+<h3>4. Largest number in a block (count at 2050H, data from 2051H, count ≥ 2)</h3>
+<pre>LXI H, 2050H
+MOV C, M       ; C = count
+INX H
+MOV A, M       ; assume first is largest
+DCR C
+LOOP: INX H
+CMP M          ; A - M
+JNC SKIP       ; A >= M : keep A
+MOV A, M       ; else new largest
+SKIP: DCR C
+JNZ LOOP
+STA 2060H      ; store largest
+HLT</pre>
+<p>For the <b>smallest</b>, replace <code>JNC SKIP</code> with <code>JC SKIP</code>.</p>
+<h3>5. Sum of N numbers (count at 2050H)</h3>
+<pre>LXI H, 2050H
+MOV C, M       ; counter
+INX H
+XRA A          ; A = 0
+MVI B, 00H     ; B collects carries
+LOOP: ADD M
+JNC NEXT
+INR B          ; count a carry
+NEXT: INX H
+DCR C
+JNZ LOOP
+STA 2070H      ; low byte of sum
+MOV A, B
+STA 2071H      ; high byte
+HLT</pre>
+<h3>6. Multiply two 8-bit numbers (repeated addition)</h3>
+<pre>LDA 2050H
+MOV E, A
+MVI D, 00H     ; DE = multiplicand
+LDA 2051H
+MOV C, A       ; C = multiplier (loop count)
+LXI H, 0000H   ; HL = 0
+LOOP: DAD D    ; HL = HL + DE
+DCR C
+JNZ LOOP
+SHLD 2052H     ; 16-bit product
+HLT</pre>
+<h3>7. 1’s and 2’s complement of a number</h3>
+<pre>LDA 2050H
+CMA            ; 1's complement
+STA 2051H
+ADI 01H        ; 2's complement = 1's + 1
+STA 2052H
+HLT</pre>
+<h3>8. Block transfer (move 5 bytes from 2050H to 3050H)</h3>
+<pre>LXI H, 2050H   ; source
+LXI D, 3050H   ; destination
+MVI C, 05H     ; count
+LOOP: MOV A, M
+STAX D
+INX H
+INX D
+DCR C
+JNZ LOOP
+HLT</pre>
+
+<h3>9. Even or odd (number at 2050H; result at 2051H: 00H even, 01H odd)</h3>
+<pre>LDA 2050H
+ANI 01H        ; keep only bit 0
+JZ EVEN        ; bit 0 = 0 : even
+MVI A, 01H     ; odd
+JMP STORE
+EVEN: MVI A, 00H
+STORE: STA 2051H
+HLT</pre>
+<h3>10. Exchange two memory bytes (2050H and 2051H)</h3>
+<pre>LXI H, 2050H
+MOV A, M       ; A = first
+INX H
+MOV B, M       ; B = second
+MOV M, A       ; second location = first
+DCX H
+MOV M, B       ; first location = second
+HLT</pre>
+<h3>11. Swap the two nibbles of a byte</h3>
+<pre>LDA 2050H
+RLC            ; rotating left 4 times swaps the nibbles
+RLC
+RLC
+RLC
+STA 2051H
+HLT</pre>
+<h3>12. Add two BCD numbers</h3>
+<pre>LXI H, 2050H
+MOV A, M
+INX H
+ADD M
+DAA            ; decimal adjust gives the BCD result
+INX H
+MOV M, A
+HLT</pre>
+<h2 id="f">6. Quick revision</h2>
+<div class="tip"><b>Learn:</b> 5 addressing modes with examples; instruction groups with 1–2 lines per important instruction; instruction sizes; flag effects of ADD/SUB, CMP (Z and CY) and the jump conditions. <b>Practise by hand:</b> the 8 programs above, plus variations: smallest number, count of numbers, even/odd check, sum of first N numbers, exchange two memory bytes, swap nibbles (RLC four times). Write comments on every line; it earns marks and helps you trace the program.</div>
+<p style="color:var(--mut);font-size:.85rem">Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</p>
+</main></body></html>

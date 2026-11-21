@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CS-1 Chapter 4: HTML – Full Beginner Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap">
+<style>
+:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;color:var(--fg);font:16px/1.7 Inter,system-ui,sans-serif;background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}
+main{max-width:760px;margin:auto;padding:20px 18px 60px}
+h1{font-size:1.9rem;font-weight:800;line-height:1.2;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 small{display:block;margin-top:6px;font-size:.9rem;font-weight:400;-webkit-text-fill-color:var(--mut)}
+h2{font-size:1.25rem;margin-top:2.4rem;padding:10px 14px;background:linear-gradient(90deg,#6ee7d822,transparent);border-left:4px solid var(--ac);border-radius:6px}
+h3{color:var(--ac2)}b{color:#fff}
+pre,code{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}
+pre{background:var(--code);border:1px solid var(--bd);border-radius:12px;padding:12px;overflow-x:auto;font-size:.82rem;line-height:1.5}
+code{color:var(--ac);background:var(--code);padding:1px 5px;border-radius:4px;font-size:.88em}pre code{padding:0}
+.tip,.warn{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;padding:12px 16px;margin:14px 0;box-shadow:0 6px 24px #0006}.warn{border-left-color:#fbbf24}
+.w{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{border:1px solid var(--bd);padding:7px 10px;text-align:left}th{background:#1c2845;color:var(--ac)}
+nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}nav a{white-space:nowrap;padding:6px 13px;background:var(--card);border:1px solid var(--bd);border-radius:20px;color:var(--ac);text-decoration:none;font-size:.85rem}
+</style><style>html:root:root{--bg:#13121a;--fg:#ece9f1;--mut:#a09bb3;--card:#1c1b27;--ac:#f2c078;--ac2:#f19bb0;--bd:#2f2d3f;--code:#0f0e15;--hl:#221f31}body{background:radial-gradient(900px 420px at 90% -5%,#4a306a40,transparent),radial-gradient(700px 400px at 0 0,#6a3a2a26,transparent),var(--bg)}h2{background:linear-gradient(90deg,#f2c07820,transparent)}th{background:#272438}b{color:#fff6e6}</style><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036}body{background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#f4f7ff;-webkit-text-fill-color:#f4f7ff;padding-bottom:12px;border-bottom:3px solid var(--ac)}h1 small{-webkit-text-fill-color:var(--ac);color:var(--ac)}h2{color:#fff;background:#17223a;border-left:5px solid var(--ac)}h3{color:#c4b5fd}th{background:#1c2845}b{color:#fff}</style><style>html:root:root{--bg:#0d111c;--fg:#e6eaf3;--mut:#8f9ab0;--card:#121827;--ac:#86e3a3;--ac2:#8fb0f0;--bd:#202840;--code:#0a0e17;--hl:#141c2e}body{background:var(--bg)}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:34px;border-bottom:1px solid var(--bd);font:500 .78rem 'JetBrains Mono',monospace}.top .brand{display:flex;align-items:center;gap:9px;color:#fff;font:700 .9rem Inter,sans-serif}.top i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ac),var(--ac2))}.top a{color:var(--mut);text-decoration:none}h1{display:flex;flex-direction:column;font-size:2.4rem;letter-spacing:-.03em;line-height:1.08;border:0;padding:0;color:#f4f6fb;-webkit-text-fill-color:#f4f6fb}h1 small{order:-1;margin:0 0 14px;font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}h2{font-size:1.4rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:14px 0 0;color:#fff}h3{color:var(--ac2)}code{color:var(--ac2)}pre{border-radius:8px}th{background:var(--hl);color:var(--ac);font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:6px;box-shadow:none}.warn{border-top-color:#f5b85c}nav a{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;color:var(--mut);background:var(--card)}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>html:root:root{--bg:#0f1320;--fg:#e8ebf4;--mut:#9aa3b8;--card:#171c2d;--bd:#2a3148;--hl:#1e2438;--ac:#91d69d;--ac2:#91d69d;--code:#0b0f1a;--f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;--f-body:'IBM Plex Sans',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace}
+html{scroll-padding-top:5rem}body{background:var(--bg);font-family:var(--f-body);line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-bottom:40px;border-bottom:1px solid var(--bd);background:var(--bg)}
+.bar .brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);white-space:nowrap;text-decoration:none}
+.brand-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--bd);border-radius:7px;background:var(--card);color:var(--ac);font-size:19px}
+.back{color:var(--mut);font-size:.85rem;text-decoration:none}.back:hover{color:var(--ac)}
+h1{display:flex;flex-direction:column;font:700 clamp(2.2rem,6vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.035em;color:var(--fg);-webkit-text-fill-color:var(--fg);background:none;border:0;padding:0;margin:0 0 22px}
+h1 small{order:-1;margin:0 0 15px;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}
+h2,h3,nav{font-family:var(--f-display)}h2{font-size:1.5rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:16px 0 0;color:var(--fg)}h3{color:var(--ac);font-size:1.12rem}b{color:#fff}
+code,pre{font-family:var(--f-mono)}code{color:var(--ac);background:var(--code)}pre{background:var(--code);border:1px solid var(--bd);border-radius:6px}
+th{background:var(--hl);color:var(--ac);font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase}td,th{border-color:var(--bd)}
+.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:0;box-shadow:none}.warn{border-top-color:#f5b85c}
+nav a{font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;border-radius:0;color:var(--mut);background:none;border:1px solid var(--bd)}nav a:hover{color:var(--ac);border-color:var(--ac)}</style></head><body><main><div class="bar"><a class="brand" href="https://sujalcoder359.github.io/JEE-Material/index.html"><span class="brand-symbol">⌬</span><span>JEE MATERIAL</span></a><a class="back" href="https://sujalcoder359.github.io/JEE-Material/hsc-cs.html">← Back to Computer Science</a></div>
+<h1>HTML<small>CS-1 · Chapter 04 · 14 marks with options</small></h1>
+<nav><a href="#a">1 Intro</a><a href="#b">2 Pros &amp; cons</a><a href="#c">3 Basic tags</a><a href="#d">4 Fonts</a><a href="#e">5 Images &amp; links</a><a href="#f">6 Tables</a><a href="#g">7 VBScript</a><a href="#h">8 Revision</a></nav>
+
+<h2 id="a">1. Introduction to HTML</h2>
+<p><b>HTML</b> = <b>HyperText Markup Language</b>. It is the language used to build <b>web pages</b>. <b>Hypertext</b> = text with links that jump to other pages. <b>Markup</b> = you “mark” text with <b>tags</b> that tell the browser how to show it. HTML is <b>not a programming language</b> (no calculations or decisions); it only describes how a page looks.</p>
+<p>A <b>tag</b> is a word in angle brackets, e.g. <code>&lt;p&gt;</code>. Most come in pairs: an <b>opening tag</b> <code>&lt;p&gt;</code> and a <b>closing tag</b> <code>&lt;/p&gt;</code> (with a slash). Some have no closing tag (<code>&lt;hr&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>); these are <b>empty tags</b>. An <b>attribute</b> gives extra information inside the opening tag: <code>&lt;font color="red"&gt;</code> (name = value). Tags are not case-sensitive. How to use it: type the code in Notepad, save as <code>page.html</code>, open it in a browser (Chrome, Edge, Firefox).</p>
+
+<h2 id="b">2. Why HTML? Advantages and disadvantages</h2>
+<p><b>Advantages</b></p>
+<ul><li>Easy to learn and write; any text editor will do.</li><li>Free; no special software needed.</li><li>Platform independent: works on Windows, Linux, Android; all browsers understand it.</li><li>Light and fast to load.</li><li>Supports links (hyperlinks), images, audio and video, tables and lists.</li><li>Base for all websites; can be combined with CSS and scripts.</li></ul>
+<p><b>Disadvantages</b></p>
+<ul><li>Only <b>static</b> pages; no logic, calculation or database handling on its own.</li><li>Little security.</li><li>Large sites are hard to maintain; every page must be edited by hand.</li><li>Limited control over layout and design without CSS.</li><li>Needs other tools (scripting languages) for interactivity; tags must be remembered; a small typing mistake can break the layout.</li></ul>
+
+<h2 id="c">3. Basic structure and tags</h2>
+<pre><code>&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;p&gt;Hello, this is my page.&lt;/p&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<div class="w"><table><tr><th>Tag</th><th>Use</th></tr>
+<tr><td><code>&lt;HTML&gt;</code></td><td>root tag; whole page lies between <code>&lt;html&gt;</code> and <code>&lt;/html&gt;</code></td></tr>
+<tr><td><code>&lt;HEAD&gt;</code></td><td>information <i>about</i> the page (title etc.); not shown in the window</td></tr>
+<tr><td><code>&lt;TITLE&gt;</code></td><td>text on the browser tab / title bar</td></tr>
+<tr><td><code>&lt;BODY&gt;</code></td><td>everything visible. Attributes: <code>bgcolor</code>, <code>text</code> (text colour), <code>link</code>, <code>background</code> (image)</td></tr>
+<tr><td><code>&lt;P&gt;</code></td><td>paragraph with a blank line before/after; <code>align="left|center|right"</code></td></tr>
+<tr><td><code>&lt;HR&gt;</code></td><td>horizontal line (empty tag); <code>width</code>, <code>size</code>, <code>align</code>, <code>noshade</code>, <code>color</code></td></tr>
+<tr><td><code>&lt;UL&gt;</code>, <code>&lt;LI&gt;</code></td><td>unordered (bulleted) list; each item in <code>&lt;li&gt;</code>. <code>type="disc|circle|square"</code>. (<code>&lt;ol&gt;</code> makes a numbered list: <code>type</code>, <code>start</code>)</td></tr>
+<tr><td><code>&lt;PRE&gt;</code></td><td><b>pre</b>formatted text: keeps spaces and line breaks exactly, shown in a fixed-width font</td></tr>
+<tr><td><code>&lt;MARQUEE&gt;</code></td><td>scrolling text. <code>direction</code> (left/right/up/down), <code>behavior</code> (scroll/slide/alternate), <code>scrollamount</code> (speed), <code>loop</code>, <code>bgcolor</code>, <code>width</code>, <code>height</code></td></tr>
+<tr><td><code>&lt;BR&gt;</code></td><td>line break (extra, very common)</td></tr></table></div>
+<pre><code>&lt;ul type="square"&gt;&lt;li&gt;Pen&lt;/li&gt;&lt;li&gt;Book&lt;/li&gt;&lt;/ul&gt;
+&lt;marquee direction="left" behavior="scroll" scrollamount="6"&gt;Welcome!&lt;/marquee&gt;
+&lt;pre&gt;
+  Name     Marks
+  Asha       90
+&lt;/pre&gt;</code></pre>
+
+<h3>Other useful tags and attributes</h3>
+<ul><li><b>Headings</b> <code>&lt;h1&gt;</code> (largest) to <code>&lt;h6&gt;</code> (smallest), with <code>align</code>.</li><li><b>Comment</b> (not shown): <code>&lt;!-- note --&gt;</code>. <b>Special characters:</b> <code>&amp;nbsp;</code> (space), <code>&amp;lt;</code> (&lt;), <code>&amp;gt;</code> (&gt;), <code>&amp;amp;</code> (&amp;).</li><li><b>Colours</b> can be names (red) or hex codes (<code>#FF0000</code>), used in <code>bgcolor</code>, <code>text</code>, <code>color</code>.</li></ul>
+<h2 id="d">4. Font styles</h2>
+<div class="w"><table><tr><th>Tag</th><th>Effect</th><th>Example</th></tr>
+<tr><td><code>&lt;B&gt;</code></td><td>bold</td><td><b>bold</b></td></tr>
+<tr><td><code>&lt;I&gt;</code></td><td>italic</td><td><i>italic</i></td></tr>
+<tr><td><code>&lt;U&gt;</code></td><td>underline</td><td><u>underline</u></td></tr>
+<tr><td><code>&lt;BIG&gt;</code></td><td>one size bigger</td><td><big>big</big></td></tr>
+<tr><td><code>&lt;SMALL&gt;</code></td><td>one size smaller</td><td><small>small</small></td></tr>
+<tr><td><code>&lt;SUB&gt;</code></td><td>subscript (below the line)</td><td>H<sub>2</sub>O</td></tr>
+<tr><td><code>&lt;SUP&gt;</code></td><td>superscript (above)</td><td>x<sup>2</sup></td></tr>
+<tr><td><code>&lt;FONT&gt;</code></td><td>attributes <code>face</code> (typeface), <code>size</code> (1 to 7, default 3), <code>color</code></td><td><code>&lt;font face="Arial" size="5" color="blue"&gt;Hi&lt;/font&gt;</code></td></tr></table></div>
+
+<h2 id="e">5. Images and links</h2>
+<pre><code>&lt;img src="photo.jpg" alt="My photo" height="150" width="200" align="right"&gt;</code></pre>
+<ul><li><b>IMG</b> – inserts a picture (empty tag).</li><li><b>SRC</b> – source: file name or path of the image.</li><li><b>ALT</b> – alternate text shown if the image cannot load (also used by screen readers).</li><li><b>HEIGHT, WIDTH</b> – size in pixels (or %).</li><li><b>ALIGN</b> – position/text wrap: left, right, top, middle, bottom. (<code>border</code> sets a frame.)</li></ul>
+<p><b>Links</b> use the anchor tag <code>&lt;A&gt;</code> and the <b>HREF</b> (hypertext reference) attribute, which holds the address to open:</p>
+<pre><code>&lt;a href="https://www.example.com"&gt;Visit site&lt;/a&gt;      absolute link (another site)
+&lt;a href="page2.html"&gt;Next page&lt;/a&gt;                    relative link (your own file)
+&lt;a href="mailto:me@mail.com"&gt;Mail me&lt;/a&gt;              opens email
+&lt;a href="page2.html"&gt;&lt;img src="go.jpg" alt="Go"&gt;&lt;/a&gt;  image as a link</code></pre>
+<p>Horizontal lines (<b>HR</b>) can separate sections and take <code>width</code>, <code>size</code> and <code>align</code> as shown in Section 3.</p>
+
+<h2 id="f">6. Tables</h2>
+<pre><code>&lt;table border="1" cellpadding="5"&gt;
+ &lt;caption&gt;Class Marks&lt;/caption&gt;
+ &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Asha&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td colspan="2"&gt;End of table&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<div class="w"><table><tr><th>Tag</th><th>Meaning</th></tr><tr><td><code>&lt;TABLE&gt;</code></td><td>the whole table. Attributes: <code>border</code>, <code>width</code>, <code>cellpadding</code> (space inside cells), <code>cellspacing</code> (space between cells), <code>bgcolor</code>, <code>align</code></td></tr><tr><td><code>&lt;CAPTION&gt;</code></td><td>title of the table</td></tr><tr><td><code>&lt;TR&gt;</code></td><td>table <b>r</b>ow</td></tr><tr><td><code>&lt;TH&gt;</code></td><td>table <b>h</b>eading cell (bold, centred)</td></tr><tr><td><code>&lt;TD&gt;</code></td><td>table <b>d</b>ata cell. <code>colspan</code> merges columns, <code>rowspan</code> merges rows</td></tr></table></div>
+
+<h2 id="g">7. Scripting as language support: VBScript</h2>
+<p>HTML alone cannot think. A <b>script</b> is a small program placed inside the page to add logic. <b>VBScript</b> (Visual Basic Script, by Microsoft) is a simple scripting language placed between <code>&lt;script language="VBScript"&gt;</code> and <code>&lt;/script&gt;</code>. It runs inside the browser. (Note: only old Internet Explorer runs VBScript; modern browsers ignore it, but it is in your syllabus, so learn the syntax.)</p>
+<div class="w"><table><tr><th>Statement</th><th>Purpose</th><th>Form</th></tr>
+<tr><td><b>DIM</b></td><td>declares (creates) variables</td><td><code>Dim a, b, total</code></td></tr>
+<tr><td><b>SET</b></td><td>assigns an <i>object</i> to a variable</td><td><code>Set obj = CreateObject("Scripting.Dictionary")</code></td></tr>
+<tr><td><b>MsgBox</b></td><td>shows a message window to the user</td><td><code>MsgBox "Hello", 64, "Title"</code></td></tr>
+<tr><td><b>InputBox</b></td><td>asks the user to type something; returns it as text</td><td><code>n = InputBox("Enter a number", "Input")</code></td></tr>
+<tr><td><b>IF … THEN … ELSE</b></td><td>decision</td><td><code>If x &gt; 5 Then … Else … End If</code></td></tr>
+<tr><td><b>FOR … NEXT</b></td><td>loop a fixed number of times</td><td><code>For i = 1 To 5 … Next</code> (optional <code>Step 2</code>)</td></tr></table></div>
+<pre><code>&lt;html&gt;&lt;body&gt;
+&lt;script language="VBScript"&gt;
+  Dim n, i, total
+  n = InputBox("Enter a number")
+  total = 0
+  For i = 1 To n
+      total = total + i          ' adds 1+2+...+n
+  Next
+  If total &gt; 10 Then
+      MsgBox "Sum is " &amp; total &amp; " (big)"
+  Else
+      MsgBox "Sum is " &amp; total &amp; " (small)"
+  End If
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;</code></pre>
+<p>Notes: <code>&amp;</code> joins text; <code>'</code> starts a comment; variables need no type; every <code>If</code> ends with <code>End If</code> and every <code>For</code> with <code>Next</code>.</p>
+
+<h3>Extra topics from the revised syllabus</h3>
+<ul><li><b>Classification of tags:</b> <b>container (paired)</b> tags like <code>&lt;p&gt;…&lt;/p&gt;</code> and <b>empty</b> tags like <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;img&gt;</code>. <b>HTML editors:</b> text editors (Notepad, Notepad++, VS Code) or WYSIWYG editors (Dreamweaver).</li><li><code>&lt;basefont size="4"&gt;</code> sets the default font; <code>&lt;center&gt;</code> centres content; <code>&lt;address&gt;</code> shows contact details (in italics); <code>&lt;em&gt;</code> emphasis (italic), <code>&lt;strong&gt;</code> strong (bold), <code>&lt;strike&gt;</code> strikethrough.</li><li><b>Colour scheme</b> on <code>&lt;body&gt;</code>: <code>bgcolor</code>, <code>text</code>, <code>link</code> (unvisited), <code>vlink</code> (visited), <code>alink</code> (active).</li><li><b>Definition list:</b> <code>&lt;dl&gt;&lt;dt&gt;Term&lt;/dt&gt;&lt;dd&gt;Meaning&lt;/dd&gt;&lt;/dl&gt;</code>. <b>Nested list:</b> put a <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code> inside an <code>&lt;li&gt;</code>.</li><li><b>Table sections:</b> <code>&lt;thead&gt;</code> (header rows), <code>&lt;tbody&gt;</code> (body), <code>&lt;tfoot&gt;</code> (footer). <code>colspan="2"</code> merges cells across columns; <code>rowspan="2"</code> merges down rows. <b>Events</b> such as <code>onmouseover</code> and <code>onclick</code> can be added to <code>&lt;td&gt;</code> to run script.</li><li><code>&lt;script language="VBScript"&gt; … &lt;/script&gt;</code> is the tag that holds script code (Section 7).</li></ul>
+<h2 id="h">8. Quick revision</h2>
+<div class="tip"><b>Define / explain:</b> HTML, tag, attribute, empty tag, script. <b>Lists to learn:</b> advantages and disadvantages (past-paper question), font tags, image attributes, table tags. <b>Practice:</b> write one page with a title, coloured heading, a bulleted list, a marquee, an image with a link and a table with a caption; and one VBScript with InputBox, For…Next and If…Then…Else.</div>
+<p style="color:var(--mut);font-size:.85rem">Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</p>
+</main></body></html>
