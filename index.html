@@ -338,6 +338,97 @@ footer {
   html {scroll-behavior:auto}
   * {transition:none!important}
 }
+
+/* Tests section */
+.tests-section {
+  margin-top: 72px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.tests-heading {
+  margin-bottom: 28px;
+}
+
+.tests-heading .eyebrow {
+  font-family: var(--f-mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+
+.tests-heading h2 {
+  margin-top: 10px;
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--fg);
+}
+
+.tests-heading p {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.test-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 100px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  border-radius: 12px;
+  color: var(--fg);
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+.test-number {
+  font-family: var(--f-mono);
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.test-name {
+  font-family: var(--f-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.test-arrow {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 1.2rem;
+  transition: transform .2s ease;
+}
+
+.test-card:hover,
+.test-card:focus-visible {
+  background: var(--soft);
+  border-bottom-color: #64d8d0;
+}
+
+.test-card:hover *,
+.test-card:focus-visible * {
+  color: #64d8d0;
+}
+
+.test-card:hover .test-arrow {
+  transform: translate(3px, -2px);
+}
+
+.test-card:focus-visible {
+  outline: 2px solid #64d8d0;
+  outline-offset: 4px;
+}
 </style>
 </head>
 
@@ -453,6 +544,21 @@ footer {
   </div>
 </section>
 
+<section class="tests-section">
+  <div class="tests-heading">
+    <span class="eyebrow">PRACTICE / ASSESSMENT</span>
+    <h2>Tests</h2>
+    <p>Challenge yourself with topic-wise tests.</p>
+  </div>
+
+  <div class="tests-grid">
+    <a href="#" class="test-card">
+      <span class="test-number">01</span>
+      <span class="test-name">Organic Chemistry</span>
+      <span class="test-arrow">↗</span>
+    </a>
+  </div>
+</section>
 </main>
 
 <footer>
