@@ -13,50 +13,258 @@
 
 <style>
 :root {
-  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8;
-  --line:#2a3148; --soft:#1e2438; --accent:#64d8d0; --danger:#ff8f8f;
+  --bg:#0f1320;
+  --surface:#171c2d;
+  --fg:#e8ebf4;
+  --muted:#9aa3b8;
+  --line:#2a3148;
+  --soft:#1e2438;
+  --accent:#64d8d0;
+  --danger:#ff8f8f;
   --f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;
   --f-body:'IBM Plex Sans',system-ui,sans-serif;
   --f-mono:'IBM Plex Mono',ui-monospace,monospace;
 }
-* {box-sizing:border-box}
-html {scroll-behavior:smooth}
-body {margin:0;padding-inline:16px;background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body)}
-a {color:inherit;text-decoration:none}
-.shell {max-width:1240px;margin-inline:auto}
 
-.bar {position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;border-bottom:1px solid var(--line);background:var(--bg)}
-.brand {display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);white-space:nowrap}
-.brand-symbol {display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:#a9c9fa;font-size:19px}
-.bar-right {display:flex;align-items:center;gap:22px}
-.bar-right a {color:var(--muted);font-size:.85rem;transition:color .2s}
-.bar-right a:hover {color:var(--accent)}
+* {
+  box-sizing:border-box;
+}
 
-.cover {max-width:850px;padding-block:56px 32px}
-.eyebrow {color:var(--muted);font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
-.cover h1 {margin:15px 0 13px;font:700 clamp(2.3rem,5vw,3.4rem)/1 var(--f-display);letter-spacing:-.035em}
-.cover p {margin:0;color:var(--muted)}
+/* Important: ensures hidden elements stay hidden */
+[hidden] {
+  display:none !important;
+}
 
-.panels {display:grid;gap:22px;max-width:640px;padding-bottom:60px}
-.panel {padding:19px 0 20px;border-top:2px solid var(--accent);border-bottom:1px solid var(--line)}
-.panel.danger {border-top-color:var(--danger)}
-.panel h2 {margin:0 0 6px;font:700 1.3rem var(--f-display)}
-.panel p {margin:0 0 12px;color:var(--muted);font-size:.9rem}
-.row {display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;color:var(--muted);font-size:.9rem}
-.badge {padding:2px 8px;border:1px solid var(--line);border-radius:99px;font-size:.72rem}
-.badge.ok {border-color:var(--accent);color:var(--accent)}
+html {
+  scroll-behavior:smooth;
+}
 
-label {display:block;margin:14px 0 5px;font-size:.8rem;color:var(--muted)}
-input,select {width:100%;padding:10px 12px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:7px;font:inherit}
-input:focus,select:focus,.btn:focus-visible {outline:2px solid var(--accent);outline-offset:2px}
-.btn {margin-top:16px;padding:10px 18px;border:0;border-radius:7px;background:var(--accent);color:#0f1320;font:600 .9rem var(--f-body);cursor:pointer}
-.btn.alt {background:transparent;color:var(--fg);border:1px solid var(--line)}
-.btn.alt:hover {border-color:var(--accent);color:var(--accent)}
-.btn.warn {background:transparent;color:var(--danger);border:1px solid var(--danger)}
-.btn:disabled {opacity:.6;cursor:wait}
-.status {min-height:1.2em;margin-top:10px;font-size:.85rem;color:var(--accent)}
-.status.err {color:var(--danger)}
-.gate {max-width:640px;padding-bottom:60px;color:var(--muted)}
+body {
+  margin:0;
+  padding-inline:16px;
+  background:var(--bg);
+  color:var(--fg);
+  font:16px/1.55 var(--f-body);
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+.shell {
+  max-width:1240px;
+  margin-inline:auto;
+}
+
+/* Navigation */
+
+.bar {
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  min-height:58px;
+  padding-block:10px;
+  border-bottom:1px solid var(--line);
+  background:var(--bg);
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font:700 17px var(--f-display);
+  white-space:nowrap;
+}
+
+.brand-symbol {
+  display:grid;
+  place-items:center;
+  width:32px;
+  height:32px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:var(--surface);
+  color:#a9c9fa;
+  font-size:19px;
+}
+
+.bar-right {
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
+.bar-right a {
+  color:var(--muted);
+  font-size:.85rem;
+  transition:color .2s;
+}
+
+.bar-right a:hover {
+  color:var(--accent);
+}
+
+/* Page heading */
+
+.cover {
+  max-width:850px;
+  padding-block:56px 32px;
+}
+
+.eyebrow {
+  color:var(--muted);
+  font:500 .75rem/1.4 var(--f-mono);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.cover h1 {
+  margin:15px 0 13px;
+  font:700 clamp(2.3rem,5vw,3.4rem)/1 var(--f-display);
+  letter-spacing:-.035em;
+}
+
+.cover p {
+  margin:0;
+  color:var(--muted);
+}
+
+/* Main panels */
+
+.panels {
+  display:grid;
+  gap:22px;
+  max-width:640px;
+  padding-bottom:60px;
+}
+
+.panel {
+  padding:19px 0 20px;
+  border-top:2px solid var(--accent);
+  border-bottom:1px solid var(--line);
+}
+
+.panel.danger {
+  border-top-color:var(--danger);
+}
+
+.panel h2 {
+  margin:0 0 6px;
+  font:700 1.3rem var(--f-display);
+}
+
+.panel p {
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.row {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  margin-bottom:6px;
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.badge {
+  padding:2px 8px;
+  border:1px solid var(--line);
+  border-radius:99px;
+  font-size:.72rem;
+}
+
+.badge.ok {
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+/* Inputs */
+
+label {
+  display:block;
+  margin:14px 0 5px;
+  font-size:.8rem;
+  color:var(--muted);
+}
+
+input,select {
+  width:100%;
+  padding:10px 12px;
+  background:var(--bg);
+  color:var(--fg);
+  border:1px solid var(--line);
+  border-radius:7px;
+  font:inherit;
+}
+
+input:focus,select:focus,.btn:focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+
+/* Buttons */
+
+.btn {
+  margin-top:16px;
+  padding:10px 18px;
+  border:0;
+  border-radius:7px;
+  background:var(--accent);
+  color:#0f1320;
+  font:600 .9rem var(--f-body);
+  cursor:pointer;
+}
+
+.btn.alt {
+  background:transparent;
+  color:var(--fg);
+  border:1px solid var(--line);
+}
+
+.btn.alt:hover {
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+.btn.warn {
+  background:transparent;
+  color:var(--danger);
+  border:1px solid var(--danger);
+}
+
+.btn:disabled {
+  opacity:.6;
+  cursor:wait;
+}
+
+/* Status messages */
+
+.status {
+  min-height:1.2em;
+  margin-top:10px;
+  font-size:.85rem;
+  color:var(--accent);
+}
+
+.status.err {
+  color:var(--danger);
+}
+
+.gate {
+  max-width:640px;
+  padding-bottom:60px;
+  color:var(--muted);
+}
+
+/* Profile picture */
 
 .profile-summary {
   display:flex;
@@ -114,18 +322,57 @@ input:focus,select:focus,.btn:focus-visible {outline:2px solid var(--accent);out
   font-size:.8rem!important;
 }
 
-footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;text-align:center}
+/* Footer */
+
+footer {
+  padding-block:28px 35px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:.8rem;
+  text-align:center;
+}
+
+/* Responsive */
 
 @media(max-width:600px) {
-  body {padding-inline:13px}
-  .bar {min-height:54px}
-  .brand {font-size:15px}
-  .bar-right {gap:12px}
-  .bar-right a {font-size:.78rem}
-  .cover {padding-block:42px 26px}
-  .profile-summary {padding:12px}
+  body {
+    padding-inline:13px;
+  }
+
+  .bar {
+    min-height:54px;
+  }
+
+  .brand {
+    font-size:15px;
+  }
+
+  .bar-right {
+    gap:12px;
+  }
+
+  .bar-right a {
+    font-size:.78rem;
+  }
+
+  .cover {
+    padding-block:42px 26px;
+  }
+
+  .profile-summary {
+    padding:12px;
+  }
 }
-@media(prefers-reduced-motion:reduce) {html {scroll-behavior:auto} * {transition:none!important}}
+
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto;
+  }
+
+  * {
+    transition:none!important;
+  }
+}
 </style>
 </head>
 
@@ -133,7 +380,11 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
 <div class="shell">
 
 <header class="bar">
-  <a href="index.html" class="brand"><span class="brand-symbol">⌬</span><span>JEE MATERIAL</span></a>
+  <a href="index.html" class="brand">
+    <span class="brand-symbol">⌬</span>
+    <span>JEE MATERIAL</span>
+  </a>
+
   <nav class="bar-right">
     <a href="tests.html">Tests</a>
     <a href="index.html">Library</a>
@@ -145,32 +396,39 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
 </header>
 
 <main>
+
 <header class="cover">
   <div class="eyebrow">Account</div>
   <h1>Your account.</h1>
   <p>Manage your profile, password and data.</p>
 </header>
 
-<div class="gate" id="gate">Loading…</div>
+<div class="gate" id="gate">Loading your account…</div>
 
 <div class="panels" id="content" hidden>
+
+  <!-- PROFILE -->
 
   <section class="panel">
     <h2>Profile</h2>
 
     <div class="profile-summary">
       <div class="account-avatar" id="account-avatar">A</div>
+
       <div class="account-identity">
         <strong id="account-display-name">Account</strong>
         <span id="account-display-email"></span>
       </div>
     </div>
 
-    <p class="photo-note">Your profile picture is synced from your Google account. To change it, update your Google profile picture.</p>
+    <p class="photo-note">
+      Your profile picture is synced from your Google account.
+      To change it, update your Google profile picture.
+    </p>
 
     <div class="row">
       <span id="email"></span>
-      <span class="badge" id="verified"></span>
+      <span class="badge ok" id="verified" hidden></span>
     </div>
 
     <label for="name">Name</label>
@@ -186,22 +444,37 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
     <div class="status" id="save-status" role="status"></div>
   </section>
 
+  <!-- PASSWORD -->
+
   <section class="panel">
     <h2>Password</h2>
     <p id="pw-text"></p>
-    <button class="btn alt" id="reset">Send password reset email</button>
+
+    <button class="btn alt" id="reset">
+      Send password reset email
+    </button>
+
     <div class="status" id="reset-status" role="status"></div>
   </section>
+
+  <!-- SIGN OUT -->
 
   <section class="panel">
     <h2>Sign out</h2>
     <p>Log out of this device.</p>
+
     <button class="btn alt" id="signout">Sign out</button>
   </section>
 
+  <!-- DELETE ACCOUNT -->
+
   <section class="panel danger">
     <h2>Delete account</h2>
-    <p>This permanently deletes your profile and all saved test scores. It can't be undone.</p>
+
+    <p>
+      This permanently deletes your profile and all saved test scores.
+      It can't be undone.
+    </p>
 
     <div id="pw-wrap">
       <label for="pw">Your password</label>
@@ -211,7 +484,10 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
     <label for="confirm">Type DELETE to confirm</label>
     <input id="confirm" autocomplete="off">
 
-    <button class="btn warn" id="delete">Delete my account</button>
+    <button class="btn warn" id="delete">
+      Delete my account
+    </button>
+
     <div class="status err" id="delete-status" role="alert"></div>
   </section>
 
@@ -219,10 +495,18 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
 </main>
 
 <footer>JEE MATERIAL · YOUR PERSONAL STUDY LIBRARY</footer>
+
 </div>
 
 <script type="module">
-import { auth, db, getProfile, saveProfile, EXAMS, CLASSES } from "./auth.js";
+import {
+  auth,
+  db,
+  getProfile,
+  saveProfile,
+  EXAMS,
+  CLASSES
+} from "./auth.js";
 
 import {
   onAuthStateChanged,
@@ -242,27 +526,33 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
+/* ---------- helpers ---------- */
+
 const $ = (id) => document.getElementById(id);
 
 const gate = $("gate");
 const content = $("content");
 
-const fill = (sel, list) => {
-  sel.innerHTML = list.map((v) => `<option value="${v}">${v}</option>`).join("");
+const fill = (element, list) => {
+  element.innerHTML = list
+    .map((value) => `<option value="${value}">${value}</option>`)
+    .join("");
 };
 
 fill($("exam"), EXAMS);
 fill($("cls"), CLASSES);
 
-const status = (el, text, isErr = false) => {
-  el.textContent = text;
-  el.classList.toggle("err", isErr);
+const status = (element, message, isError = false) => {
+  element.textContent = message;
+  element.classList.toggle("err", isError);
 };
 
-const hasPassword = (u) =>
-  u.providerData.some((p) => p.providerId === "password");
+const hasPassword = (user) =>
+  user.providerData.some(
+    (provider) => provider.providerId === "password"
+  );
 
-/* ---------- profile picture ---------- */
+/* ---------- avatar ---------- */
 
 function initials(name) {
   return (name || "A")
@@ -276,30 +566,34 @@ function initials(name) {
 
 function renderAvatar(user, name) {
   const avatar = $("account-avatar");
+
   avatar.replaceChildren();
 
-  if (user.photoURL) {
-    const img = document.createElement("img");
-
-    img.src = user.photoURL;
-    img.alt = "Profile picture";
-
-    img.onerror = () => {
-      avatar.replaceChildren();
-      avatar.textContent = initials(name);
-    };
-
-    avatar.append(img);
-  } else {
+  if (!user.photoURL) {
     avatar.textContent = initials(name);
+    return;
   }
+
+  const img = document.createElement("img");
+
+  img.src = user.photoURL;
+  img.alt = "Profile picture";
+
+  img.onerror = () => {
+    avatar.replaceChildren();
+    avatar.textContent = initials(name);
+  };
+
+  avatar.append(img);
 }
 
-/* ---------- account initialization ---------- */
+/* ---------- load account ---------- */
 
 async function init(user) {
+  // Hide the entire form while loading.
   content.hidden = true;
   gate.hidden = false;
+  gate.textContent = "Loading your account…";
 
   if (!user) {
     gate.textContent = "Log in to manage your account.";
@@ -307,7 +601,8 @@ async function init(user) {
   }
 
   if (!user.emailVerified) {
-    gate.textContent = "Verify your email to manage your account. Check your inbox for the link.";
+    gate.textContent =
+      "Verify your email to manage your account. Check your inbox for the link.";
     return;
   }
 
@@ -315,136 +610,190 @@ async function init(user) {
 
   try {
     profile = await getProfile(user.uid);
-  } catch {
-    gate.textContent = "Couldn't load your profile. Refresh the page and try again.";
+  } catch (error) {
+    console.error("Profile loading failed:", error);
+
+    gate.textContent =
+      "Couldn't load your profile. Check your connection and refresh the page.";
+
     return;
   }
 
   if (!profile) {
-    gate.textContent = "Finish setting up your profile to continue.";
+    gate.textContent =
+      "Finish setting up your profile to continue.";
     return;
   }
 
   const name = profile.name || user.displayName || "Account";
 
+  // Account details
   $("email").textContent = user.email || "";
   $("verified").textContent = "Email verified";
-  $("verified").className = "badge ok";
+  $("verified").hidden = false;
 
   $("name").value = name;
-  $("exam").value = profile.exam;
-  $("cls").value = profile.classLevel;
+  $("exam").value = profile.exam || "";
+  $("cls").value = profile.classLevel || "";
 
+  // Profile summary
   $("account-display-name").textContent = name;
   $("account-display-email").textContent = user.email || "";
 
   renderAvatar(user, name);
 
-  const pwUser = hasPassword(user);
+  // Password settings
+  const passwordUser = hasPassword(user);
 
-  $("pw-text").textContent = pwUser
+  $("pw-text").textContent = passwordUser
     ? "We'll email you a link to set a new password."
     : "You sign in with Google, so there's no password to manage here.";
 
-  $("reset").hidden = !pwUser;
-  $("pw-wrap").hidden = !pwUser;
+  $("reset").hidden = !passwordUser;
+  $("pw-wrap").hidden = !passwordUser;
 
+  // Show the form only after everything is ready.
   gate.hidden = true;
   content.hidden = false;
 }
 
-onAuthStateChanged(auth, init);
+/* ---------- authentication state ---------- */
 
-window.addEventListener("profile-saved", () => {
-  init(auth.currentUser);
+onAuthStateChanged(auth, (user) => {
+  init(user);
 });
 
 /* ---------- save profile ---------- */
 
-$("save").onclick = async (e) => {
+$("save").onclick = async (event) => {
   const user = auth.currentUser;
+
+  if (!user) {
+    status($("save-status"), "Please log in again.", true);
+    return;
+  }
+
   const name = $("name").value.trim();
+  const exam = $("exam").value;
+  const classLevel = $("cls").value;
 
   if (name.length < 2) {
-    return status(
+    status(
       $("save-status"),
       "Enter your name (at least 2 characters).",
       true
     );
+    return;
   }
 
-  e.target.disabled = true;
+  if (!exam || !classLevel) {
+    status(
+      $("save-status"),
+      "Please select your exam and class.",
+      true
+    );
+    return;
+  }
+
+  event.target.disabled = true;
 
   try {
-    await saveProfile(user, {
-      name,
-      exam: $("exam").value,
-      classLevel: $("cls").value
-    });
+    await saveProfile(user, { name, exam, classLevel });
 
     $("account-display-name").textContent = name;
     renderAvatar(user, name);
 
     status($("save-status"), "Changes saved.");
-  } catch {
-    status($("save-status"), "Couldn't save. Try again.", true);
+  } catch (error) {
+    console.error("Profile saving failed:", error);
+
+    status(
+      $("save-status"),
+      "Couldn't save your changes. Try again.",
+      true
+    );
   }
 
-  e.target.disabled = false;
+  event.target.disabled = false;
 };
 
 /* ---------- password reset ---------- */
 
-$("reset").onclick = async (e) => {
-  e.target.disabled = true;
+$("reset").onclick = async (event) => {
+  event.target.disabled = true;
 
   try {
     await sendPasswordResetEmail(auth, auth.currentUser.email);
-    status($("reset-status"), "Reset link sent. Check your inbox.");
-  } catch {
-    status($("reset-status"), "Couldn't send the email. Try again later.", true);
+
+    status(
+      $("reset-status"),
+      "Reset link sent. Check your inbox."
+    );
+  } catch (error) {
+    console.error("Password reset failed:", error);
+
+    status(
+      $("reset-status"),
+      "Couldn't send the email. Try again later.",
+      true
+    );
   }
 
-  e.target.disabled = false;
+  event.target.disabled = false;
 };
 
 /* ---------- sign out ---------- */
 
 $("signout").onclick = async () => {
-  await signOut(auth);
-  location.href = "index.html";
+  try {
+    await signOut(auth);
+    location.href = "index.html";
+  } catch (error) {
+    console.error("Sign out failed:", error);
+  }
 };
 
 /* ---------- reauthentication ---------- */
 
 async function reauth(user) {
   if (hasPassword(user)) {
-    const pw = $("pw").value;
+    const password = $("pw").value;
 
-    if (!pw) {
+    if (!password) {
       throw new Error("Enter your password to confirm.");
     }
 
-    await reauthenticateWithCredential(
-      user,
-      EmailAuthProvider.credential(user.email, pw)
+    const credential = EmailAuthProvider.credential(
+      user.email,
+      password
     );
+
+    await reauthenticateWithCredential(user, credential);
   } else {
-    await reauthenticateWithPopup(user, new GoogleAuthProvider());
+    await reauthenticateWithPopup(
+      user,
+      new GoogleAuthProvider()
+    );
   }
 }
 
 /* ---------- delete account ---------- */
 
-$("delete").onclick = async (e) => {
+$("delete").onclick = async (event) => {
   const user = auth.currentUser;
-  const out = $("delete-status");
+  const output = $("delete-status");
 
-  if ($("confirm").value.trim() !== "DELETE") {
-    return status(out, "Type DELETE to confirm.", true);
+  if (!user) {
+    status(output, "Please log in again.", true);
+    return;
   }
 
-  e.target.disabled = true;
+  if ($("confirm").value.trim() !== "DELETE") {
+    status(output, "Type DELETE to confirm.", true);
+    return;
+  }
+
+  event.target.disabled = true;
 
   try {
     await reauth(user);
@@ -454,7 +803,7 @@ $("delete").onclick = async (e) => {
     );
 
     await Promise.all(
-      scores.docs.map((d) => deleteDoc(d.ref))
+      scores.docs.map((document) => deleteDoc(document.ref))
     );
 
     await deleteDoc(doc(db, "users", user.uid));
@@ -463,25 +812,30 @@ $("delete").onclick = async (e) => {
 
     location.href = "index.html";
 
-  } catch (err) {
-    const wrong = [
+  } catch (error) {
+    console.error("Account deletion failed:", error);
+
+    const wrongPassword = [
       "auth/invalid-credential",
       "auth/wrong-password"
-    ].includes(err.code);
+    ].includes(error.code);
 
     status(
-      out,
-      wrong
+      output,
+      wrongPassword
         ? "Wrong password."
-        : (err.code
-            ? "Couldn't delete your account. Try again."
-            : err.message),
+        : (
+            error.code
+              ? "Couldn't delete your account. Try again."
+              : error.message
+          ),
       true
     );
 
-    e.target.disabled = false;
+    event.target.disabled = false;
   }
 };
 </script>
+
 </body>
 </html>
