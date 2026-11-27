@@ -429,6 +429,10 @@ footer {
   outline: 2px solid #64d8d0;
   outline-offset: 4px;
 }
+.auth-btn{background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:7px;padding:6px 12px;font:500 .8rem var(--f-body);cursor:pointer;transition:.2s}
+.auth-btn:hover{border-color:#a9c9fa;color:#a9c9fa}
+#user{color:var(--muted);font-size:.8rem}
+@media(max-width:600px){#user{display:none}}
 </style>
 </head>
 
@@ -442,10 +446,13 @@ footer {
     <span>JEE MATERIAL</span>
   </a>
 
-  <<nav class="bar-right">
+  <nav class="bar-right">
   <a href="tests.html">Tests</a>
   <a href="#subjects">Library</a>
   <a href="#about">About</a>
+  <span id="user"></span>
+  <button id="login" class="auth-btn">Sign in</button>
+  <button id="logout" class="auth-btn" style="display:none">Sign out</button>
 </nav>
 </header>
 
@@ -553,5 +560,6 @@ footer {
 </footer>
 
 </div>
+<script type="module" src="auth.js"></script>
 </body>
 </html>
