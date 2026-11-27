@@ -252,9 +252,20 @@ function nav(user, profile) {
 }
 // pages without auth controls get them injected into the header
 if (!q("#login")) {
-  const host = q(".bar-right") || q(".bar");
-  if (host) host.insertAdjacentHTML("beforeend",
-    '<span id="user"></span><button id="login" class="auth-btn">Sign in</button><button id="logout" class="auth-btn" style="display:none">Sign out</button>');
+  let host = q(".bar-right");
+
+  if (!host) {
+    host = document.createElement("div");
+    host.className = "auth-controls";
+
+    const bar = q(".bar");
+    if (bar) bar.append(host);
+  }
+
+  host.insertAdjacentHTML(
+    "beforeend",
+    '<span id="user"></span><button id="login" class="auth-btn">Sign in</button><button id="logout" class="auth-btn" style="display:none">Sign out</button>'
+  );
 }
 const L = q("#login"), O = q("#logout");
 if (L) L.onclick = () => open("login");
