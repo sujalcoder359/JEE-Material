@@ -71,7 +71,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 footer{padding-block:28px 35px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;text-align:center}
 @media(max-width:600px){body{padding-inline:13px}.brand{font-size:15px}.back{font-size:.78rem}.cover{padding-block:49px 36px}.cover h1{font-size:2.8rem}.sh h2{font-size:1.4rem}.grid{gap:19px}.ch p{min-height:0}#qt{font-size:1.2rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
-.ar{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 12px;min-width:96px;max-width:170px;font-size:.78em}.ar i{font-style:normal;text-align:center;line-height:1.3;min-height:1.3em;padding:0 2px}.ar u{display:block;position:relative;width:100%;height:2px;margin:3px 0;background:currentColor;text-decoration:none}.ar u:after{content:"";position:absolute;right:-2px;top:-4px;border-left:10px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}.op.sel{outline:2px solid #7aa2ff}.tag{display:inline-block;margin-left:10px;padding:2px 9px;border-radius:99px;border:1px solid currentColor;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.t1{color:#6fcf97}.t2{color:#f2c94c}.t3{color:#eb5757}.nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}.nav button{width:34px;height:34px;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit;opacity:.7;cursor:pointer;font:600 .8rem inherit}.nav .cur{outline:2px solid #7aa2ff;opacity:1}.nav .ok{background:rgba(111,207,151,.28)}.nav .bad{background:rgba(235,87,87,.28)}.pill{padding:9px 18px;margin:4px 8px 4px 0;border-radius:99px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;font:inherit}.pill.on{background:#7aa2ff;color:#111;border-color:#7aa2ff}.sl{margin:22px 0 6px;font-weight:700}.stt{margin:6px 0}.nav .pt{background:rgba(242,201,76,.3)}.nav .ans{background:rgba(122,162,255,.3)}</style>
+.ar{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 12px;min-width:96px;max-width:170px;font-size:.78em}.ar i{font-style:normal;text-align:center;line-height:1.3;min-height:1.3em;padding:0 2px}.ar u{display:block;position:relative;width:100%;height:2px;margin:3px 0;background:currentColor;text-decoration:none}.ar u:after{content:"";position:absolute;right:-2px;top:-4px;border-left:10px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}.op.sel{outline:2px solid #7aa2ff}.tag{display:inline-block;margin-left:10px;padding:2px 9px;border-radius:99px;border:1px solid currentColor;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.t1{color:#6fcf97}.t2{color:#f2c94c}.t3{color:#eb5757}.nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}.nav button{width:34px;height:34px;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit;opacity:.7;cursor:pointer;font:600 .8rem inherit}.nav .cur{outline:2px solid #7aa2ff;opacity:1}.nav .ok{background:rgba(111,207,151,.28)}.nav .bad{background:rgba(235,87,87,.28)}.pill{padding:9px 18px;margin:4px 8px 4px 0;border-radius:99px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;font:inherit}.pill.on{background:#7aa2ff;color:#111;border-color:#7aa2ff}.sl{margin:22px 0 6px;font-weight:700}.stt{margin:6px 0}.nav .pt{background:rgba(242,201,76,.3)}.nav .ans{background:rgba(122,162,255,.3)}.yr{margin-left:10px;font-size:.7rem;font-style:normal;font-weight:700;opacity:.9}.qt2{margin:0 0 18px;font:600 1.2rem/1.35 var(--f-display);letter-spacing:-.01em}.qt2 svg.sm{margin:0 6px}</style>
 <style>svg.sm{vertical-align:middle;max-width:100%;height:auto}#qt svg.sm{margin:0 6px}.op svg.sm{flex:none}</style>
 </head>
 <body>
@@ -94,6 +94,8 @@ footer{padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mute
 
 <section id="setup" hidden><div class="wrap" id="sb"></div></section>
 
+<section id="att" hidden><div class="wrap" id="ab"></div></section>
+
 <section id="quiz" hidden>
   <div class="wrap">
     <div class="top"><span id="qc"></span><span class="r"><span id="tm" style="margin-right:12px"></span><span id="qn"></span><span id="qs"></span><span id="qk"></span></span></div>
@@ -101,7 +103,7 @@ footer{padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mute
     <div class="nav" id="nav"></div>
     <h2 id="qt"></h2>
     <div id="opts"></div>
-    <div id="tb" hidden style="margin-top:16px"><button class="btn g2" style="margin-right:8px" onclick="jump(i-1)">Previous</button><button class="btn" style="margin-right:8px" onclick="next()">Next</button><button class="btn g2" onclick="fs()">Submit test</button><p style="opacity:.7;margin:10px 0 0">You do not have to attempt every question. Submit whenever you are ready.</p></div>
+    <div id="tb" hidden style="margin-top:16px"><button class="btn g2" style="margin-right:8px" onclick="jump(i-1)">Previous</button><button class="btn" id="nb" style="margin-right:8px" onclick="next()">Next</button><button class="btn g2" id="clr" style="margin-right:8px" onclick="clr()">Clear answer</button><button class="btn g2" id="sbt" onclick="fs()">Submit test</button><p style="opacity:.7;margin:10px 0 0">You do not have to attempt every question. Skip any you like: unattempted questions score 0, and you can come back to them with the number buttons.</p><div id="cf" style="margin-top:12px"></div></div>
     <div id="fb" hidden>
       <p id="fv"></p><p id="fw"></p>
       <button class="btn" id="nx" onclick="next()"></button>
@@ -202,42 +204,55 @@ function dr(){document.querySelectorAll('svg.sm:not([data-d])').forEach(function
 var $=function(s){return document.querySelector(s)};
 var Q,i,done,cid,ST=[],ANS=[],MODE='test',tmr=null,endT=0,B={},sel=[],cfg={d:0,t:60,m:'test',tAuto:true},DL=['','Easy','Medium','Hard'],LT='ABCDEF';
 try{B=JSON.parse(localStorage.getItem('orq')||'{}')}catch(e){}
+var ATT={};try{ATT=JSON.parse(localStorage.getItem('orq_att')||'{}')}catch(e){}
+function svA(){try{localStorage.setItem('orq_att',JSON.stringify(ATT))}catch(e){}}
+function ak(k){return k<0?'mix':String(k)}
 function sv(){try{localStorage.setItem('orq',JSON.stringify(B))}catch(e){}}
 function sh(a){for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1)),t=a[j];a[j]=a[k];a[k]=t}return a}
-function show(id){['home','setup','quiz','end'].forEach(function(x){$('#'+x).hidden=x!==id});window.scrollTo(0,0)}
+function show(id){['home','setup','quiz','end','att'].forEach(function(x){$('#'+x).hidden=x!==id});window.scrollTo(0,0)}
 function dd(y){return y.x[4]||2}
-function ptsOf(q,s){var bad=s.some(function(x){return q.a.indexOf(x)<0}),k=s.length;return bad?0:(q.m?(k==q.a.length?4:Math.min(k,3)):(k==1?4:0))}
+function ptsOf(q,s){var bad=s.some(function(x){return q.a.indexOf(x)<0}),k=s.length;return bad?-1:(q.m?(k==q.a.length?4:Math.min(k,3)):(k==1?4:0))}
 function home(){
   clearInterval(tmr);var h='',tot=0;
   C.forEach(function(c,k){tot+=c.q.length;
-    h+='<button class="ch" onclick="go('+k+')"><div class="m"><span>Chapter '+(k<9?'0':'')+(k+1)+'</span><span>'+(B[k]!=null?'Best '+B[k]+'%':'')+'</span></div><h3>'+c.n+'</h3><p>'+c.t+'</p><div class="b"><span>'+c.q.length+' questions</span><span>Start ↗</span></div></button>'});
-  h+='<button class="ch" onclick="go(-1)"><div class="m"><span>Mixed round</span><span>'+(B.mix!=null?'Best '+B.mix+'%':'')+'</span></div><h3>All chapters</h3><p>25 random questions from every chapter, sorted from easy to hard. Take it as a timed test or as practice.</p><div class="b"><span>25 of '+tot+' questions</span><span>Start ↗</span></div></button>';
+    h+='<button class="ch" onclick="go('+k+')"><div class="m"><span>Chapter '+(k<9?'0':'')+(k+1)+'</span><span>'+(ATT[k]?'Attempted · '+ATT[k].sc+'/'+ATT[k].mx:(B[k]!=null?'Best '+B[k]+'%':''))+'</span></div><h3>'+c.n+'</h3><p>'+c.t+'</p><div class="b"><span>'+c.q.length+' questions</span><span>Start ↗</span></div></button>'});
+  h+='<button class="ch" onclick="go(-1)"><div class="m"><span>Mixed round</span><span>'+(ATT.mix?'Attempted · '+ATT.mix.sc+'/'+ATT.mix.mx:(B.mix!=null?'Best '+B.mix+'%':''))+'</span></div><h3>All chapters</h3><p>25 random questions from every chapter, sorted from easy to hard. Take it as a timed test or as practice.</p><div class="b"><span>25 of '+tot+' questions</span><span>Start ↗</span></div></button>';
   $('#grid').innerHTML=h;show('home')}
 function pool(k){var p=[];C.forEach(function(c,ci){if(k>=0&&ci!==k)return;c.q.forEach(function(x){p.push({x:x,ch:c.n})})});return p}
 function fm(m){return m<60?m+' min':(m%60?Math.floor(m/60)+' hr '+m%60+' min':(m/60)+' hr')}
 function fp(k){var p=pool(k);if(cfg.d)p=p.filter(function(y){return dd(y)===cfg.d});return p}
 function qn(k){var p=fp(k);return Math.max(1,k<0?Math.min(25,p.length):p.length)}
 function sugg(k){var p=fp(k);if(!p.length)return 15;var W=[0,1.5,2.4,3.5],av=p.reduce(function(a,y){return a+W[dd(y)]},0)/p.length;return Math.max(5,Math.ceil(qn(k)*av/5)*5)}
-function setCt(k){var v=parseInt($('#ct').value);if(v>0&&v<=600){cfg.t=v;cfg.tAuto=false;go(k)}else alert('Enter a time between 1 and 600 minutes.')}
-function go(k){cid=k;var p=pool(k),cn=[0,0,0,0];p.forEach(function(y){cn[dd(y)]++});
+function setCt(k){var v=parseInt($('#ct').value);if(v>0&&v<=600){cfg.t=v;cfg.tAuto=false;setup(k)}else{var m=$('#ctm');if(m)m.textContent='Enter a time between 1 and 600 minutes.'}}
+function go(k){if(ATT[ak(k)])att(k);else setup(k)}
+function setup(k){cid=k;var p=pool(k),cn=[0,0,0,0];p.forEach(function(y){cn[dd(y)]++});
   var h='<div class="eyebrow">'+(k<0?'Mixed round · up to 25 questions':C[k].n)+'</div><h2 class="stt">Set up your session</h2><p class="sl">Mode</p><div>';
-  [['test','Test (timed, score shown after you submit)'],['practice','Practice (answers marked straight away, no timer)']].forEach(function(a){h+='<button class="pill'+(cfg.m===a[0]?' on':'')+'" onclick="cfg.m=\''+a[0]+'\';go('+k+')">'+a[1]+'</button>'});
+  [['test','Test (timed, score shown after you submit)'],['practice','Practice (answers marked straight away, no timer)']].forEach(function(a){h+='<button class="pill'+(cfg.m===a[0]?' on':'')+'" onclick="cfg.m=\''+a[0]+'\';setup('+k+')">'+a[1]+'</button>'});
   h+='</div><p class="sl">Difficulty</p><div>';
-  [[0,'Mixed'],[1,'Easy'],[2,'Medium'],[3,'Hard']].forEach(function(a){h+='<button class="pill'+(cfg.d===a[0]?' on':'')+'" onclick="cfg.d='+a[0]+';go('+k+')">'+a[1]+' <small>('+(a[0]?cn[a[0]]:p.length)+')</small></button>'});
+  [[0,'Mixed'],[1,'Easy'],[2,'Medium'],[3,'Hard']].forEach(function(a){h+='<button class="pill'+(cfg.d===a[0]?' on':'')+'" onclick="cfg.d='+a[0]+';setup('+k+')">'+a[1]+' <small>('+(a[0]?cn[a[0]]:p.length)+')</small></button>'});
   h+='</div>';
   if(cfg.m==='test'){var sg=sugg(k),PR=[15,30,45,60,90,120,180];if(cfg.tAuto)cfg.t=sg;
-    h+='<p class="sl">Time limit</p><div><button class="pill'+(cfg.tAuto?' on':'')+'" onclick="cfg.tAuto=true;go('+k+')">Suggested ('+fm(sg)+')</button>';
-    PR.forEach(function(m){h+='<button class="pill'+(!cfg.tAuto&&cfg.t===m?' on':'')+'" onclick="cfg.t='+m+';cfg.tAuto=false;go('+k+')">'+fm(m)+'</button>'});
+    h+='<p class="sl">Time limit</p><div><button class="pill'+(cfg.tAuto?' on':'')+'" onclick="cfg.tAuto=true;setup('+k+')">Suggested ('+fm(sg)+')</button>';
+    PR.forEach(function(m){h+='<button class="pill'+(!cfg.tAuto&&cfg.t===m?' on':'')+'" onclick="cfg.t='+m+';cfg.tAuto=false;setup('+k+')">'+fm(m)+'</button>'});
     if(!cfg.tAuto&&PR.indexOf(cfg.t)<0)h+='<button class="pill on">Custom ('+fm(cfg.t)+')</button>';
-    h+='</div><p style="margin:10px 0">Custom time: <input id="ct" type="number" min="1" max="600" placeholder="minutes" style="width:110px;padding:7px 10px;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit"> <button class="pill" onclick="setCt('+k+')">Use</button></p><p style="opacity:.7;margin:0 0 8px">Suggested time is about '+(Math.round(sg/qn(k)*10)/10)+' min per question, weighted by difficulty (Easy 1.5, Medium 2.4, Hard 3.5 min). JEE Main allows roughly 2.4 minutes per question, which is about 1 hour for 25 questions.</p>'}
-  h+='<p class="sl" style="opacity:.7">Questions run from easy to hard, and the number buttons let you jump to any question. In Test mode nothing is marked until you submit (or time runs out); in Practice mode each answer is marked as soon as you give it. Marking: +4 for a correct single-answer question. In a multiple-correct question you get +4 for all correct options, or +1 for each correct option chosen (up to +3) if you choose only some and no wrong option. Any wrong option gives 0. There is no negative marking.</p><button class="btn" onclick="start()">Start</button><button class="btn g2" onclick="home()">Back</button>';
+    h+='</div><p style="margin:10px 0">Custom time: <input id="ct" type="number" min="1" max="600" placeholder="minutes" style="width:110px;padding:7px 10px;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit"> <button class="pill" onclick="setCt('+k+')">Use</button><span id="ctm" style="color:#eb5757;margin-left:8px"></span></p><p style="opacity:.7;margin:0 0 8px">Suggested time is about '+(Math.round(sg/qn(k)*10)/10)+' min per question, weighted by difficulty (Easy 1.5, Medium 2.4, Hard 3.5 min). JEE Main allows roughly 2.4 minutes per question, which is about 1 hour for 25 questions.</p>'}
+  h+='<p class="sl" style="opacity:.7">Questions run from easy to hard, and the number buttons let you jump to any question. In Test mode nothing is marked until you submit (or time runs out); in Practice mode each answer is marked as soon as you give it. Marking: +4 for a correct single-answer question. In a multiple-correct question you get +4 for all correct options, or +1 for each correct option chosen (up to +3) if you choose only some and no wrong option. Any wrong option gives −1, and a question you leave unattempted gives 0.</p><button class="btn" onclick="start()">Start</button><button class="btn g2" onclick="home()">Back</button>';
   $('#sb').innerHTML=h;show('setup')}
+function listHTML(A){var N=A.items.length,h='';
+  A.items.forEach(function(x,n){var mk2=x.p===null?'Not attempted · 0 marks':(x.p>0?'+'+x.p:'−'+Math.abs(x.p))+' mark'+(Math.abs(x.p)==1?'':'s');
+    h+='<div class="ms" style="margin:0 0 20px;padding:18px 20px"><div class="top" style="margin-bottom:12px"><span>'+x.ch+'<span class="tag t'+x.d+'">'+DL[x.d]+'</span></span><span class="r"><span>'+(n+1)+' / '+N+'</span><span>'+mk2+'</span></span></div><h2 class="qt2">'+mk(x.q)+(x.a.length>1?'<small style="display:block;margin-top:8px;opacity:.7;font-size:.6em">More than one product is formed. Select all of them. Partial marks are given.</small>':'')+'</h2>';
+    x.o.forEach(function(o,j){var cor=x.a.indexOf(j)>-1,ch=!!(x.s&&x.s.indexOf(j)>-1);h+='<div class="op'+(cor?' ok':'')+(ch&&!cor?' bad':'')+(ch?' sel':'')+'" style="cursor:default"><b>'+LT.charAt(j)+'</b><span>'+mo(o)+'</span>'+(ch?'<em class="yr">your answer</em>':'')+'</div>'});
+    h+='<p class="w" style="margin-top:8px">'+x.w+'</p></div>'});
+  return h}
+function att(k){cid=k;var A=ATT[ak(k)],n0=A.items.filter(function(x){return x.s}).length,
+  h='<div class="eyebrow">'+(k<0?'Mixed round':C[k].n)+' · last attempt</div><h2 class="stt">'+A.sc+' / '+A.mx+' marks</h2><p style="opacity:.75">'+new Date(A.t).toLocaleString()+' · '+(A.mode==='test'?'Test':'Practice')+' · '+(A.d?DL[A.d]:'Mixed')+' difficulty · '+n0+' of '+A.items.length+' attempted</p><button class="btn" onclick="setup('+k+')">Give the test again</button><button class="btn g2" onclick="home()">Back to chapters</button><div style="height:16px"></div>'+listHTML(A);
+  $('#ab').innerHTML=h;show('att');dr()}
 function start(){var p=pool(cid);if(cfg.d)p=p.filter(function(y){return dd(y)===cfg.d});
-  if(!p.length){alert('No questions at this difficulty here. Choose another difficulty.');return}
+  if(!p.length){$('#sb').insertAdjacentHTML('beforeend','<p style="color:#eb5757">No questions at this difficulty here. Choose another difficulty.</p>');return}
   sh(p);if(cid<0)p=p.slice(0,25);p.sort(function(a,b){return dd(a)-dd(b)});
   Q=p.map(function(y){var o=y.x[1].split('|'),n=y.x[3]||1,r=o.slice(0,n);sh(o);return{q:y.x[0],o:o,a:r.map(function(z){return o.indexOf(z)}),w:y.x[2],ch:y.ch,m:n>1,d:dd(y)}});
   MODE=cfg.m;ST=Q.map(function(){return null});ANS=Q.map(function(){return[]});i=0;clearInterval(tmr);
-  $('#tb').hidden=MODE!=='test';$('#fn').textContent=MODE==='test'?'Submit test':'Finish and see results';
+  $('#tb').hidden=false;$('#sbt').textContent=MODE==='test'?'Submit test':'Finish and see results';$('#clr').style.display=MODE==='test'?'':'none';$('#fn').style.display='none';$('#cf').innerHTML='';
   if(MODE==='test'){endT=Date.now()+cfg.t*60000;tmr=setInterval(tick,1000);tick()}else{$('#tm').textContent='';}
   show('quiz');draw()}
 function tick(){var r=Math.max(0,Math.round((endT-Date.now())/1000));$('#tm').textContent='⏱ '+Math.floor(r/60)+':'+('0'+r%60).slice(-2);$('#tm').style.color=r<300?'#eb5757':'';if(r<=0){clearInterval(tmr);sub(true)}}
@@ -247,26 +262,27 @@ function nans(){return ANS.filter(function(x){return x.length}).length}
 function head(){$('#qs').textContent=MODE==='test'?'Answered '+nans()+' / '+Q.length:'Score '+score()+' / '+mx();$('#fill').style.width=((MODE==='test'?nans():ST.filter(Boolean).length)/Q.length*100)+'%'}
 function navr(){$('#nav').innerHTML=Q.map(function(q,k){var c=MODE==='test'?(ANS[k].length?'ans':''):(ST[k]?(ST[k].pts==4?'ok':ST[k].pts>0?'pt':'bad'):'');return '<button class="'+(k==i?'cur ':'')+c+'" onclick="jump('+k+')">'+(k+1)+'</button>'}).join('')}
 function marks(s){var q=Q[i];document.querySelectorAll('.op').forEach(function(b,j){b.disabled=true;b.classList.remove('sel');if(q.a.indexOf(j)>-1)b.classList.add('ok');else if(s.indexOf(j)>-1)b.classList.add('bad')})}
-function fbt(r){var q=Q[i],an=q.a.map(function(x){return LT.charAt(x)}).sort().join(' and ');$('#fv').textContent=r.pts==4?'Correct. +4 marks.':r.pts>0?'Partially correct. +'+r.pts+' marks. You chose '+r.s.length+' of the '+q.a.length+' correct options. The full answer is '+an+'.':'Not quite. 0 marks. '+(q.m?'The correct options are ':'The answer is ')+an+'.';$('#fv').className=r.pts==4?'g':'r';$('#fw').textContent=q.w;$('#nx').textContent=i+1<Q.length?'Next question':'See results';$('#fb').hidden=false}
+function fbt(r){var q=Q[i],an=q.a.map(function(x){return LT.charAt(x)}).sort().join(' and ');$('#fv').textContent=r.pts==4?'Correct. +4 marks.':r.pts>0?'Partially correct. +'+r.pts+' marks. You chose '+r.s.length+' of the '+q.a.length+' correct options. The full answer is '+an+'.':'Not quite. −1 mark. '+(q.m?'The correct options are ':'The answer is ')+an+'.';$('#fv').className=r.pts==4?'g':'r';$('#fw').textContent=q.w;$('#nx').textContent=i+1<Q.length?'Next question':'See results';$('#fb').hidden=false}
 function draw(){var q=Q[i],r=ST[i];done=MODE!=='test'&&!!r;sel=MODE==='test'?ANS[i].slice():[];
   $('#qc').innerHTML=(cid<0?q.ch:C[cid].n)+'<span class="tag t'+q.d+'">'+DL[q.d]+'</span>';
   $('#qn').textContent=(i+1)+' / '+Q.length;$('#qk').textContent='';head();
   $('#qt').innerHTML=mk(q.q)+(q.m?'<small style="display:block;margin-top:8px;opacity:.7;font-size:.6em">More than one product is formed. Select all of them'+(MODE==='test'?'.':', then press Check answer.')+' Partial marks are given.</small>':'');
   $('#opts').innerHTML=q.o.map(function(o,k){return '<button class="op'+(sel.indexOf(k)>-1?' sel':'')+'" onclick="pick('+k+')"><b>'+LT.charAt(k)+'</b><span>'+mo(o)+'</span></button>'}).join('')+(q.m&&MODE!=='test'&&!r?'<button id="ck" class="'+$('#nx').className+'" onclick="chk()">Check answer</button>':'');dr();
-  $('#fb').hidden=true;if(r&&MODE!=='test'){marks(r.s);fbt(r)}navr()}
+  $('#fb').hidden=true;$('#nb').textContent=MODE==='test'||r?'Next':'Skip';if(r&&MODE!=='test'){marks(r.s);fbt(r)}navr()}
 function pick(k){if(done)return;var q=Q[i];
   if(MODE==='test'){var p=sel.indexOf(k);if(q.m){if(p<0)sel.push(k);else sel.splice(p,1)}else sel=p<0?[k]:[];ANS[i]=sel.slice();
     document.querySelectorAll('.op').forEach(function(b,j){b.classList.toggle('sel',sel.indexOf(j)>-1)});head();navr();return}
   if(!q.m){grade([k]);return}var p2=sel.indexOf(k);if(p2<0)sel.push(k);else sel.splice(p2,1);document.querySelectorAll('.op').forEach(function(b,j){b.classList.toggle('sel',sel.indexOf(j)>-1)})}
+function clr(){if(MODE!=='test'||!Q)return;ANS[i]=[];sel=[];document.querySelectorAll('.op').forEach(function(b){b.classList.remove('sel')});head();navr()}
 function chk(){if(!done&&sel.length)grade(sel)}
 function grade(s){var q=Q[i],pts=ptsOf(q,s),ck=$('#ck');if(ck)ck.remove();
   ST[i]={s:s,ok:pts==4,pts:pts};done=true;marks(s);fbt(ST[i]);head();navr();$('#nx').focus()}
 function jump(k){if(k<0||k>=Q.length)return;i=k;draw();window.scrollTo(0,0)}
 function next(){if(i+1<Q.length){i++;draw()}else if(MODE==='test')fs();else fin()}
-function fs(){var un=Q.length-nans();if(MODE==='test'&&un&&!confirm('You have '+un+' unanswered question'+(un>1?'s':'')+'. Submit anyway?'))return;sub()}
+function cfx(){$('#cf').innerHTML=''}
+function fs(){var un=Q.length-nans();if(MODE==='test'&&un>0){$('#cf').innerHTML='<b>Submit the test now?</b> You have '+un+' unanswered question'+(un>1?'s':'')+', which score 0. <br><button class="btn" style="margin:8px 8px 0 0" onclick="sub()">Yes, submit</button><button class="btn g2" style="margin:8px 0 0" onclick="cfx()">Keep going</button>';return}sub()}
 function sub(tu){clearInterval(tmr);if(MODE==='test'){Q.forEach(function(q,k){ST[k]=ANS[k].length?{s:ANS[k],pts:ptsOf(q,ANS[k]),ok:ptsOf(q,ANS[k])==4}:null})}fin(tu)}
-function fin(tu){clearInterval(tmr);var sc=score(),p=Math.round(sc/mx()*100),key=cid<0?'mix':cid;
-  import('./scores.js').then(function(m){m.saveScore('Organic Chemistry'+(cid<0?' (mixed)':' – '+C[cid].n),sc,mx())}).catch(function(){});
+function fin(tu){clearInterval(tmr);var sc=score(),p=Math.max(0,Math.round(sc/mx()*100)),key=cid<0?'mix':cid;
   if(cfg.d===0&&p>(B[key]||0)){B[key]=p;sv()}
   var bd=[1,2,3].map(function(d){var t=Q.filter(function(q){return q.d===d}),c=t.reduce(function(a,q){var r=ST[Q.indexOf(q)];return a+(r?r.pts:0)},0);return t.length?DL[d]+' '+c+'/'+t.length*4:''}).filter(Boolean).join(' · ');
   var un=ST.filter(function(x){return!x}).length;
@@ -274,7 +290,9 @@ function fin(tu){clearInterval(tmr);var sc=score(),p=Math.round(sc/mx()*100),key
   $('#em').innerHTML=(tu?'Time is up. ':'')+(p===100?'Flawless. Every product predicted correctly. 🏆':p>=70?'Strong round. Check the misses below.':p>=40?'Getting there. The exceptions are the tricky part.':'Tough round. Re-read this chapter in the reaction book and try again.')+'<br><small style="opacity:.75">'+bd+(un?' · '+un+' not answered':'')+'</small>';
   var ms=Q.filter(function(q,k){return!(ST[k]&&ST[k].ok)});
   $('#mh').hidden=!ms.length;
-  $('#ml').innerHTML=ms.map(function(q){return '<div class="ms"><p><span class="tag t'+q.d+'" style="margin:0 8px 0 0">'+DL[q.d]+'</span>'+q.q.replace(/\{\{(.+?)\}\}/g,function(_,m){var p=m.split('~~');return p[1]||p[0]})+'</p><p class="a">'+q.a.map(function(x){return nm(q.o[x])}).join(' + ')+' <small style="opacity:.7">(scored '+(ST[Q.indexOf(q)]?ST[Q.indexOf(q)].pts:0)+' / 4)</small></p><p class="w">'+q.w+'</p></div>'}).join('');
+  $('#ml').innerHTML=ms.map(function(q){return '<div class="ms"><p><span class="tag t'+q.d+'" style="margin:0 8px 0 0">'+DL[q.d]+'</span>'+q.q.replace(/\{\{(.+?)\}\}/g,function(_,m){var p=m.split('~~');return p[1]||p[0]})+'</p><p class="a">'+q.a.map(function(x){return nm(q.o[x])}).join(' + ')+(ST[Q.indexOf(q)]?' <small style="opacity:.7">(scored '+ST[Q.indexOf(q)].pts+' / 4)</small>':' <small style="opacity:.7">(not attempted, 0 marks)</small>')+'</p><p class="w">'+q.w+'</p></div>'}).join('');
+  ATT[key]={t:Date.now(),mode:MODE,d:cfg.d,sc:sc,mx:mx(),items:Q.map(function(q,k){return{q:q.q,o:q.o,a:q.a,s:ST[k]?ST[k].s:null,p:ST[k]?ST[k].pts:null,d:q.d,ch:q.ch,w:q.w}})};svA();
+  $('#mh').hidden=false;$('#mh').textContent='Your questions and answers';$('#ml').innerHTML=listHTML(ATT[key]);dr();
   show('end')}
 document.addEventListener('keydown',function(e){
   if($('#quiz').hidden)return;var kk=e.key.toLowerCase();
