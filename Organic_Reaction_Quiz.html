@@ -283,6 +283,56 @@ function next(){if(i+1<Q.length){i++;draw()}else if(MODE==='test')fs();else fin(
 function cfx(){$('#cf').innerHTML=''}
 function fs(){var un=Q.length-nans();if(MODE==='test'&&un>0){$('#cf').innerHTML='<b>Submit the test now?</b> You have '+un+' unanswered question'+(un>1?'s':'')+', which score 0. <br><button class="btn" style="margin:8px 8px 0 0" onclick="sub()">Yes, submit</button><button class="btn g2" style="margin:8px 0 0" onclick="cfx()">Keep going</button>';return}sub()}
 function sub(tu){clearInterval(tmr);if(MODE==='test'){Q.forEach(function(q,k){ST[k]=ANS[k].length?{s:ANS[k],pts:ptsOf(q,ANS[k]),ok:ptsOf(q,ANS[k])==4}:null})}fin(tu)}
+
+async function saveTestScoreToFirebase(data) {
+  try {
+    const [
+      { auth, db },
+      { collection, addDoc, serverTimestamp },
+      { onAuthStateChanged }
+    ] = await Promise.all([
+      import("./auth.js"),
+      import("https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js"),
+      import("https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js")
+    ]);
+
+    const user = await new Promise((resolve, reject) => {
+      let unsubscribe = () => {};
+
+      unsubscribe = onAuthStateChanged(
+        auth,
+        currentUser => {
+          unsubscribe();
+          resolve(currentUser);
+        },
+        reject
+      );
+    });
+
+    // Guests and unverified users keep localStorage only.
+    if (!user || !user.emailVerified) return null;
+
+    await addDoc(
+      collection(db, "users", user.uid, "scores"),
+      {
+        testName: data.testName,
+        score: Number(data.score),
+        total: Number(data.total),
+        percentage: Number(data.percentage),
+        difficulty: data.difficulty,
+        attempted: Number(data.attempted),
+        createdAt: serverTimestamp()
+      }
+    );
+
+    return true;
+
+  } catch (error) {
+    console.error("Firebase score saving failed:", error);
+    return false;
+  }
+}
+
 function fin(tu){clearInterval(tmr);var sc=score(),p=Math.max(0,Math.round(sc/mx()*100)),key=cid<0?'mix':cid;
   if(cfg.d===0&&p>(B[key]||0)){B[key]=p;sv()}
   var bd=[1,2,3].map(function(d){var t=Q.filter(function(q){return q.d===d}),c=t.reduce(function(a,q){var r=ST[Q.indexOf(q)];return a+(r?r.pts:0)},0);return t.length?DL[d]+' '+c+'/'+t.length*4:''}).filter(Boolean).join(' · ');
