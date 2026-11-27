@@ -53,7 +53,7 @@ a {
   margin-inline:auto;
 }
 
-/* HEADER */
+/* HEADER - MATCHES MAIN WEBSITE */
 
 .bar {
   position:sticky;
@@ -85,19 +85,59 @@ a {
   border:1px solid var(--line);
   border-radius:7px;
   background:var(--surface);
-  color:var(--accent);
+  color:#a9c9fa;
   font-size:19px;
 }
 
-.back {
+.bar-right {
+  display:flex;
+  align-items:center;
+  gap:22px;
   margin-left:auto;
+}
+
+.bar-right a {
   color:var(--muted);
   font-size:.85rem;
   transition:color .2s;
 }
 
-.back:hover {
-  color:var(--accent);
+.bar-right a:hover {
+  color:#a9c9fa;
+}
+
+/* AUTH BUTTONS */
+
+.auth-btn {
+  background:var(--surface);
+  color:var(--fg);
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:6px 12px;
+  font:500 .8rem var(--f-body);
+  cursor:pointer;
+  transition:.2s;
+  white-space:nowrap;
+}
+
+.auth-btn:hover {
+  border-color:#a9c9fa;
+  color:#a9c9fa;
+}
+
+#user {
+  color:var(--muted);
+  font-size:.8rem;
+  white-space:nowrap;
+}
+
+#user a {
+  display:inline-block;
+  max-width:120px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  vertical-align:middle;
 }
 
 /* PAGE INTRO */
@@ -254,13 +294,39 @@ footer {
 
 @media(max-width:600px) {
   body {padding-inline:13px}
+
+  .bar {
+    min-height:54px;
+    gap:10px;
+  }
+
+  .brand {font-size:15px}
+
+  .bar-right {gap:12px}
+
+  .bar-right a {font-size:.78rem}
+
+  .auth-btn {
+    padding:6px 9px;
+    font-size:.75rem;
+  }
+
+  #user {display:none}
+
   .cover {padding-block:49px 36px}
+
   .cover h1 {font-size:2.8rem}
+
   .cover p {font-size:.9rem}
+
   .section-heading h2 {font-size:1.4rem}
+
   .resources {gap:19px}
+
   .resource {padding-top:16px}
+
   .resource p {min-height:0}
+
   .count {display:none}
 }
 
@@ -275,21 +341,25 @@ footer {
 <div class="shell">
 
 <header class="bar">
+
   <a href="index.html" class="brand">
     <span class="brand-symbol">⌬</span>
     <span>JEE MATERIAL</span>
   </a>
 
-  <div class="bar-right">
-    <a href="index.html" class="back">← Back to Main Website</a>
-  </div>
+  <nav class="bar-right">
+    <a href="index.html">← Back to Main Website</a>
+  </nav>
+
 </header>
 
 <main>
 
 <header class="cover">
   <div class="eyebrow">01 / JEE SUBJECT LIBRARY</div>
+
   <h1>Physics</h1>
+
   <p>
     Explore your physics study resources, formula booklets and
     important reference materials, organised in one place.
@@ -297,17 +367,20 @@ footer {
 </header>
 
 <section>
+
   <div class="section-heading">
     <div>
       <h2>Study Materials</h2>
       <p>Select a resource to open it.</p>
     </div>
+
     <span class="count">01 RESOURCE</span>
   </div>
 
   <div class="resources">
 
-    <a class="resource" href="Physics_Formula_Booklet.html">
+    <a class="resource" href="Physics%20Formula%20Booklet.html">
+
       <div class="resource-meta">
         <span>FORMULA BOOKLET</span>
         <span>01</span>
@@ -324,9 +397,11 @@ footer {
         <span>OPEN RESOURCE</span>
         <span>↗</span>
       </div>
+
     </a>
 
   </div>
+
 </section>
 
 </main>
@@ -336,6 +411,8 @@ footer {
 </footer>
 
 </div>
+
 <script type="module" src="auth.js"></script>
+
 </body>
 </html>
