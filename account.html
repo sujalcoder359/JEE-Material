@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,6 +58,62 @@ input:focus,select:focus,.btn:focus-visible {outline:2px solid var(--accent);out
 .status.err {color:var(--danger)}
 .gate {max-width:640px;padding-bottom:60px;color:var(--muted)}
 
+.profile-summary {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:18px 0 22px;
+  padding:16px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+
+.account-avatar {
+  width:66px;
+  height:66px;
+  flex:none;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:var(--soft);
+  color:var(--fg);
+  font-size:1.2rem;
+  font-weight:600;
+}
+
+.account-avatar img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.account-identity {
+  min-width:0;
+}
+
+.account-identity strong {
+  display:block;
+  font-size:1rem;
+  overflow-wrap:anywhere;
+}
+
+.account-identity span {
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:.8rem;
+  overflow-wrap:anywhere;
+}
+
+.photo-note {
+  margin-top:10px!important;
+  font-size:.8rem!important;
+}
+
 footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;text-align:center}
 
 @media(max-width:600px) {
@@ -66,6 +123,7 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
   .bar-right {gap:12px}
   .bar-right a {font-size:.78rem}
   .cover {padding-block:42px 26px}
+  .profile-summary {padding:12px}
 }
 @media(prefers-reduced-motion:reduce) {html {scroll-behavior:auto} * {transition:none!important}}
 </style>
@@ -99,13 +157,31 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
 
   <section class="panel">
     <h2>Profile</h2>
-    <div class="row"><span id="email"></span><span class="badge" id="verified"></span></div>
+
+    <div class="profile-summary">
+      <div class="account-avatar" id="account-avatar">A</div>
+      <div class="account-identity">
+        <strong id="account-display-name">Account</strong>
+        <span id="account-display-email"></span>
+      </div>
+    </div>
+
+    <p class="photo-note">Your profile picture is synced from your Google account. To change it, update your Google profile picture.</p>
+
+    <div class="row">
+      <span id="email"></span>
+      <span class="badge" id="verified"></span>
+    </div>
+
     <label for="name">Name</label>
     <input id="name" maxlength="50" autocomplete="name">
+
     <label for="exam">Exam</label>
     <select id="exam"></select>
+
     <label for="cls">Class</label>
     <select id="cls"></select>
+
     <button class="btn" id="save">Save changes</button>
     <div class="status" id="save-status" role="status"></div>
   </section>
@@ -126,12 +202,15 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
   <section class="panel danger">
     <h2>Delete account</h2>
     <p>This permanently deletes your profile and all saved test scores. It can't be undone.</p>
+
     <div id="pw-wrap">
       <label for="pw">Your password</label>
       <input id="pw" type="password" autocomplete="current-password">
     </div>
+
     <label for="confirm">Type DELETE to confirm</label>
     <input id="confirm" autocomplete="off">
+
     <button class="btn warn" id="delete">Delete my account</button>
     <div class="status err" id="delete-status" role="alert"></div>
   </section>
@@ -144,45 +223,129 @@ footer {padding-block:28px 35px;border-top:1px solid var(--line);color:var(--mut
 
 <script type="module">
 import { auth, db, getProfile, saveProfile, EXAMS, CLASSES } from "./auth.js";
+
 import {
-  onAuthStateChanged, signOut, sendPasswordResetEmail, reauthenticateWithCredential,
-  reauthenticateWithPopup, EmailAuthProvider, GoogleAuthProvider, deleteUser
+  onAuthStateChanged,
+  signOut,
+  sendPasswordResetEmail,
+  reauthenticateWithCredential,
+  reauthenticateWithPopup,
+  EmailAuthProvider,
+  GoogleAuthProvider,
+  deleteUser
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-import { collection, getDocs, deleteDoc, doc }
-  from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
 const $ = (id) => document.getElementById(id);
-const gate = $("gate"), content = $("content");
 
-const fill = (sel, list) => { sel.innerHTML = list.map((v) => `<option value="${v}">${v}</option>`).join(""); };
+const gate = $("gate");
+const content = $("content");
+
+const fill = (sel, list) => {
+  sel.innerHTML = list.map((v) => `<option value="${v}">${v}</option>`).join("");
+};
+
 fill($("exam"), EXAMS);
 fill($("cls"), CLASSES);
 
-const status = (el, text, isErr = false) => { el.textContent = text; el.classList.toggle("err", isErr); };
-const hasPassword = (u) => u.providerData.some((p) => p.providerId === "password");
+const status = (el, text, isErr = false) => {
+  el.textContent = text;
+  el.classList.toggle("err", isErr);
+};
+
+const hasPassword = (u) =>
+  u.providerData.some((p) => p.providerId === "password");
+
+/* ---------- profile picture ---------- */
+
+function initials(name) {
+  return (name || "A")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+}
+
+function renderAvatar(user, name) {
+  const avatar = $("account-avatar");
+  avatar.replaceChildren();
+
+  if (user.photoURL) {
+    const img = document.createElement("img");
+
+    img.src = user.photoURL;
+    img.alt = "Profile picture";
+
+    img.onerror = () => {
+      avatar.replaceChildren();
+      avatar.textContent = initials(name);
+    };
+
+    avatar.append(img);
+  } else {
+    avatar.textContent = initials(name);
+  }
+}
+
+/* ---------- account initialization ---------- */
 
 async function init(user) {
   content.hidden = true;
   gate.hidden = false;
-  if (!user) { gate.textContent = "Log in to manage your account."; return; }
-  if (!user.emailVerified) { gate.textContent = "Verify your email to manage your account. Check your inbox for the link."; return; }
+
+  if (!user) {
+    gate.textContent = "Log in to manage your account.";
+    return;
+  }
+
+  if (!user.emailVerified) {
+    gate.textContent = "Verify your email to manage your account. Check your inbox for the link.";
+    return;
+  }
 
   let profile;
-  try { profile = await getProfile(user.uid); }
-  catch { gate.textContent = "Couldn't load your profile. Refresh the page and try again."; return; }
-  if (!profile) { gate.textContent = "Finish setting up your profile to continue."; return; }
 
-  $("email").textContent = user.email;
+  try {
+    profile = await getProfile(user.uid);
+  } catch {
+    gate.textContent = "Couldn't load your profile. Refresh the page and try again.";
+    return;
+  }
+
+  if (!profile) {
+    gate.textContent = "Finish setting up your profile to continue.";
+    return;
+  }
+
+  const name = profile.name || user.displayName || "Account";
+
+  $("email").textContent = user.email || "";
   $("verified").textContent = "Email verified";
   $("verified").className = "badge ok";
-  $("name").value = profile.name;
+
+  $("name").value = name;
   $("exam").value = profile.exam;
   $("cls").value = profile.classLevel;
 
+  $("account-display-name").textContent = name;
+  $("account-display-email").textContent = user.email || "";
+
+  renderAvatar(user, name);
+
   const pwUser = hasPassword(user);
+
   $("pw-text").textContent = pwUser
     ? "We'll email you a link to set a new password."
     : "You sign in with Google, so there's no password to manage here.";
+
   $("reset").hidden = !pwUser;
   $("pw-wrap").hidden = !pwUser;
 
@@ -191,56 +354,131 @@ async function init(user) {
 }
 
 onAuthStateChanged(auth, init);
-window.addEventListener("profile-saved", () => init(auth.currentUser));
+
+window.addEventListener("profile-saved", () => {
+  init(auth.currentUser);
+});
+
+/* ---------- save profile ---------- */
 
 $("save").onclick = async (e) => {
   const user = auth.currentUser;
   const name = $("name").value.trim();
-  if (name.length < 2) return status($("save-status"), "Enter your name (at least 2 characters).", true);
+
+  if (name.length < 2) {
+    return status(
+      $("save-status"),
+      "Enter your name (at least 2 characters).",
+      true
+    );
+  }
+
   e.target.disabled = true;
+
   try {
-    await saveProfile(user, { name, exam: $("exam").value, classLevel: $("cls").value });
+    await saveProfile(user, {
+      name,
+      exam: $("exam").value,
+      classLevel: $("cls").value
+    });
+
+    $("account-display-name").textContent = name;
+    renderAvatar(user, name);
+
     status($("save-status"), "Changes saved.");
-  } catch { status($("save-status"), "Couldn't save. Try again.", true); }
+  } catch {
+    status($("save-status"), "Couldn't save. Try again.", true);
+  }
+
   e.target.disabled = false;
 };
+
+/* ---------- password reset ---------- */
 
 $("reset").onclick = async (e) => {
   e.target.disabled = true;
+
   try {
     await sendPasswordResetEmail(auth, auth.currentUser.email);
     status($("reset-status"), "Reset link sent. Check your inbox.");
-  } catch { status($("reset-status"), "Couldn't send the email. Try again later.", true); }
+  } catch {
+    status($("reset-status"), "Couldn't send the email. Try again later.", true);
+  }
+
   e.target.disabled = false;
 };
 
-$("signout").onclick = async () => { await signOut(auth); location.href = "index.html"; };
+/* ---------- sign out ---------- */
+
+$("signout").onclick = async () => {
+  await signOut(auth);
+  location.href = "index.html";
+};
+
+/* ---------- reauthentication ---------- */
 
 async function reauth(user) {
   if (hasPassword(user)) {
     const pw = $("pw").value;
-    if (!pw) throw new Error("Enter your password to confirm.");
-    await reauthenticateWithCredential(user, EmailAuthProvider.credential(user.email, pw));
+
+    if (!pw) {
+      throw new Error("Enter your password to confirm.");
+    }
+
+    await reauthenticateWithCredential(
+      user,
+      EmailAuthProvider.credential(user.email, pw)
+    );
   } else {
     await reauthenticateWithPopup(user, new GoogleAuthProvider());
   }
 }
 
+/* ---------- delete account ---------- */
+
 $("delete").onclick = async (e) => {
   const user = auth.currentUser;
   const out = $("delete-status");
-  if ($("confirm").value.trim() !== "DELETE") return status(out, "Type DELETE to confirm.", true);
+
+  if ($("confirm").value.trim() !== "DELETE") {
+    return status(out, "Type DELETE to confirm.", true);
+  }
+
   e.target.disabled = true;
+
   try {
     await reauth(user);
-    const scores = await getDocs(collection(db, "users", user.uid, "scores"));
-    await Promise.all(scores.docs.map((d) => deleteDoc(d.ref)));
+
+    const scores = await getDocs(
+      collection(db, "users", user.uid, "scores")
+    );
+
+    await Promise.all(
+      scores.docs.map((d) => deleteDoc(d.ref))
+    );
+
     await deleteDoc(doc(db, "users", user.uid));
+
     await deleteUser(user);
+
     location.href = "index.html";
+
   } catch (err) {
-    const wrong = ["auth/invalid-credential", "auth/wrong-password"].includes(err.code);
-    status(out, wrong ? "Wrong password." : (err.code ? "Couldn't delete your account. Try again." : err.message), true);
+    const wrong = [
+      "auth/invalid-credential",
+      "auth/wrong-password"
+    ].includes(err.code);
+
+    status(
+      out,
+      wrong
+        ? "Wrong password."
+        : (err.code
+            ? "Couldn't delete your account. Try again."
+            : err.message),
+      true
+    );
+
     e.target.disabled = false;
   }
 };
