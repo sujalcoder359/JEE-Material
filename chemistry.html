@@ -53,7 +53,7 @@ a {
   margin-inline:auto;
 }
 
-/* HEADER */
+/* HEADER — MATCHES MAIN WEBSITE */
 
 .bar {
   position:sticky;
@@ -89,14 +89,46 @@ a {
   font-size:19px;
 }
 
-.back {
+.bar-right {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:22px;
+  margin-left:auto;
+}
+
+.bar-right a {
   color:var(--muted);
   font-size:.85rem;
   transition:color .2s;
+  white-space:nowrap;
 }
 
-.back:hover {
+.bar-right a:hover {
   color:var(--accent);
+}
+
+.auth-btn {
+  background:var(--surface);
+  color:var(--fg);
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:6px 12px;
+  font:500 .8rem var(--f-body);
+  cursor:pointer;
+  transition:.2s;
+  white-space:nowrap;
+}
+
+.auth-btn:hover {
+  border-color:#a9c9fa;
+  color:#a9c9fa;
+}
+
+#user {
+  color:var(--muted);
+  font-size:.8rem;
+  white-space:nowrap;
 }
 
 /* PAGE INTRO */
@@ -253,6 +285,10 @@ footer {
 
 @media(max-width:600px) {
   body {padding-inline:13px}
+  .bar {min-height:54px}
+  .bar-right {gap:12px}
+  .bar-right a {font-size:.78rem}
+  #user {display:none}
   .cover {padding-block:49px 36px}
   .cover h1 {font-size:2.8rem}
   .cover p {font-size:.9rem}
@@ -278,7 +314,10 @@ footer {
     <span class="brand-symbol">⌬</span>
     <span>JEE MATERIAL</span>
   </a>
-  <a href="index.html" class="back">← Back to Main Website</a>
+
+  <nav class="bar-right">
+    <a href="index.html">← Back to Main Website</a>
+  </nav>
 </header>
 
 <main>
