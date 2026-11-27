@@ -1,19 +1,19 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function signedIn() { return request.auth != null && request.auth.token.email_verified == true; }
+    function signedIn(uid) {
+      return request.auth != null && request.auth.uid == uid && request.auth.token.email_verified == true;
+    }
     match /users/{uid} {
-      allow read, delete: if signedIn() && request.auth.uid == uid;
-      allow create, update: if signedIn() && request.auth.uid == uid
-        && request.resource.data.name is string && request.resource.data.name.size() >= 2 && request.resource.data.name.size() <= 50
-        && request.resource.data.exam in ['JEE','NEET']
-        && request.resource.data.classLevel in ['11th','12th'];
-      match /scores/{id} {
-        allow read, delete: if signedIn() && request.auth.uid == uid;
-        allow create: if signedIn() && request.auth.uid == uid
-          && request.resource.data.score is number && request.resource.data.total is number
-          && request.resource.data.score <= request.resource.data.total;
-      }
+      allow read, delete: if signedIn(uid);
+      allow create, update: if signedIn(uid)
+        && (!('name' in request.resource.data) || (request.resource.data.name is string && request.resource.data.name.size() <= 50))
+        && (!('exam' in request.resource.data) || request.resource.data.exam in ['JEE','NEET'])
+        && (!('classLevel' in request.resource.data) || request.resource.data.classLevel in ['11th','12th']);
+      // quiz attempts (questions + answers) and best scores, synced across devices
+      match /attempts/{id} { allow read, write: if signedIn(uid); }
+      match /meta/{id}     { allow read, write: if signedIn(uid); }
+      match /scores/{id}   { allow read, write: if signedIn(uid); }
     }
   }
 }
