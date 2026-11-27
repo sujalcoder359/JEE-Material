@@ -75,7 +75,14 @@ style.textContent = `
 .am-err{min-height:1.2em;margin-top:12px;color:#ff8f8f;font-size:.85rem}
 .auth-btn{background:var(--surface,#171c2d);color:var(--fg,#e8ebf4);border:1px solid var(--line,#2a3148);border-radius:7px;padding:6px 12px;font:500 .8rem var(--f-body,system-ui,sans-serif);cursor:pointer;transition:.2s}
 .auth-btn:hover{border-color:#64d8d0;color:#64d8d0}
-.auth-controls{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0}
+.auth-controls{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  margin-left:auto;
+  flex:1;
+}
 `;
 document.head.append(style);
 
