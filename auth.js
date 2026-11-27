@@ -9,7 +9,8 @@ import {
   sendEmailVerification, sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 import {
-  getFirestore, doc, getDoc, setDoc, serverTimestamp
+  initializeFirestore, persistentLocalCache, persistentMultipleTabManager,
+  doc, getDoc, getDocFromCache, setDoc, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
 const app = initializeApp({
@@ -22,7 +23,24 @@ const app = initializeApp({
 });
 
 export const auth = getAuth(app);
-export const db = getFirestore(app);
+
+// Firestore's default transport often fails on mobile networks, proxies and
+// ad-blockers, which makes getDoc() throw "client is offline" even when the
+// internet works. Auto-detecting long polling fixes that, and the local cache
+// lets a previously loaded profile still show up if the network drops.
+function makeDb() {
+  try {
+    return initializeFirestore(app, {
+      experimentalAutoDetectLongPolling: true,
+      localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+    });
+  } catch (e) {
+    console.warn("Persistent cache unavailable, using default Firestore", e);
+    return initializeFirestore(app, { experimentalAutoDetectLongPolling: true });
+  }
+}
+
+export const db = makeDb();
 
 export const EXAMS = ["JEE", "NEET"];
 export const CLASSES = ["11th", "12th"];
@@ -31,9 +49,36 @@ const ACCOUNT_URL = "account.html";
 
 /* ---------- profile storage (Firestore: users/{uid}) ---------- */
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Returns the profile object, or null if the user has no profile yet.
+// Throws only when the profile genuinely could not be read (check err.code).
 export async function getProfile(uid) {
-  const snap = await getDoc(doc(db, "users", uid));
-  return snap.exists() ? snap.data() : null;
+  const ref = doc(db, "users", uid);
+  let lastErr;
+
+  for (let i = 0; i < 3; i++) {
+    try {
+      const snap = await getDoc(ref);
+      return snap.exists() ? snap.data() : null;
+    } catch (e) {
+      lastErr = e;
+      console.warn(`getProfile attempt ${i + 1} failed:`, e.code, e.message);
+
+      // Retrying can't fix a rules problem.
+      if (e.code === "permission-denied") break;
+
+      await sleep(700 * (i + 1));
+    }
+  }
+
+  // Last resort: a copy saved on this device earlier.
+  try {
+    const cached = await getDocFromCache(ref);
+    if (cached.exists()) return cached.data();
+  } catch {}
+
+  throw lastErr;
 }
 
 export async function saveProfile(user, { name, exam, classLevel }, isNew = false) {

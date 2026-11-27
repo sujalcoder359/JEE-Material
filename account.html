@@ -264,6 +264,10 @@ input:focus,select:focus,.btn:focus-visible {
   color:var(--muted);
 }
 
+.gate .btn {
+  display:block;
+}
+
 /* Profile picture */
 
 .profile-summary {
@@ -589,7 +593,24 @@ function renderAvatar(user, name) {
 
 /* ---------- load account ---------- */
 
+let initRun = 0;
+
+function showGateError(message, user) {
+  gate.textContent = message;
+
+  const retry = document.createElement("button");
+  retry.className = "btn alt";
+  retry.type = "button";
+  retry.textContent = "Try again";
+  retry.onclick = () => init(user);
+
+  gate.append(retry);
+}
+
 async function init(user) {
+  // Ignore results from older, slower runs (auth state can fire twice).
+  const run = ++initRun;
+
   // Hide the entire form while loading.
   content.hidden = true;
   gate.hidden = false;
@@ -613,11 +634,21 @@ async function init(user) {
   } catch (error) {
     console.error("Profile loading failed:", error);
 
-    gate.textContent =
-      "Couldn't load your profile. Check your connection and refresh the page.";
+    if (run !== initRun) return;
+
+    const code = error.code || "unknown";
+
+    showGateError(
+      code === "permission-denied"
+        ? "Couldn't load your profile: access was denied by the database (permission-denied)."
+        : `Couldn't load your profile (${code}). Check your connection and try again.`,
+      user
+    );
 
     return;
   }
+
+  if (run !== initRun) return;
 
   if (!profile) {
     gate.textContent =
