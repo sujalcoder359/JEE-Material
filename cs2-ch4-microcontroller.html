@@ -1,66 +1,160 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CS-2 CS-2 Chapter 4: Introduction to Microcontroller</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap">
+<html data-theme="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#0f1320" name="theme-color"/><title>Introduction to Microcontroller | JEE Material</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;color:var(--fg);font:16px/1.7 Inter,system-ui,sans-serif;background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}
-main{max-width:760px;margin:auto;padding:20px 18px 60px}
-h1{font-size:1.8rem;font-weight:800;line-height:1.2;color:#f4f7ff;padding-bottom:12px;border-bottom:3px solid var(--ac)}
-h1 small{display:block;margin-top:6px;font-size:.9rem;font-weight:400;color:var(--ac)}
-h2{font-size:1.25rem;margin-top:2.4rem;padding:10px 14px;color:#fff;background:#17223a;border-left:5px solid var(--ac);border-radius:8px}
-h3{color:#c4b5fd}b{color:#fff}h1,h2,h3,nav{font-family:Inter,system-ui,sans-serif}
-pre,code{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}
-pre{background:var(--code);border:1px solid var(--bd);border-radius:12px;padding:12px;overflow-x:auto;font-size:.8rem;line-height:1.5}
-code{color:var(--ac);background:var(--code);padding:1px 5px;border-radius:4px;font-size:.88em}
-.tip{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;padding:12px 16px;margin:14px 0;box-shadow:0 6px 24px #0006}
-.w{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.88rem}th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left}th{background:#1c2845;color:var(--ac)}
-nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}nav a{white-space:nowrap;padding:6px 13px;background:var(--card);border:1px solid var(--bd);border-radius:20px;color:var(--ac);text-decoration:none;font-size:.85rem}
-</style><style>html:root:root{--bg:#0d111c;--fg:#e6eaf3;--mut:#8f9ab0;--card:#121827;--ac:#86e3a3;--ac2:#8fb0f0;--bd:#202840;--code:#0a0e17;--hl:#141c2e}body{background:var(--bg)}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:34px;border-bottom:1px solid var(--bd);font:500 .78rem 'JetBrains Mono',monospace}.top .brand{display:flex;align-items:center;gap:9px;color:#fff;font:700 .9rem Inter,sans-serif}.top i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ac),var(--ac2))}.top a{color:var(--mut);text-decoration:none}h1{display:flex;flex-direction:column;font-size:2.4rem;letter-spacing:-.03em;line-height:1.08;border:0;padding:0;color:#f4f6fb;-webkit-text-fill-color:#f4f6fb}h1 small{order:-1;margin:0 0 14px;font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}h2{font-size:1.4rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:14px 0 0;color:#fff}h3{color:var(--ac2)}code{color:var(--ac2)}pre{border-radius:8px}th{background:var(--hl);color:var(--ac);font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:6px;box-shadow:none}.warn{border-top-color:#f5b85c}nav a{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;color:var(--mut);background:var(--card)}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>html:root:root{--bg:#0f1320;--fg:#e8ebf4;--mut:#9aa3b8;--card:#171c2d;--bd:#2a3148;--hl:#1e2438;--ac:#91d69d;--ac2:#91d69d;--code:#0b0f1a;--f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;--f-body:'IBM Plex Sans',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace}
-html{scroll-padding-top:5rem}body{background:var(--bg);font-family:var(--f-body);line-height:1.6}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-bottom:40px;border-bottom:1px solid var(--bd);background:var(--bg)}
-.bar .brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);white-space:nowrap;text-decoration:none}
-.brand-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--bd);border-radius:7px;background:var(--card);color:var(--ac);font-size:19px}
-.back{color:var(--mut);font-size:.85rem;text-decoration:none}.back:hover{color:var(--ac)}
-h1{display:flex;flex-direction:column;font:700 clamp(2.2rem,6vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.035em;color:var(--fg);-webkit-text-fill-color:var(--fg);background:none;border:0;padding:0;margin:0 0 22px}
-h1 small{order:-1;margin:0 0 15px;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}
-h2,h3,nav{font-family:var(--f-display)}h2{font-size:1.5rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:16px 0 0;color:var(--fg)}h3{color:var(--ac);font-size:1.12rem}b{color:#fff}
-code,pre{font-family:var(--f-mono)}code{color:var(--ac);background:var(--code)}pre{background:var(--code);border:1px solid var(--bd);border-radius:6px}
-th{background:var(--hl);color:var(--ac);font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase}td,th{border-color:var(--bd)}
-.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:0;box-shadow:none}.warn{border-top-color:#f5b85c}
-nav a{font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;border-radius:0;color:var(--mut);background:none;border:1px solid var(--bd)}nav a:hover{color:var(--ac);border-color:var(--ac)}</style></head><body><main><div class="bar"><a class="brand" href="https://sujalcoder359.github.io/JEE-Material/index.html"><span class="brand-symbol">⌬</span><span>JEE MATERIAL</span></a><a class="back" href="https://sujalcoder359.github.io/JEE-Material/hsc-cs.html">← Back to Computer Science</a></div>
-<h1>Introduction to Microcontroller<small>CS-2 · Chapter 04 · 4 marks (8 with options)</small></h1><nav><a href="#d">Microcontroller</a><a href="#e">8051 architecture</a><a href="#f">Family &amp; uses</a><a href="#g">Revision</a></nav><h2 id="d">1. Introduction to microcontroller</h2>
-<p>A <b>microcontroller (µC)</b> is a <b>complete small computer on a single chip</b>: CPU + RAM + ROM + I/O ports + timers + serial port, all inside. It is designed to <b>control one specific task</b> inside a device (an <b>embedded system</b>). A microprocessor is only a CPU and needs external memory and I/O chips.</p>
-<div class="w"><table><tr><th>Microprocessor</th><th>Microcontroller</th></tr>
+/* Layout: sticky chapter index on the left (desktop), colour-coded chapter sections, formula cards in an auto-fit grid. */
+:root{
+  --bg:#f3f5f9; --surface:#ffffff; --fg:#161b2b; --muted:#5a6275; --line:#dbe0ea; --soft:#e9edf4;
+  --l:0.50; --bl:0.955; --cl:0.30;
+  --f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8; --line:#2a3148; --soft:#1e2438;
+  --l:0.78; --bl:0.26; --cl:0.86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8; --line:#2a3148; --soft:#1e2438;
+  --l:0.78; --bl:0.26; --cl:0.86; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0;padding-inline:16px}
+a{color:inherit}
+.shell{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:1fr;gap:0 40px}
+@media(min-width:1000px){.shell{grid-template-columns:230px minmax(0,1fr)}}
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);display:flex;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);margin-inline:-16px;padding-inline:16px;grid-column:1/-1}
+.bar b{font-family:var(--f-display);font-size:1rem;letter-spacing:.01em;white-space:nowrap}
+.bar input{flex:1;min-width:0;font:inherit;font-size:.95rem;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.bar input:focus-visible,.nav a:focus-visible,.toc a:focus-visible{outline:2px solid oklch(var(--l) .15 262);outline-offset:2px}
+.bar a.home{font-size:.85rem;color:var(--muted);text-decoration:none;white-space:nowrap}
+/* sidebar */
+.nav{display:none}
+@media(min-width:1000px){.nav{display:block;position:sticky;top:calc(3.6rem + env(safe-area-inset-top,0px));align-self:start;max-height:calc(100vh - 5rem);overflow:auto;padding-block:20px 40px;font-size:.88rem}}
+.nav h6{font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:18px 0 6px;color:oklch(var(--l) .13 var(--h))}
+.nav a{display:flex;gap:8px;padding:4px 8px;border-radius:6px;text-decoration:none;color:var(--muted)}
+.nav a span{font:400 .75rem/1.7 var(--f-mono);min-width:1.6em}
+.nav a:hover{background:var(--soft);color:var(--fg)}
+.nav a.on{background:oklch(var(--bl) .05 var(--h));color:var(--fg);font-weight:500}
+/* cover */
+.cover{padding-block:44px 28px;max-width:60rem}
+.eyebrow{font:500 .75rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cover h1{font-family:var(--f-display);font-weight:700;font-size:clamp(2.2rem,6vw,3.9rem);line-height:1;letter-spacing:-.02em;margin:14px 0 14px;text-wrap:balance}
+.cover p{color:var(--muted);max-width:40rem;margin:0}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:20px;padding-bottom:36px}
+.toc section{min-width:0}
+.toc h2{font:500 .72rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px;padding-bottom:8px;border-bottom:2px solid oklch(var(--l) .13 var(--h));color:oklch(var(--l) .13 var(--h))}
+.toc a{display:flex;gap:10px;padding:5px 0;text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{color:oklch(var(--l) .15 var(--h))}
+.toc a span{font:400 .8rem/1.7 var(--f-mono);color:var(--muted);min-width:1.8em}
+/* chapters */
+.ch{padding-top:36px;--h:262}
+.ch[data-g="calc"]{--h:310} .ch[data-g="alg"]{--h:195} .ch[data-g="vec"]{--h:20} .ch[data-g="trig"]{--h:70} .ch[data-g="stat"]{--h:145}
+.toc section[data-g="coord"]{--h:262} .toc section[data-g="calc"]{--h:310} .toc section[data-g="alg"]{--h:195} .toc section[data-g="vec"]{--h:20} .toc section[data-g="trig"]{--h:70} .toc section[data-g="stat"]{--h:145}
+.nav [data-g="coord"]{--h:262} .nav [data-g="calc"]{--h:310} .nav [data-g="alg"]{--h:195} .nav [data-g="vec"]{--h:20} .nav [data-g="trig"]{--h:70} .nav [data-g="stat"]{--h:145}
+.chh{display:flex;align-items:flex-end;gap:16px;padding-bottom:14px;margin-bottom:18px;border-bottom:2px solid oklch(var(--l) .13 var(--h))}
+.chn{font:700 clamp(2.6rem,7vw,4rem)/.85 var(--f-display);color:oklch(var(--l) .13 var(--h));letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.chh h2{margin:0;font:700 clamp(1.5rem,3.6vw,2.1rem)/1.05 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
+.chh small{display:block;font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));gap:14px}
+.c{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px 12px;min-width:0;overflow-x:auto}
+.c.w{grid-column:1/-1}
+.c.m{grid-column:span 2}
+@media(max-width:700px){.c.m{grid-column:1/-1}}
+.c h3{font:600 .72rem/1.25 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;margin:0 0 8px;color:oklch(var(--l) .14 var(--h))}
+.c p{margin:6px 0;font-size:.93rem}
+.c p.n{color:var(--muted);font-size:.85rem}
+.c ul,.c ol{margin:6px 0;padding-left:1.2em;font-size:.93rem}
+.c li{margin:3px 0}
+.c b{font-weight:600}
+.key{background:oklch(var(--bl) .035 var(--h));border-color:oklch(var(--l) .06 var(--h) / .5)}
+.tag{display:inline-block;font:500 .72rem/1 var(--f-mono);padding:3px 6px;border-radius:5px;background:oklch(var(--bl) .05 var(--h));color:oklch(var(--cl) .1 var(--h));margin-right:4px;vertical-align:1px}
+mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden;color:var(--fg)}
+mjx-container[display="true"]{margin:.55em 0 !important}
+table{border-collapse:collapse;font-size:.9rem;margin:8px 0}
+th,td{border:1px solid var(--line);padding:5px 10px;text-align:center}
+th{background:var(--soft);font-weight:500}
+.tree{list-style:none;padding:0 !important;margin:6px 0}
+.tree ul{list-style:none;margin:2px 0 2px 10px;padding:0 0 0 14px;border-left:2px solid oklch(var(--l) .1 var(--h) / .5)}
+.tree li{margin:5px 0}
+.hide{display:none !important}
+.empty{padding:40px 0;color:var(--muted)}
+footer{padding-block:48px 64px;color:var(--muted);font-size:.85rem;grid-column:1/-1;text-align:center}
+@media print{.bar,.nav{display:none}.c{break-inside:avoid}.ch{break-before:page}body{background:#fff}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.subject-back {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: var(--surface);
+  text-decoration: none;
+  font: 500 13px var(--f-body);
+  flex-shrink: 0;
+}
+
+.subject-back:hover {
+  color: var(--fg);
+  background: var(--soft);
+  border-color: var(--line);
+}
+/* JEE MATERIAL site header */
+.jm-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-inline:-16px;padding-inline:16px;border-bottom:1px solid var(--line);background:var(--bg)}
+.jm-brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);text-decoration:none;white-space:nowrap}
+.jm-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:oklch(var(--l) .15 262);font-size:19px}
+.jm-main{color:var(--muted);font-size:.85rem;text-decoration:none;transition:color .2s}
+.jm-main:hover{color:oklch(var(--l) .15 262)}
+@media(max-width:600px){.jm-main{font-size:.78rem}}
+
+.ch[data-g="cs"],.toc section[data-g="cs"],.nav [data-g="cs"]{--h:145}
+.c pre{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:11px 12px;overflow-x:auto;font:.8rem/1.5 var(--f-mono);margin:8px 0}
+.c code{font-family:var(--f-mono);font-size:.86em;background:var(--soft);padding:1px 5px;border-radius:4px}.c pre code{background:none;padding:0}
+.c dl{margin:6px 0}.c dt{font-weight:600;margin-top:10px}.c dd{margin:2px 0 0 14px;font-size:.93rem}
+.c .w{overflow-x:auto}.c table{width:100%;font-size:.85rem}.c td,.c th{text-align:left}
+.c svg{max-width:100%;height:auto}.c svg text{fill:var(--fg);font:12px var(--f-body)}.c svg rect{fill:var(--surface);stroke:oklch(var(--l) .13 var(--h));stroke-width:1.5;rx:8}.c svg circle{fill:var(--soft);stroke:oklch(var(--l) .13 var(--h));stroke-width:1.5}.c svg line{stroke:var(--muted);stroke-width:1.5}
+details summary{cursor:pointer;color:var(--muted);font-size:.88rem;margin:4px 0}details[open] summary{color:var(--fg)}details{margin:2px 0 8px}</style></head><body>
+<div class="shell" id="top">
+<header class="jm-head">
+<a class="jm-brand" href="index.html"><span class="jm-symbol">⌬</span><span>JEE MATERIAL</span></a>
+<a class="jm-main" href="hsc-cs.html">← Back to Computer Science</a>
+</header>
+<div class="bar">
+<b>Introduction to Microcontroller</b><input aria-label="Search this chapter" autocomplete="off" id="q" placeholder="Search this chapter, e.g. 8051, timer, ports" type="search"/><a class="home" href="#top">Contents</a></div>
+<nav aria-label="Sections" class="nav" id="nav"></nav>
+<main id="main" style="min-width:0">
+<header class="cover"><div class="eyebrow">CS-2 · Chapter 04 · 4 marks (8 with options)</div><h1>Introduction to Microcontroller</h1><p>The microcontroller idea and the 8051: architecture, registers, memory, pins, family and uses.</p></header>
+<div class="toc" id="toc"></div>
+<div class="empty hide" id="empty">Nothing matches that search.</div>
+<section class="ch" data-g="cs" id="start"><div class="chh"><span class="chn">0</span><div><small>CS-2 · Chapter 04</small><h2>Start here</h2></div></div><div class="g"><div class="c key w"><h3>How to study this chapter</h3><ol><li>Read the cards in <b>Start here</b> first: the big picture, then the words you need.</li><li>Go through the sections in order. Each one builds on the one before.</li><li>After each section, close the page and explain it out loud in your own words.</li><li>Try <b>Check yourself</b> at the end, then read the same chapter in Balbharati.</li></ol></div>
+<div class="c key"><h3>The big picture</h3>A microprocessor (the chef) needs a whole kitchen around it. A microcontroller is a complete tiny kitchen on one chip, built to do one job again and again, such as running a washing machine or a TV remote. The 8051 is the classic example you study.</div>
+<div class="c key m"><h3>Words you need first</h3><b>Embedded system</b> – a small computer hidden inside a device (washing machine, remote). <b>Port</b> – a group of pins for input/output. <b>Timer</b> – counts clock pulses to measure time. <b>Serial</b> – sending bits one after another over one wire; <b>baud rate</b> = serial speed in bits per second; <b>UART</b> = the circuit that does serial communication. <b>Harvard architecture</b> – separate memories for program and data. <b>Interrupt</b> – a signal that makes the CPU pause and attend to a device.</div>
+</div></section>
+<section class="ch" data-g="cs" id="d"><div class="chh"><span class="chn">1</span><div><small>CS-2 · Chapter 04</small><h2>What is a microcontroller?</h2></div></div><div class="g">
+<div class="c w"><h3>Microcontroller defined</h3><p>A <b>microcontroller (µC)</b> is a <b>complete small computer on a single chip</b>: CPU + RAM + ROM + I/O ports + timers + serial port, all inside. It is designed to <b>control one specific task</b> inside a device (an <b>embedded system</b>). A microprocessor is only a CPU and needs external memory and I/O chips.</p><div class="w"><table><tr><th>Microprocessor</th><th>Microcontroller</th></tr>
 <tr><td>CPU only; memory and I/O added outside</td><td>CPU, memory, I/O, timers on one chip</td></tr>
 <tr><td>General purpose (PC)</td><td>Special purpose (washing machine)</td></tr>
 <tr><td>Large, costly system, more power</td><td>Small, cheap, low power</td></tr>
 <tr><td>Many instructions, few bit-handling ones</td><td>Strong bit-level instructions; fast I/O</td></tr>
-<tr><td>Examples: 8085, 8086, Pentium</td><td>Examples: 8051, PIC, AVR</td></tr></table></div>
-
-<h2 id="e">2. The 8051 architecture and programming model</h2>
-<p><b>Features of the 8051 (Intel, 1980):</b> 8-bit CPU · <b>4 KB on-chip ROM</b> (program) · <b>128 bytes on-chip RAM</b> · <b>32 I/O lines</b> in four 8-bit ports (P0–P3) · <b>two 16-bit timers/counters</b> (T0, T1) · <b>full-duplex serial port</b> (UART) · <b>5 interrupts</b> (INT0, INT1, Timer 0, Timer 1, Serial) · 16-bit PC and 16-bit <b>DPTR</b> · can address 64 KB external program memory and 64 KB external data memory · 40 pins · on-chip oscillator (11.0592 or 12 MHz crystal) · one machine cycle = 12 clock periods.</p>
-<h3>Registers (programming model)</h3>
-<div class="w"><table><tr><th>Register</th><th>Size</th><th>Function</th></tr>
+<tr><td>Examples: 8085, 8086, Pentium</td><td>Examples: 8051, PIC, AVR</td></tr></table></div></div>
+</div></section>
+<section class="ch" data-g="cs" id="e"><div class="chh"><span class="chn">2</span><div><small>CS-2 · Chapter 04</small><h2>Inside the 8051</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3><b>Ports</b> are doors for signals in and out (switch an LED on, read a button). The <b>timer</b> is a stopwatch counting clock ticks. The <b>serial port</b> sends bits one after another over a single wire. <b>Interrupts</b> are doorbells that make the chip stop and deal with an event first.</div>
+<div class="c m"><h3>8051 key features</h3><p><b>Features of the 8051 (Intel, 1980):</b> 8-bit CPU · <b>4 KB on-chip ROM</b> (program) · <b>128 bytes on-chip RAM</b> · <b>32 I/O lines</b> in four 8-bit ports (P0–P3) · <b>two 16-bit timers/counters</b> (T0, T1) · <b>full-duplex serial port</b> (UART) · <b>5 interrupts</b> (INT0, INT1, Timer 0, Timer 1, Serial) · 16-bit PC and 16-bit <b>DPTR</b> · can address 64 KB external program memory and 64 KB external data memory · 40 pins · on-chip oscillator (11.0592 or 12 MHz crystal) · one machine cycle = 12 clock periods.</p></div>
+<div class="c w"><h3>Registers (programming model)</h3><div class="w"><table><tr><th>Register</th><th>Size</th><th>Function</th></tr>
 <tr><td><b>A</b> (accumulator)</td><td>8-bit</td><td>main register for arithmetic/logic</td></tr>
 <tr><td><b>B</b></td><td>8-bit</td><td>used with A in multiply and divide</td></tr>
 <tr><td><b>R0–R7</b></td><td>8-bit</td><td>general registers; <b>4 register banks</b> (selected by RS1, RS0 bits in PSW)</td></tr>
 <tr><td><b>PSW</b> (program status word)</td><td>8-bit</td><td>flags: <b>CY</b> carry, <b>AC</b> aux carry, <b>F0</b> user flag, <b>RS1, RS0</b> bank select, <b>OV</b> overflow, <b>P</b> parity</td></tr>
 <tr><td><b>SP</b></td><td>8-bit</td><td>stack pointer; resets to 07H</td></tr>
 <tr><td><b>DPTR</b></td><td>16-bit (DPH+DPL)</td><td>holds address of external or code data</td></tr>
-<tr><td><b>PC</b></td><td>16-bit</td><td>address of the next instruction</td></tr></table></div>
-<h3>Memory</h3>
-<p><b>Internal ROM</b> 4 KB (0000H–0FFFH) · <b>Internal RAM</b> 128 bytes: register banks (00H–1FH), bit-addressable area (20H–2FH), general scratch-pad (30H–7FH) · <b>SFRs</b> (Special Function Registers: A, B, PSW, SP, DPTR, port latches, timers) at 80H–FFH. <b>Harvard architecture:</b> separate memory for program and data.</p>
-<h3>Block diagram: functional parts</h3>
-<p><b>CPU</b> (with ALU and registers) · <b>4 KB ROM</b> · <b>128 B RAM</b> · <b>4 I/O ports</b> (P0–P3, 32 lines) · <b>two timers/counters</b> · <b>serial port</b> · <b>interrupt control</b> · <b>oscillator and timing circuit</b> · <b>bus control logic</b>, all joined by internal buses.</p>
-<p><b>Timers/counters:</b> Timer 0 and Timer 1, each 16-bit (TH + TL), controlled by <b>TMOD</b> (mode) and <b>TCON</b> (start/stop, overflow flags). As a <b>timer</b> they count machine cycles (to make delays); as a <b>counter</b> they count external pulses on pins T0/T1. Modes: 0 (13-bit), 1 (16-bit), 2 (8-bit auto-reload), 3 (split timer 0).</p>
-<p><b>Serial port:</b> full duplex through pins <b>TXD/RXD</b>; data held in <b>SBUF</b>, set by <b>SCON</b>; baud rate usually made by Timer 1.</p>
-<div class="w"><table><tr><th>Interrupt</th><th>Vector address</th><th>Priority</th></tr><tr><td>Reset</td><td>0000H</td><td>—</td></tr><tr><td>INT0 (external 0)</td><td>0003H</td><td>highest</td></tr><tr><td>Timer 0</td><td>000BH</td><td>2nd</td></tr><tr><td>INT1 (external 1)</td><td>0013H</td><td>3rd</td></tr><tr><td>Timer 1</td><td>001BH</td><td>4th</td></tr><tr><td>Serial (RI/TI)</td><td>0023H</td><td>lowest</td></tr></table></div>
-<h3>Pins (40-pin DIP)</h3>
-<div class="w"><table><tr><th>Pin(s)</th><th>Function</th></tr>
+<tr><td><b>PC</b></td><td>16-bit</td><td>address of the next instruction</td></tr></table></div></div>
+<div class="c"><h3>Memory</h3><p><b>Internal ROM</b> 4 KB (0000H–0FFFH) · <b>Internal RAM</b> 128 bytes: register banks (00H–1FH), bit-addressable area (20H–2FH), general scratch-pad (30H–7FH) · <b>SFRs</b> (Special Function Registers: A, B, PSW, SP, DPTR, port latches, timers) at 80H–FFH. <b>Harvard architecture:</b> separate memory for program and data.</p></div>
+<div class="c w"><h3>Block diagram: functional parts</h3><p><b>CPU</b> (with ALU and registers) · <b>4 KB ROM</b> · <b>128 B RAM</b> · <b>4 I/O ports</b> (P0–P3, 32 lines) · <b>two timers/counters</b> · <b>serial port</b> · <b>interrupt control</b> · <b>oscillator and timing circuit</b> · <b>bus control logic</b>, all joined by internal buses.</p><p><b>Timers/counters:</b> Timer 0 and Timer 1, each 16-bit (TH + TL), controlled by <b>TMOD</b> (mode) and <b>TCON</b> (start/stop, overflow flags). As a <b>timer</b> they count machine cycles (to make delays); as a <b>counter</b> they count external pulses on pins T0/T1. Modes: 0 (13-bit), 1 (16-bit), 2 (8-bit auto-reload), 3 (split timer 0).</p><p><b>Serial port:</b> full duplex through pins <b>TXD/RXD</b>; data held in <b>SBUF</b>, set by <b>SCON</b>; baud rate usually made by Timer 1.</p><div class="w"><table><tr><th>Interrupt</th><th>Vector address</th><th>Priority</th></tr><tr><td>Reset</td><td>0000H</td><td>—</td></tr><tr><td>INT0 (external 0)</td><td>0003H</td><td>highest</td></tr><tr><td>Timer 0</td><td>000BH</td><td>2nd</td></tr><tr><td>INT1 (external 1)</td><td>0013H</td><td>3rd</td></tr><tr><td>Timer 1</td><td>001BH</td><td>4th</td></tr><tr><td>Serial (RI/TI)</td><td>0023H</td><td>lowest</td></tr></table></div></div>
+<div class="c w"><h3>Pins (40-pin DIP)</h3><div class="w"><table><tr><th>Pin(s)</th><th>Function</th></tr>
 <tr><td><b>P0</b> (P0.0–P0.7)</td><td>I/O port; also multiplexed low address and data (AD0–AD7) for external memory</td></tr>
 <tr><td><b>P1</b></td><td>simple I/O port</td></tr>
 <tr><td><b>P2</b></td><td>I/O port; also high address A8–A15</td></tr>
@@ -70,16 +164,53 @@ nav a{font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercas
 <tr><td><b>EA</b></td><td>External Access: high = use internal ROM first, low = use only external ROM</td></tr>
 <tr><td><b>RST</b></td><td>reset (high for 2 machine cycles)</td></tr>
 <tr><td><b>XTAL1, XTAL2</b></td><td>crystal oscillator connection</td></tr>
-<tr><td><b>Vcc, GND</b></td><td>+5 V and ground</td></tr></table></div>
-
-<h2 id="f">3. Overview of the 8051 family and applications</h2>
-<div class="w"><table><tr><th>Chip</th><th>Difference</th></tr>
+<tr><td><b>Vcc, GND</b></td><td>+5 V and ground</td></tr></table></div></div>
+</div></section>
+<section class="ch" data-g="cs" id="f"><div class="chh"><span class="chn">3</span><div><small>CS-2 · Chapter 04</small><h2>The 8051 family and where it is used</h2></div></div><div class="g">
+<div class="c w"><h3>8051 family table</h3><div class="w"><table><tr><th>Chip</th><th>Difference</th></tr>
 <tr><td>8051</td><td>4 KB ROM (mask ROM), 128 B RAM, 2 timers</td></tr>
 <tr><td>8031</td><td>no internal ROM; needs external program memory</td></tr>
 <tr><td>8751</td><td>4 KB EPROM (erasable by UV light)</td></tr>
 <tr><td>89C51 / AT89C51</td><td>4 KB <b>flash</b> memory (erase and rewrite electrically)</td></tr>
-<tr><td>8052</td><td>8 KB ROM, 256 B RAM, <b>3 timers</b>, 6 interrupts</td></tr></table></div>
-<p>Other microcontroller families: PIC (Microchip), AVR (Atmel; used in Arduino), ARM, Motorola 68HC11.</p>
-<p><b>Applications of microcontrollers:</b> washing machines, microwave ovens, TV and AC remotes, cars (engine control, ABS, airbags), mobile phones, digital cameras, toys, ATMs, security alarms, medical instruments (BP monitor), printers, traffic lights, robots, industrial control.</p>
-
-<h2 id="g">Quick revision</h2><div class="tip">Definition; microprocessor vs microcontroller table; 8051 features (4 KB ROM, 128 B RAM, 32 I/O lines, 2 timers, 5 interrupts); registers A, B, PSW, SP, DPTR; port functions; ALE, PSEN, EA; family table; 6–8 applications.</div><p style="color:var(--mut);font-size:.85rem">Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</p></main></body></html>
+<tr><td>8052</td><td>8 KB ROM, 256 B RAM, <b>3 timers</b>, 6 interrupts</td></tr></table></div><p>Other microcontroller families: PIC (Microchip), AVR (Atmel; used in Arduino), ARM, Motorola 68HC11.</p><p><b>Applications of microcontrollers:</b> washing machines, microwave ovens, TV and AC remotes, cars (engine control, ABS, airbags), mobile phones, digital cameras, toys, ATMs, security alarms, medical instruments (BP monitor), printers, traffic lights, robots, industrial control.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="check"><div class="chh"><span class="chn">4</span><div><small>CS-2 · Chapter 04</small><h2>Check yourself</h2></div></div><div class="g"><div class="c key w"><h3>Four quick questions</h3><p class="n">Answer in your head first, then tap to check.</p><ol><li><b>How is a microcontroller different from a microprocessor?</b><details><summary>Show answer</summary>It has CPU, memory, I/O and timers all on one chip.</details></li><li><b>Name the four 8051 ports.</b><details><summary>Show answer</summary>P0, P1, P2 and P3.</details></li><li><b>How much on-chip ROM and RAM does the 8051 have?</b><details><summary>Show answer</summary>4 KB ROM and 128 bytes RAM.</details></li><li><b>Which 16-bit register holds a data address?</b><details><summary>Show answer</summary>DPTR.</details></li></ol></div></div></section><section class="ch" data-g="cs" id="g"><div class="chh"><span class="chn">5</span><div><small>CS-2 · Chapter 04</small><h2>Revise it fast</h2></div></div><div class="g">
+<div class="c key"><h3>Revision checklist</h3>Definition; microprocessor vs microcontroller table; 8051 features (4 KB ROM, 128 B RAM, 32 I/O lines, 2 timers, 5 interrupts); registers A, B, PSW, SP, DPTR; port functions; ALE, PSEN, EA; family table; 6–8 applications.</div>
+</div></section>
+</main>
+<footer>Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</footer>
+</div>
+<script>(function(){
+  var secs=[].slice.call(document.querySelectorAll('section.ch'));
+  var toc=document.getElementById('toc'),nav=document.getElementById('nav');
+  var t=document.createElement('section');t.dataset.g='cs';
+  var h=document.createElement('h2');h.textContent='On this page';t.appendChild(h);
+  var nh=document.createElement('h6');nh.textContent='On this page';nh.dataset.g='cs';nav.appendChild(nh);
+  secs.forEach(function(s){
+    var n=s.querySelector('.chn').textContent,title=s.querySelector('h2').textContent;
+    [t,nav].forEach(function(host){
+      var a=document.createElement('a');a.href='#'+s.id;a.dataset.g='cs';a.dataset.t=s.id;
+      a.innerHTML='<span>'+n+'</span>'+title.replace(/&/g,'&amp;');
+      host.appendChild(a);
+    });
+  });
+  toc.appendChild(t);
+  var cards=[].slice.call(document.querySelectorAll('.c'));
+  cards.forEach(function(c){c.dataset.s=(c.parentNode.parentNode.querySelector('h2').textContent+' '+c.textContent).toLowerCase()});
+  var q=document.getElementById('q'),empty=document.getElementById('empty');
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(),any=false;
+    cards.forEach(function(c){var ok=!v||c.dataset.s.indexOf(v)>-1;c.classList.toggle('hide',!ok);if(ok)any=true});
+    secs.forEach(function(s){s.classList.toggle('hide',!!v&&!s.querySelector('.c:not(.hide)'))});
+    toc.classList.toggle('hide',!!v);document.querySelector('.cover').classList.toggle('hide',!!v);
+    empty.classList.toggle('hide',any||!v);
+  });
+  var links={};[].forEach.call(nav.querySelectorAll('a'),function(a){links[a.dataset.t]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.remove('on')});links[e.target.id].classList.add('on')}
+    })},{rootMargin:'-20% 0px -70% 0px'});
+    secs.forEach(function(s){io.observe(s)});
+  }
+})();</script>
+</body></html>

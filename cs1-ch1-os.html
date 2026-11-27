@@ -1,115 +1,226 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CS-1 Chapter 1: Operating Systems – Full Beginner Guide</title>
+<html data-theme="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#0f1320" name="theme-color"/><title>Operating System | JEE Material</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#fafaf7;--fg:#1d2330;--mut:#5a6372;--card:#fff;--ac:#2a5bd7;--bd:#dde1e8;--code:#f0f2f6;--hl:#eef3ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171d;--fg:#e6e9ef;--mut:#9aa3b2;--card:#1c2028;--ac:#7ea2ff;--bd:#2c323d;--code:#10131a;--hl:#1b2540}}
-:root[data-theme="dark"]{--bg:#14171d;--fg:#e6e9ef;--mut:#9aa3b2;--card:#1c2028;--ac:#7ea2ff;--bd:#2c323d;--code:#10131a;--hl:#1b2540}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 Georgia,serif}
-main{max-width:760px;margin:auto;padding:16px}
-h1,h2,h3,nav{font-family:system-ui,sans-serif}
-h1{font-size:1.6rem}h2{font-size:1.3rem;border-bottom:2px solid var(--ac);padding-bottom:4px;margin-top:2rem}h3{font-size:1.05rem;color:var(--ac)}
-pre{background:var(--code);padding:12px;border-radius:8px;overflow-x:auto;font-size:.85rem;line-height:1.45}
-code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.9em}
-.tip{background:var(--hl);border-left:4px solid var(--ac);padding:10px 14px;border-radius:6px;margin:12px 0}
-.w{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left}th{background:var(--hl)}
-nav{display:flex;flex-wrap:wrap;gap:8px}nav a{padding:5px 11px;border:1px solid var(--bd);border-radius:18px;text-decoration:none;color:var(--ac);font-size:.85rem}
-dt{font-weight:700;margin-top:10px}dd{margin-left:16px}
-</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap"><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036;color-scheme:dark}html{background:var(--bg)}body{font:16px/1.7 Inter,system-ui,sans-serif;background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}main{padding:20px 18px 60px}h1{font-size:1.9rem;font-weight:800;line-height:1.2;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}h1 small{display:block;margin-top:6px;font-size:.9rem;-webkit-text-fill-color:var(--mut)}h2{font-size:1.25rem;margin-top:2.4rem;padding:10px 14px;border:0;background:linear-gradient(90deg,#6ee7d822,transparent);border-left:4px solid var(--ac);border-radius:6px}h3{color:var(--ac2)}h1,h2,h3,nav{font-family:Inter,system-ui,sans-serif}b{color:#fff}pre,code{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}pre{border:1px solid var(--bd);border-radius:12px}code{color:var(--ac)}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;box-shadow:0 6px 24px #0006}.warn{border-left-color:#fbbf24}th{background:#1c2845;color:var(--ac)}nav{overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}nav a{white-space:nowrap;background:var(--card);border-color:var(--bd);color:var(--ac)}</style><style>html:root:root{--bg:#13121a;--fg:#ece9f1;--mut:#a09bb3;--card:#1c1b27;--ac:#f2c078;--ac2:#f19bb0;--bd:#2f2d3f;--code:#0f0e15;--hl:#221f31}body{background:radial-gradient(900px 420px at 90% -5%,#4a306a40,transparent),radial-gradient(700px 400px at 0 0,#6a3a2a26,transparent),var(--bg)}h2{background:linear-gradient(90deg,#f2c07820,transparent)}th{background:#272438}b{color:#fff6e6}</style><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036}body{background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#f4f7ff;-webkit-text-fill-color:#f4f7ff;padding-bottom:12px;border-bottom:3px solid var(--ac)}h1 small{-webkit-text-fill-color:var(--ac);color:var(--ac)}h2{color:#fff;background:#17223a;border-left:5px solid var(--ac)}h3{color:#c4b5fd}th{background:#1c2845}b{color:#fff}</style><style>html:root:root{--bg:#0d111c;--fg:#e6eaf3;--mut:#8f9ab0;--card:#121827;--ac:#86e3a3;--ac2:#8fb0f0;--bd:#202840;--code:#0a0e17;--hl:#141c2e}body{background:var(--bg)}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:34px;border-bottom:1px solid var(--bd);font:500 .78rem 'JetBrains Mono',monospace}.top .brand{display:flex;align-items:center;gap:9px;color:#fff;font:700 .9rem Inter,sans-serif}.top i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ac),var(--ac2))}.top a{color:var(--mut);text-decoration:none}h1{display:flex;flex-direction:column;font-size:2.4rem;letter-spacing:-.03em;line-height:1.08;border:0;padding:0;color:#f4f6fb;-webkit-text-fill-color:#f4f6fb}h1 small{order:-1;margin:0 0 14px;font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}h2{font-size:1.4rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:14px 0 0;color:#fff}h3{color:var(--ac2)}code{color:var(--ac2)}pre{border-radius:8px}th{background:var(--hl);color:var(--ac);font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:6px;box-shadow:none}.warn{border-top-color:#f5b85c}nav a{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;color:var(--mut);background:var(--card)}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>html:root:root{--bg:#0f1320;--fg:#e8ebf4;--mut:#9aa3b8;--card:#171c2d;--bd:#2a3148;--hl:#1e2438;--ac:#91d69d;--ac2:#91d69d;--code:#0b0f1a;--f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;--f-body:'IBM Plex Sans',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace}
-html{scroll-padding-top:5rem}body{background:var(--bg);font-family:var(--f-body);line-height:1.6}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-bottom:40px;border-bottom:1px solid var(--bd);background:var(--bg)}
-.bar .brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);white-space:nowrap;text-decoration:none}
-.brand-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--bd);border-radius:7px;background:var(--card);color:var(--ac);font-size:19px}
-.back{color:var(--mut);font-size:.85rem;text-decoration:none}.back:hover{color:var(--ac)}
-h1{display:flex;flex-direction:column;font:700 clamp(2.2rem,6vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.035em;color:var(--fg);-webkit-text-fill-color:var(--fg);background:none;border:0;padding:0;margin:0 0 22px}
-h1 small{order:-1;margin:0 0 15px;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}
-h2,h3,nav{font-family:var(--f-display)}h2{font-size:1.5rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:16px 0 0;color:var(--fg)}h3{color:var(--ac);font-size:1.12rem}b{color:#fff}
-code,pre{font-family:var(--f-mono)}code{color:var(--ac);background:var(--code)}pre{background:var(--code);border:1px solid var(--bd);border-radius:6px}
-th{background:var(--hl);color:var(--ac);font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase}td,th{border-color:var(--bd)}
-.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:0;box-shadow:none}.warn{border-top-color:#f5b85c}
-nav a{font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;border-radius:0;color:var(--mut);background:none;border:1px solid var(--bd)}nav a:hover{color:var(--ac);border-color:var(--ac)}</style></head><body><main><div class="bar"><a class="brand" href="https://sujalcoder359.github.io/JEE-Material/index.html"><span class="brand-symbol">⌬</span><span>JEE MATERIAL</span></a><a class="back" href="https://sujalcoder359.github.io/JEE-Material/hsc-cs.html">← Back to Computer Science</a></div>
-<h1>Operating System<small>CS-1 · Chapter 01 · 22 marks with options</small></h1>
-<nav><a href="#a">1 What is an OS</a><a href="#b">2 Services</a><a href="#c">3 Windows 98, NT, Linux</a><a href="#d">4 Information mgmt</a><a href="#e">5 Process mgmt</a><a href="#f">6 Memory mgmt</a><a href="#g">7 GUI</a><a href="#h">8 Security</a><a href="#i">9 Revision</a></nav>
-<p>This chapter is mostly <b>definitions and explanations</b> (the syllabus says “only definitions” for several parts). Learn each term in 2–3 lines, plus the lists and tables.</p>
+/* Layout: sticky chapter index on the left (desktop), colour-coded chapter sections, formula cards in an auto-fit grid. */
+:root{
+  --bg:#f3f5f9; --surface:#ffffff; --fg:#161b2b; --muted:#5a6275; --line:#dbe0ea; --soft:#e9edf4;
+  --l:0.50; --bl:0.955; --cl:0.30;
+  --f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8; --line:#2a3148; --soft:#1e2438;
+  --l:0.78; --bl:0.26; --cl:0.86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8; --line:#2a3148; --soft:#1e2438;
+  --l:0.78; --bl:0.26; --cl:0.86; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0;padding-inline:16px}
+a{color:inherit}
+.shell{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:1fr;gap:0 40px}
+@media(min-width:1000px){.shell{grid-template-columns:230px minmax(0,1fr)}}
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);display:flex;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);margin-inline:-16px;padding-inline:16px;grid-column:1/-1}
+.bar b{font-family:var(--f-display);font-size:1rem;letter-spacing:.01em;white-space:nowrap}
+.bar input{flex:1;min-width:0;font:inherit;font-size:.95rem;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.bar input:focus-visible,.nav a:focus-visible,.toc a:focus-visible{outline:2px solid oklch(var(--l) .15 262);outline-offset:2px}
+.bar a.home{font-size:.85rem;color:var(--muted);text-decoration:none;white-space:nowrap}
+/* sidebar */
+.nav{display:none}
+@media(min-width:1000px){.nav{display:block;position:sticky;top:calc(3.6rem + env(safe-area-inset-top,0px));align-self:start;max-height:calc(100vh - 5rem);overflow:auto;padding-block:20px 40px;font-size:.88rem}}
+.nav h6{font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:18px 0 6px;color:oklch(var(--l) .13 var(--h))}
+.nav a{display:flex;gap:8px;padding:4px 8px;border-radius:6px;text-decoration:none;color:var(--muted)}
+.nav a span{font:400 .75rem/1.7 var(--f-mono);min-width:1.6em}
+.nav a:hover{background:var(--soft);color:var(--fg)}
+.nav a.on{background:oklch(var(--bl) .05 var(--h));color:var(--fg);font-weight:500}
+/* cover */
+.cover{padding-block:44px 28px;max-width:60rem}
+.eyebrow{font:500 .75rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cover h1{font-family:var(--f-display);font-weight:700;font-size:clamp(2.2rem,6vw,3.9rem);line-height:1;letter-spacing:-.02em;margin:14px 0 14px;text-wrap:balance}
+.cover p{color:var(--muted);max-width:40rem;margin:0}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:20px;padding-bottom:36px}
+.toc section{min-width:0}
+.toc h2{font:500 .72rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px;padding-bottom:8px;border-bottom:2px solid oklch(var(--l) .13 var(--h));color:oklch(var(--l) .13 var(--h))}
+.toc a{display:flex;gap:10px;padding:5px 0;text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{color:oklch(var(--l) .15 var(--h))}
+.toc a span{font:400 .8rem/1.7 var(--f-mono);color:var(--muted);min-width:1.8em}
+/* chapters */
+.ch{padding-top:36px;--h:262}
+.ch[data-g="calc"]{--h:310} .ch[data-g="alg"]{--h:195} .ch[data-g="vec"]{--h:20} .ch[data-g="trig"]{--h:70} .ch[data-g="stat"]{--h:145}
+.toc section[data-g="coord"]{--h:262} .toc section[data-g="calc"]{--h:310} .toc section[data-g="alg"]{--h:195} .toc section[data-g="vec"]{--h:20} .toc section[data-g="trig"]{--h:70} .toc section[data-g="stat"]{--h:145}
+.nav [data-g="coord"]{--h:262} .nav [data-g="calc"]{--h:310} .nav [data-g="alg"]{--h:195} .nav [data-g="vec"]{--h:20} .nav [data-g="trig"]{--h:70} .nav [data-g="stat"]{--h:145}
+.chh{display:flex;align-items:flex-end;gap:16px;padding-bottom:14px;margin-bottom:18px;border-bottom:2px solid oklch(var(--l) .13 var(--h))}
+.chn{font:700 clamp(2.6rem,7vw,4rem)/.85 var(--f-display);color:oklch(var(--l) .13 var(--h));letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.chh h2{margin:0;font:700 clamp(1.5rem,3.6vw,2.1rem)/1.05 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
+.chh small{display:block;font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));gap:14px}
+.c{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px 12px;min-width:0;overflow-x:auto}
+.c.w{grid-column:1/-1}
+.c.m{grid-column:span 2}
+@media(max-width:700px){.c.m{grid-column:1/-1}}
+.c h3{font:600 .72rem/1.25 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;margin:0 0 8px;color:oklch(var(--l) .14 var(--h))}
+.c p{margin:6px 0;font-size:.93rem}
+.c p.n{color:var(--muted);font-size:.85rem}
+.c ul,.c ol{margin:6px 0;padding-left:1.2em;font-size:.93rem}
+.c li{margin:3px 0}
+.c b{font-weight:600}
+.key{background:oklch(var(--bl) .035 var(--h));border-color:oklch(var(--l) .06 var(--h) / .5)}
+.tag{display:inline-block;font:500 .72rem/1 var(--f-mono);padding:3px 6px;border-radius:5px;background:oklch(var(--bl) .05 var(--h));color:oklch(var(--cl) .1 var(--h));margin-right:4px;vertical-align:1px}
+mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden;color:var(--fg)}
+mjx-container[display="true"]{margin:.55em 0 !important}
+table{border-collapse:collapse;font-size:.9rem;margin:8px 0}
+th,td{border:1px solid var(--line);padding:5px 10px;text-align:center}
+th{background:var(--soft);font-weight:500}
+.tree{list-style:none;padding:0 !important;margin:6px 0}
+.tree ul{list-style:none;margin:2px 0 2px 10px;padding:0 0 0 14px;border-left:2px solid oklch(var(--l) .1 var(--h) / .5)}
+.tree li{margin:5px 0}
+.hide{display:none !important}
+.empty{padding:40px 0;color:var(--muted)}
+footer{padding-block:48px 64px;color:var(--muted);font-size:.85rem;grid-column:1/-1;text-align:center}
+@media print{.bar,.nav{display:none}.c{break-inside:avoid}.ch{break-before:page}body{background:#fff}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.subject-back {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: var(--surface);
+  text-decoration: none;
+  font: 500 13px var(--f-body);
+  flex-shrink: 0;
+}
 
-<h2 id="a">1. What is an operating system?</h2>
-<p>A computer is just hardware: CPU, memory, disk, keyboard, screen. It can do nothing useful alone. The <b>Operating System (OS)</b> is the <b>system software</b> that manages the hardware and gives programs a place to run. It acts as a <b>middleman between the user (and programs) and the hardware</b>. Without it you would have to control the hardware yourself in 0s and 1s.</p>
-<p><b>Two goals:</b> (1) make the computer <b>convenient</b> to use, (2) use the hardware <b>efficiently</b>. Examples: MS-DOS, Windows, Linux, Unix, macOS, Android. The OS is often called a <b>resource manager</b>, because it shares CPU time, memory, files and devices among programs. The core part that is always in memory is the <b>kernel</b>; the part you type commands into is the <b>shell</b>.</p>
+.subject-back:hover {
+  color: var(--fg);
+  background: var(--soft);
+  border-color: var(--line);
+}
+/* JEE MATERIAL site header */
+.jm-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-inline:-16px;padding-inline:16px;border-bottom:1px solid var(--line);background:var(--bg)}
+.jm-brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);text-decoration:none;white-space:nowrap}
+.jm-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:oklch(var(--l) .15 262);font-size:19px}
+.jm-main{color:var(--muted);font-size:.85rem;text-decoration:none;transition:color .2s}
+.jm-main:hover{color:oklch(var(--l) .15 262)}
+@media(max-width:600px){.jm-main{font-size:.78rem}}
 
-<h2 id="b">2. Services provided by an OS</h2>
-<ul><li><b>Program execution</b> – loads a program into memory and runs it, then ends it.</li><li><b>I/O operations</b> – programs never touch devices directly; the OS does it for them.</li><li><b>File-system manipulation</b> – create, delete, read, write, rename files and folders.</li><li><b>Communication</b> – processes exchange data (on one computer or across a network).</li><li><b>Error detection</b> – watches for faults (printer out of paper, memory error) and takes action.</li><li><b>Resource allocation</b> – decides who gets CPU, memory, devices.</li><li><b>Accounting</b> – records which user used how much.</li><li><b>Protection and security</b> – stops one user or program from harming another; passwords.</li></ul>
-
-<h2 id="c">3. Overview: Windows 98, Windows NT, Linux</h2>
-<h3>Windows 98</h3>
-<p>Made by Microsoft (1998), for home PCs. <b>Features:</b> GUI with icons and the Start button; <b>single-user</b> but <b>multitasking</b>; <b>Plug and Play</b> (new hardware is detected and set up automatically); support for <b>USB</b>; <b>FAT32</b> file system for large disks; built-in Internet Explorer and Internet connection support; good multimedia support; long file names.</p>
-<h3>Windows NT (New Technology)</h3>
-<p>Microsoft’s <b>professional / network</b> OS for servers and business workstations. <b>Features:</b> full <b>32-bit</b>, <b>preemptive multitasking</b>; <b>multi-user</b> network support; <b>NTFS</b> file system with file-level security and permissions; high <b>security</b> and reliability (a crashing program does not bring down the system); <b>portable</b> across different processors; <b>client-server</b> design; two flavours: <i>NT Workstation</i> and <i>NT Server</i>.</p>
-<h3>Linux</h3>
-<p>Created by <b>Linus Torvalds</b> in 1991; based on the older Unix. <b>Features of Linux (a favourite 6-mark list):</b></p>
-<ol><li><b>Free and open source</b> – anyone can see, change and share the code.</li><li><b>Multi-user</b> – many users can work at once on separate accounts.</li><li><b>Multitasking</b> – many programs run together.</li><li><b>Portable</b> – runs on many kinds of hardware.</li><li><b>Secure</b> – passwords, file permissions, very few viruses.</li><li><b>Stable and reliable</b> – rarely crashes; used on servers.</li><li><b>Shell</b> – powerful command interpreter, with scripting.</li><li><b>Hierarchical file system</b> – one directory tree starting at <code>/</code> (root).</li><li><b>GUI support</b> – desktops such as GNOME and KDE; and good <b>networking</b> support.</li></ol>
-<div class="w"><table><tr><th></th><th>Windows 98</th><th>Windows NT</th><th>Linux</th></tr><tr><td>Users</td><td>Single</td><td>Multi (network)</td><td>Multi</td></tr><tr><td>File system</td><td>FAT16/FAT32</td><td>NTFS (also FAT)</td><td>ext2/ext3 etc.</td></tr><tr><td>Security</td><td>Weak</td><td>Strong</td><td>Strong</td></tr><tr><td>Cost / source</td><td>Paid, closed</td><td>Paid, closed</td><td>Free, open</td></tr><tr><td>Used for</td><td>Home PC</td><td>Servers, business</td><td>Servers, PCs, embedded</td></tr></table></div>
-
-<h2 id="d">4. Information (file) management – definitions</h2>
-<dl><dt>File system</dt><dd>The part of the OS that decides how files are <b>named, stored, organised and retrieved</b> on a disk. It keeps folders (directories) in a tree, tracks free space, and controls who may open a file. Operations: create, open, read, write, close, delete. Examples: FAT, NTFS.</dd>
+.ch[data-g="cs"],.toc section[data-g="cs"],.nav [data-g="cs"]{--h:145}
+.c pre{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:11px 12px;overflow-x:auto;font:.8rem/1.5 var(--f-mono);margin:8px 0}
+.c code{font-family:var(--f-mono);font-size:.86em;background:var(--soft);padding:1px 5px;border-radius:4px}.c pre code{background:none;padding:0}
+.c dl{margin:6px 0}.c dt{font-weight:600;margin-top:10px}.c dd{margin:2px 0 0 14px;font-size:.93rem}
+.c .w{overflow-x:auto}.c table{width:100%;font-size:.85rem}.c td,.c th{text-align:left}
+.c svg{max-width:100%;height:auto}.c svg text{fill:var(--fg);font:12px var(--f-body)}.c svg rect{fill:var(--surface);stroke:oklch(var(--l) .13 var(--h));stroke-width:1.5;rx:8}.c svg circle{fill:var(--soft);stroke:oklch(var(--l) .13 var(--h));stroke-width:1.5}.c svg line{stroke:var(--muted);stroke-width:1.5}
+details summary{cursor:pointer;color:var(--muted);font-size:.88rem;margin:4px 0}details[open] summary{color:var(--fg)}details{margin:2px 0 8px}</style></head><body>
+<div class="shell" id="top">
+<header class="jm-head">
+<a class="jm-brand" href="index.html"><span class="jm-symbol">⌬</span><span>JEE MATERIAL</span></a>
+<a class="jm-main" href="hsc-cs.html">← Back to Computer Science</a>
+</header>
+<div class="bar">
+<b>Operating System</b><input aria-label="Search this chapter" autocomplete="off" id="q" placeholder="Search this chapter, e.g. paging, virus, process" type="search"/><a class="home" href="#top">Contents</a></div>
+<nav aria-label="Sections" class="nav" id="nav"></nav>
+<main id="main" style="min-width:0">
+<header class="cover"><div class="eyebrow">CS-1 · Chapter 01 · 22 marks with options</div><h1>Operating System</h1><p>How a computer is managed: what an operating system does, files and devices, processes, memory, the GUI and security. Explained from the basics.</p></header>
+<div class="toc" id="toc"></div>
+<div class="empty hide" id="empty">Nothing matches that search.</div>
+<section class="ch" data-g="cs" id="start"><div class="chh"><span class="chn">0</span><div><small>CS-1 · Chapter 01</small><h2>Start here</h2></div></div><div class="g"><div class="c key w"><h3>How to study this chapter</h3><ol><li>Read the cards in <b>Start here</b> first: the big picture, then the words you need.</li><li>Go through the sections in order. Each one builds on the one before.</li><li>After each section, close the page and explain it out loud in your own words.</li><li>Try <b>Check yourself</b> at the end, then read the same chapter in Balbharati.</li></ol></div>
+<div class="c key m"><h3>The big picture</h3>Think of a computer as a busy school and the operating system as the principal. The classrooms, labs and playground are the hardware (CPU, memory, disk, printer). The students are programs. The principal decides who uses which room and when, keeps the records (files), keeps order (security) and gives visitors a simple front desk (the screen you click). Without a principal, programs would fight over the same room. The chapter follows this: what the principal does (1–2), famous principals (3), records and devices (4), who gets the CPU (5), who gets memory (6), the front desk (7) and keeping intruders out (8).</div>
+<div class="c key m"><h3>Words you need first</h3><b>Hardware</b> – parts you can touch. <b>Software</b> – programs (lists of instructions). <b>CPU</b> – the chip that carries out instructions. <b>RAM</b> – temporary workspace memory; <b>disk</b> – permanent storage. <b>Multi-user</b> – many people can use the computer at once. <b>Preemptive</b> – the OS can take the CPU back from a running program. <b>Kernel</b> – the core part of the OS. <b>FAT, NTFS</b> – two ways of organising files on a disk (see section 4).</div>
+<div class="c"><h3>How to read this chapter</h3><p>This chapter is mostly <b>definitions and explanations</b> (the syllabus says “only definitions” for several parts). Learn each term in 2–3 lines, plus the lists and tables.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="a"><div class="chh"><span class="chn">1</span><div><small>CS-1 · Chapter 01</small><h2>What is an operating system?</h2></div></div><div class="g">
+<div class="c w"><h3>A computer plus an OS, in plain words</h3><p>A computer is just hardware: CPU, memory, disk, keyboard, screen. It can do nothing useful alone. The <b>Operating System (OS)</b> is the <b>system software</b> that manages the hardware and gives programs a place to run. It acts as a <b>middleman between the user (and programs) and the hardware</b>. Without it you would have to control the hardware yourself in 0s and 1s.</p><p><b>Two goals:</b> (1) make the computer <b>convenient</b> to use, (2) use the hardware <b>efficiently</b>. Examples: MS-DOS, Windows, Linux, Unix, macOS, Android. The OS is often called a <b>resource manager</b>, because it shares CPU time, memory, files and devices among programs. The core part that is always in memory is the <b>kernel</b>; the part you type commands into is the <b>shell</b>.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="b"><div class="chh"><span class="chn">2</span><div><small>CS-1 · Chapter 01</small><h2>What does an OS do for you?</h2></div></div><div class="g">
+<div class="c m"><h3>The 8 services</h3><ul><li><b>Program execution</b> – loads a program into memory and runs it, then ends it.</li><li><b>I/O operations</b> – programs never touch devices directly; the OS does it for them.</li><li><b>File-system manipulation</b> – create, delete, read, write, rename files and folders.</li><li><b>Communication</b> – processes exchange data (on one computer or across a network).</li><li><b>Error detection</b> – watches for faults (printer out of paper, memory error) and takes action.</li><li><b>Resource allocation</b> – decides who gets CPU, memory, devices.</li><li><b>Accounting</b> – records which user used how much.</li><li><b>Protection and security</b> – stops one user or program from harming another; passwords.</li></ul></div>
+</div></section>
+<section class="ch" data-g="cs" id="c"><div class="chh"><span class="chn">3</span><div><small>CS-1 · Chapter 01</small><h2>Meet the OS family: Windows 98, NT and Linux</h2></div></div><div class="g">
+<div class="c m"><h3>Windows 98</h3><p>Made by Microsoft (1998), for home PCs. <b>Features:</b> GUI with icons and the Start button; <b>single-user</b> but <b>multitasking</b>; <b>Plug and Play</b> (new hardware is detected and set up automatically); support for <b>USB</b>; <b>FAT32</b> file system for large disks; built-in Internet Explorer and Internet connection support; good multimedia support; long file names.</p></div>
+<div class="c m"><h3>Windows NT (New Technology)</h3><p>Microsoft’s <b>professional / network</b> OS for servers and business workstations. <b>Features:</b> full <b>32-bit</b>, <b>preemptive multitasking</b>; <b>multi-user</b> network support; <b>NTFS</b> file system with file-level security and permissions; high <b>security</b> and reliability (a crashing program does not bring down the system); <b>portable</b> across different processors; <b>client-server</b> design; two flavours: <i>NT Workstation</i> and <i>NT Server</i>.</p></div>
+<div class="c w"><h3>Linux</h3><p>Created by <b>Linus Torvalds</b> in 1991; based on the older Unix. <b>Features of Linux (a favourite 6-mark list):</b></p><ol><li><b>Free and open source</b> – anyone can see, change and share the code.</li><li><b>Multi-user</b> – many users can work at once on separate accounts.</li><li><b>Multitasking</b> – many programs run together.</li><li><b>Portable</b> – runs on many kinds of hardware.</li><li><b>Secure</b> – passwords, file permissions, very few viruses.</li><li><b>Stable and reliable</b> – rarely crashes; used on servers.</li><li><b>Shell</b> – powerful command interpreter, with scripting.</li><li><b>Hierarchical file system</b> – one directory tree starting at <code>/</code> (root).</li><li><b>GUI support</b> – desktops such as GNOME and KDE; and good <b>networking</b> support.</li></ol><div class="w"><table><tr><th></th><th>Windows 98</th><th>Windows NT</th><th>Linux</th></tr><tr><td>Users</td><td>Single</td><td>Multi (network)</td><td>Multi</td></tr><tr><td>File system</td><td>FAT16/FAT32</td><td>NTFS (also FAT)</td><td>ext2/ext3 etc.</td></tr><tr><td>Security</td><td>Weak</td><td>Strong</td><td>Strong</td></tr><tr><td>Cost / source</td><td>Paid, closed</td><td>Paid, closed</td><td>Free, open</td></tr><tr><td>Used for</td><td>Home PC</td><td>Servers, business</td><td>Servers, PCs, embedded</td></tr></table></div></div>
+</div></section>
+<section class="ch" data-g="cs" id="d"><div class="chh"><span class="chn">4</span><div><small>CS-1 · Chapter 01</small><h2>Files, devices and the keyboard</h2></div></div><div class="g">
+<div class="c w"><h3>File system, device drivers, terminal I/O</h3><dl><dt>File system</dt><dd>The part of the OS that decides how files are <b>named, stored, organised and retrieved</b> on a disk. It keeps folders (directories) in a tree, tracks free space, and controls who may open a file. Operations: create, open, read, write, close, delete. Examples: FAT, NTFS.</dd>
 <dt>Device drivers</dt><dd>Small <b>programs</b> that let the OS talk to one particular hardware device (printer, scanner, graphics card). Each device speaks its own “language”; the driver translates the OS’s general commands into the device’s commands. No driver = device does not work.</dd>
-<dt>Terminal I/O</dt><dd>Handling of <b>input from the keyboard and output to the screen (the terminal)</b>. The OS reads the characters you type, shows them (echo), handles special keys like Backspace and Enter, and sends program output to the display.</dd></dl>
-
-<h2 id="e">5. Process management – definitions</h2>
-<dl><dt>Process</dt><dd>A <b>program in execution</b>. A program is a file sitting on disk (passive); a process is that program running in memory with its own data, counter and CPU state (active). The OS keeps each process’s details in a <b>Process Control Block (PCB)</b>.</dd>
+<dt>Terminal I/O</dt><dd>Handling of <b>input from the keyboard and output to the screen (the terminal)</b>. The OS reads the characters you type, shows them (echo), handles special keys like Backspace and Enter, and sends program output to the display.</dd></dl></div>
+</div></section>
+<section class="ch" data-g="cs" id="e"><div class="chh"><span class="chn">5</span><div><small>CS-1 · Chapter 01</small><h2>How the OS runs programs (processes)</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3>A <b>program</b> is a recipe in a book; a <b>process</b> is someone actually cooking it. The CPU is one cook with many orders, so the OS gives each a short turn. <b>Context switching</b> is the cook noting where he stopped one dish and picking up the next. <b>Time sharing</b> means the turns are so short that every dish seems to cook at once.</div>
+<div class="c w"><h3>Key process terms</h3><dl><dt>Process</dt><dd>A <b>program in execution</b>. A program is a file sitting on disk (passive); a process is that program running in memory with its own data, counter and CPU state (active). The OS keeps each process’s details in a <b>Process Control Block (PCB)</b>.</dd>
 <dt>Multiprogramming</dt><dd>Keeping <b>several programs in memory at once</b>. When one waits for I/O, the CPU switches to another, so the CPU is never idle and is used well.</dd>
 <dt>Multitasking</dt><dd>Running <b>several tasks (processes) at the same time</b> from the user’s view, such as listening to music while typing. The CPU switches between them so quickly that they seem simultaneous.</dd>
 <dt>Time sharing</dt><dd>A multitasking method where the CPU gives each process/user a very small <b>time slice (quantum)</b> in turn. Many users share one computer and each feels they have it to themselves. Gives quick response.</dd>
 <dt>Context switching</dt><dd>When the CPU leaves one process and starts another, the OS <b>saves the state of the old process</b> (in its PCB) and <b>loads the saved state of the new one</b>. It is pure overhead: no useful work is done during the switch.</dd>
-<dt>Priority</dt><dd>A number given to each process showing its <b>importance</b>. The process with the highest priority gets the CPU first (e.g. system tasks before background tasks).</dd></dl>
-<h3>Process states</h3>
-<pre>New → Ready → Running → Terminated
+<dt>Priority</dt><dd>A number given to each process showing its <b>importance</b>. The process with the highest priority gets the CPU first (e.g. system tasks before background tasks).</dd></dl></div>
+<div class="c w"><h3>Process states</h3><pre>New → Ready → Running → Terminated
               ↑   ↓
-              └ Waiting (Blocked) ┘</pre>
-<div class="w"><table><tr><th>State</th><th>Meaning</th></tr><tr><td><b>New</b></td><td>process is being created</td></tr><tr><td><b>Ready</b></td><td>process has everything it needs and is <b>waiting in the queue for the CPU</b></td></tr><tr><td><b>Running</b></td><td>CPU is executing its instructions right now</td></tr><tr><td><b>Waiting / Blocked</b></td><td>waiting for an event, such as I/O to finish; cannot use CPU even if free</td></tr><tr><td><b>Terminated</b></td><td>finished (or killed); OS removes it</td></tr></table></div>
-<p>Moves: Ready→Running (CPU given), Running→Ready (time slice over), Running→Waiting (asks for I/O), Waiting→Ready (I/O done), Running→Terminated.</p>
-
-<h2 id="f">6. Memory management – definitions</h2>
-<p>Memory (RAM) is limited, and programs must be in it to run. The OS keeps track of which parts are free or used, gives memory to processes and takes it back.</p>
-<h3>Typical memory map of a single-user computer</h3>
-<pre>High address →  [ Device drivers / ROM BIOS ]
+              └ Waiting (Blocked) ┘</pre><div class="w"><table><tr><th>State</th><th>Meaning</th></tr><tr><td><b>New</b></td><td>process is being created</td></tr><tr><td><b>Ready</b></td><td>process has everything it needs and is <b>waiting in the queue for the CPU</b></td></tr><tr><td><b>Running</b></td><td>CPU is executing its instructions right now</td></tr><tr><td><b>Waiting / Blocked</b></td><td>waiting for an event, such as I/O to finish; cannot use CPU even if free</td></tr><tr><td><b>Terminated</b></td><td>finished (or killed); OS removes it</td></tr></table></div><p>Moves: Ready→Running (CPU given), Running→Ready (time slice over), Running→Waiting (asks for I/O), Waiting→Ready (I/O done), Running→Terminated.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="f"><div class="chh"><span class="chn">6</span><div><small>CS-1 · Chapter 01</small><h2>How the OS shares memory</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3>RAM is your desk: small but quick. The disk is a cupboard: big but slow. <b>Paging</b> cuts a program into equal sheets that can be placed on any free spot of the desk. <b>Virtual memory</b> keeps only the sheets you are using on the desk and the rest in the cupboard, so even a huge program fits.</div>
+<div class="c"><h3>Why memory needs managing</h3><p>Memory (RAM) is limited, and programs must be in it to run. The OS keeps track of which parts are free or used, gives memory to processes and takes it back.</p></div>
+<div class="c w"><h3>Typical memory map of a single-user computer</h3><pre>High address →  [ Device drivers / ROM BIOS ]
                 [ Free (unused) memory      ]
                 [ User program area         ]
-Low address  →  [ OS (kernel, interrupt table) ]</pre>
-<p>The OS sits in the lowest part; the single user’s program loads above it; the rest is free. Only one program runs at a time, so memory management is simple.</p>
-<h3>Partitioning</h3>
-<ul><li><b>Fixed partitioning:</b> memory is split into partitions of <b>fixed size</b> (set at start). Each process goes into one. Easy, but a small process wastes the leftover space in its partition (<b>internal fragmentation</b>), and the number of processes is limited.</li><li><b>Variable partitioning:</b> partitions are created <b>of exactly the size the process needs</b>. No internal waste, but as processes come and go, small unusable holes appear between them (<b>external fragmentation</b>); fixed by <b>compaction</b> (sliding all processes together).</li></ul>
-<h3>Paging</h3>
-<p>Logical memory is cut into equal blocks called <b>pages</b>; physical memory into blocks of the same size called <b>frames</b>. Any page can sit in any frame; a <b>page table</b> records which page is in which frame. Pages need not be side by side, so there is <b>no external fragmentation</b> (only a little waste in the last page).</p>
-<h3>Segmentation</h3>
-<p>The program is divided into <b>logical parts of different sizes</b> called <b>segments</b> (main code, functions, data, stack) as the programmer sees it. A <b>segment table</b> stores each segment’s start and length. Paging = equal physical pieces; segmentation = meaningful logical pieces.</p>
-<h3>Virtual memory</h3>
-<p>A technique that lets you run programs <b>larger than RAM</b> by using part of the <b>hard disk as extra memory</b>. Only the parts needed now sit in RAM; the rest wait on disk and are brought in when needed (<b>demand paging</b>). If a needed page is missing it is a <b>page fault</b>. Too much swapping makes the computer very slow (<b>thrashing</b>).</p>
-
-<h2 id="g">7. GUI (Graphical User Interface)</h2>
-<p>A <b>GUI</b> lets you use the computer by pointing and clicking pictures (icons, menus, windows) with a mouse, instead of typing commands (a <b>CLI</b>, command-line interface). It is easier for beginners but uses more memory and processing power.</p>
-<ul><li><b>Window</b> – a rectangular area on screen where one program shows its output.</li><li><b>Task list / taskbar</b> – shows all running programs; click one to switch to it.</li><li><b>Drag</b> – press and hold the mouse button on an item, move, then release (to move a window or file).</li><li><b>Resize</b> – change a window’s width and height by dragging its edge or corner.</li><li><b>Minimize</b> – hide the window to the taskbar (program keeps running).</li><li><b>Maximize</b> – make the window fill the screen.</li><li><b>Close</b> – shut the window and end the program.</li></ul>
-<p>Other parts: <b>icon</b> (small picture for a program/file), <b>menu</b>, <b>pointer/cursor</b>, <b>desktop</b>, <b>dialog box</b>.</p>
-
-<h2 id="h">8. Access and security aspects of an OS</h2>
-<p>Security means protecting the computer, programs and data from misuse. The OS uses <b>user accounts with passwords</b> (authentication), <b>file permissions</b> (who may read/write/run), <b>encryption</b>, <b>firewalls</b> and <b>antivirus software</b>.</p>
-<h3>Security threats</h3>
-<p>A <b>threat</b> is a possible danger: <b>unauthorised access</b> (a stranger logs in), <b>data theft</b>, <b>data modification or destruction</b>, <b>denial of service</b> (making the system unusable for real users), loss from hardware failure or disaster.</p>
-<h3>Attacks on security</h3>
-<ul><li><b>Password guessing/cracking</b> and stealing passwords.</li><li><b>Trojan horse</b> – a harmful program disguised as a useful one.</li><li><b>Trap door (back door)</b> – a secret entry left in a program to bypass security.</li><li><b>Logic bomb</b> – hidden code that goes off when a condition is met (a date, a user deleted).</li><li><b>Denial-of-service</b> attacks, and <b>viruses / worms</b> below.</li></ul>
-<dl><dt>Computer virus</dt><dd>A malicious program that <b>attaches itself to another file or program</b> and spreads when that file is run or copied. It needs a host and human action (sharing a pen drive). Effects: deletes or corrupts files, slows the system. Types: boot-sector, file-infector, macro virus.</dd>
-<dt>Computer worm</dt><dd>A malicious program that <b>copies itself on its own</b> and spreads through a <b>network</b>, <b>without needing a host file or user action</b>. It eats up memory and bandwidth and can crash networks.</dd></dl>
-<p><b>Virus vs worm:</b> a virus needs a host and user action; a worm is standalone and spreads itself over networks. <b>Prevention:</b> antivirus with updates, don’t open unknown attachments, keep the OS updated, use firewalls and strong passwords, take backups.</p>
-
-<h2 id="x">10. Extra topics from the revised syllabus</h2>
-<h3>Windows NT architecture</h3><p>Two modes: <b>user mode</b> (applications and protected subsystems, such as the Win32 subsystem) and <b>kernel mode</b> (full hardware access): the <b>Executive</b> (memory, process, I/O, security managers), the <b>Kernel</b> (scheduling, interrupts) and the <b>HAL</b> (Hardware Abstraction Layer, which hides hardware differences so NT runs on different machines).</p>
-<h3>GNU/Linux and Ubuntu</h3><p><b>GNU</b> = “GNU’s Not Unix”, a free-software project; <b>Linux</b> is the kernel; together they form GNU/Linux. <b>Ubuntu</b> is one of the most popular GNU/Linux distributions. It offers a <b>GUI</b> (desktop with icons, windows) and a <b>CLI</b> (terminal where you type commands such as <code>pwd, ls, cd, mkdir, cp, mv, rm, cat</code>).</p>
-<h3>File systems, operations, access methods</h3><p><b>Types of file system:</b> FAT/FAT32 (Windows 98), NTFS (NT), ext2/ext3/ext4 (Linux). <b>Tape-based</b> storage allows only sequential access; <b>disk-based</b> allows direct access. <b>File operations:</b> create, open, read, write, seek (reposition), close, rename, delete, truncate. <b>Sequential access:</b> records read one after another in order (simple, like tape). <b>Direct (random) access:</b> jump straight to any record by its number (fast, like disk).</p>
-<h3>Allocation methods (how disk blocks are given to a file)</h3><div class="w"><table><tr><th>Method</th><th>Idea</th><th>Good / bad</th></tr><tr><td><b>Contiguous</b></td><td>file in consecutive blocks</td><td>fast access; wastes space (external fragmentation), file cannot grow easily</td></tr><tr><td><b>Linked</b> (non-contiguous)</td><td>each block holds a pointer to the next</td><td>no fragmentation, grows easily; slow direct access</td></tr><tr><td><b>Indexed</b> (non-contiguous)</td><td>an index block lists all block addresses</td><td>fast direct access; index uses extra space</td></tr></table></div>
-<h3>Scheduling</h3><p>The <b>scheduler</b> picks which ready process gets the CPU. <b>FCFS</b> (first come first served), <b>SJF</b> (shortest job first), <b>Round Robin</b> (equal time slice in turn), <b>Priority</b> (highest priority first). <b>Preemptive</b> = the CPU can be taken away from a running process; <b>non-preemptive</b> = it runs until it finishes or waits.</p>
-<h2 id="i">9. Quick revision and likely questions</h2>
-<div class="tip"><b>Learn word-for-word in 2–3 lines:</b> OS, kernel/shell, process, multiprogramming, multitasking, time sharing, context switching, ready state, priority, paging, segmentation, virtual memory, fixed vs variable partitioning, file system, device driver, terminal I/O, virus, worm.<br><b>Lists to remember:</b> services of OS (8), process states (5), features of Linux (6+), GUI features (window, task list, drag, resize, minimize, maximize, close), security threats and attacks.<br><b>Seen in past papers:</b> “Define ready state”, “List six features of Linux”. Also expect “differentiate Windows NT and Windows 98”, “differentiate paging and segmentation”, “virus vs worm”.</div>
-<p style="color:var(--mut);font-size:.85rem">Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</p>
-</main></body></html>
+Low address  →  [ OS (kernel, interrupt table) ]</pre><p>The OS sits in the lowest part; the single user’s program loads above it; the rest is free. Only one program runs at a time, so memory management is simple.</p></div>
+<div class="c m"><h3>Partitioning</h3><ul><li><b>Fixed partitioning:</b> memory is split into partitions of <b>fixed size</b> (set at start). Each process goes into one. Easy, but a small process wastes the leftover space in its partition (<b>internal fragmentation</b>), and the number of processes is limited.</li><li><b>Variable partitioning:</b> partitions are created <b>of exactly the size the process needs</b>. No internal waste, but as processes come and go, small unusable holes appear between them (<b>external fragmentation</b>); fixed by <b>compaction</b> (sliding all processes together).</li></ul></div>
+<div class="c"><h3>Paging</h3><p>Logical memory is cut into equal blocks called <b>pages</b>; physical memory into blocks of the same size called <b>frames</b>. Any page can sit in any frame; a <b>page table</b> records which page is in which frame. Pages need not be side by side, so there is <b>no external fragmentation</b> (only a little waste in the last page).</p></div>
+<div class="c"><h3>Segmentation</h3><p>The program is divided into <b>logical parts of different sizes</b> called <b>segments</b> (main code, functions, data, stack) as the programmer sees it. A <b>segment table</b> stores each segment’s start and length. Paging = equal physical pieces; segmentation = meaningful logical pieces.</p></div>
+<div class="c"><h3>Virtual memory</h3><p>A technique that lets you run programs <b>larger than RAM</b> by using part of the <b>hard disk as extra memory</b>. Only the parts needed now sit in RAM; the rest wait on disk and are brought in when needed (<b>demand paging</b>). If a needed page is missing it is a <b>page fault</b>. Too much swapping makes the computer very slow (<b>thrashing</b>).</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="g"><div class="chh"><span class="chn">7</span><div><small>CS-1 · Chapter 01</small><h2>The screen you click: GUI</h2></div></div><div class="g">
+<div class="c w"><h3>What a GUI is</h3><p>A <b>GUI</b> lets you use the computer by pointing and clicking pictures (icons, menus, windows) with a mouse, instead of typing commands (a <b>CLI</b>, command-line interface). It is easier for beginners but uses more memory and processing power.</p><ul><li><b>Window</b> – a rectangular area on screen where one program shows its output.</li><li><b>Task list / taskbar</b> – shows all running programs; click one to switch to it.</li><li><b>Drag</b> – press and hold the mouse button on an item, move, then release (to move a window or file).</li><li><b>Resize</b> – change a window’s width and height by dragging its edge or corner.</li><li><b>Minimize</b> – hide the window to the taskbar (program keeps running).</li><li><b>Maximize</b> – make the window fill the screen.</li><li><b>Close</b> – shut the window and end the program.</li></ul><p>Other parts: <b>icon</b> (small picture for a program/file), <b>menu</b>, <b>pointer/cursor</b>, <b>desktop</b>, <b>dialog box</b>.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="h"><div class="chh"><span class="chn">8</span><div><small>CS-1 · Chapter 01</small><h2>Keeping the computer safe: security</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3>A <b>virus</b> is like a cold: it needs a host (a file) and spreads when you share that file. A <b>worm</b> is like a rumour: it spreads by itself across a network. Both are harmful programs; antivirus software and not opening unknown files protect you.</div>
+<div class="c"><h3>What security means</h3><p>Security means protecting the computer, programs and data from misuse. The OS uses <b>user accounts with passwords</b> (authentication), <b>file permissions</b> (who may read/write/run), <b>encryption</b>, <b>firewalls</b> and <b>antivirus software</b>.</p></div>
+<div class="c"><h3>Security threats</h3><p>A <b>threat</b> is a possible danger: <b>unauthorised access</b> (a stranger logs in), <b>data theft</b>, <b>data modification or destruction</b>, <b>denial of service</b> (making the system unusable for real users), loss from hardware failure or disaster.</p></div>
+<div class="c w"><h3>Attacks on security</h3><ul><li><b>Password guessing/cracking</b> and stealing passwords.</li><li><b>Trojan horse</b> – a harmful program disguised as a useful one.</li><li><b>Trap door (back door)</b> – a secret entry left in a program to bypass security.</li><li><b>Logic bomb</b> – hidden code that goes off when a condition is met (a date, a user deleted).</li><li><b>Denial-of-service</b> attacks, and <b>viruses / worms</b> below.</li></ul><dl><dt>Computer virus</dt><dd>A malicious program that <b>attaches itself to another file or program</b> and spreads when that file is run or copied. It needs a host and human action (sharing a pen drive). Effects: deletes or corrupts files, slows the system. Types: boot-sector, file-infector, macro virus.</dd>
+<dt>Computer worm</dt><dd>A malicious program that <b>copies itself on its own</b> and spreads through a <b>network</b>, <b>without needing a host file or user action</b>. It eats up memory and bandwidth and can crash networks.</dd></dl><p><b>Virus vs worm:</b> a virus needs a host and user action; a worm is standalone and spreads itself over networks. <b>Prevention:</b> antivirus with updates, don’t open unknown attachments, keep the OS updated, use firewalls and strong passwords, take backups.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="check"><div class="chh"><span class="chn">9</span><div><small>CS-1 · Chapter 01</small><h2>Check yourself</h2></div></div><div class="g"><div class="c key w"><h3>Four quick questions</h3><p class="n">Answer in your head first, then tap to check.</p><ol><li><b>In one sentence, what does an operating system do?</b><details><summary>Show answer</summary>It manages the hardware and runs programs for the user.</details></li><li><b>What is the difference between a program and a process?</b><details><summary>Show answer</summary>A program is a file on disk; a process is that program running.</details></li><li><b>Which technique lets a program bigger than RAM run?</b><details><summary>Show answer</summary>Virtual memory.</details></li><li><b>Virus or worm: which spreads by itself over a network?</b><details><summary>Show answer</summary>A worm. A virus needs a host file.</details></li></ol></div></div></section><section class="ch" data-g="cs" id="i"><div class="chh"><span class="chn">10</span><div><small>CS-1 · Chapter 01</small><h2>Revise it fast</h2></div></div><div class="g">
+<div class="c key m"><h3>Revision checklist</h3><b>Learn word-for-word in 2–3 lines:</b> OS, kernel/shell, process, multiprogramming, multitasking, time sharing, context switching, ready state, priority, paging, segmentation, virtual memory, fixed vs variable partitioning, file system, device driver, terminal I/O, virus, worm.<br/><b>Lists to remember:</b> services of OS (8), process states (5), features of Linux (6+), GUI features (window, task list, drag, resize, minimize, maximize, close), security threats and attacks.<br/><b>Seen in past papers:</b> “Define ready state”, “List six features of Linux”. Also expect “differentiate Windows NT and Windows 98”, “differentiate paging and segmentation”, “virus vs worm”.</div>
+</div></section>
+</main>
+<footer>Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</footer>
+</div>
+<script>(function(){
+  var secs=[].slice.call(document.querySelectorAll('section.ch'));
+  var toc=document.getElementById('toc'),nav=document.getElementById('nav');
+  var t=document.createElement('section');t.dataset.g='cs';
+  var h=document.createElement('h2');h.textContent='On this page';t.appendChild(h);
+  var nh=document.createElement('h6');nh.textContent='On this page';nh.dataset.g='cs';nav.appendChild(nh);
+  secs.forEach(function(s){
+    var n=s.querySelector('.chn').textContent,title=s.querySelector('h2').textContent;
+    [t,nav].forEach(function(host){
+      var a=document.createElement('a');a.href='#'+s.id;a.dataset.g='cs';a.dataset.t=s.id;
+      a.innerHTML='<span>'+n+'</span>'+title.replace(/&/g,'&amp;');
+      host.appendChild(a);
+    });
+  });
+  toc.appendChild(t);
+  var cards=[].slice.call(document.querySelectorAll('.c'));
+  cards.forEach(function(c){c.dataset.s=(c.parentNode.parentNode.querySelector('h2').textContent+' '+c.textContent).toLowerCase()});
+  var q=document.getElementById('q'),empty=document.getElementById('empty');
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(),any=false;
+    cards.forEach(function(c){var ok=!v||c.dataset.s.indexOf(v)>-1;c.classList.toggle('hide',!ok);if(ok)any=true});
+    secs.forEach(function(s){s.classList.toggle('hide',!!v&&!s.querySelector('.c:not(.hide)'))});
+    toc.classList.toggle('hide',!!v);document.querySelector('.cover').classList.toggle('hide',!!v);
+    empty.classList.toggle('hide',any||!v);
+  });
+  var links={};[].forEach.call(nav.querySelectorAll('a'),function(a){links[a.dataset.t]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.remove('on')});links[e.target.id].classList.add('on')}
+    })},{rootMargin:'-20% 0px -70% 0px'});
+    secs.forEach(function(s){io.observe(s)});
+  }
+})();</script>
+</body></html>

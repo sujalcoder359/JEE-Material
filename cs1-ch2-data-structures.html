@@ -1,114 +1,195 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CS-1 Chapter 2: Data Structures – Full Beginner Guide</title>
+<html data-theme="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#0f1320" name="theme-color"/><title>Data Structures | JEE Material</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#fafaf7;--fg:#1d2330;--mut:#5a6372;--card:#fff;--ac:#2a5bd7;--bd:#dde1e8;--code:#f0f2f6;--hl:#eef3ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171d;--fg:#e6e9ef;--mut:#9aa3b2;--card:#1c2028;--ac:#7ea2ff;--bd:#2c323d;--code:#10131a;--hl:#1b2540}}
-:root[data-theme="dark"]{--bg:#14171d;--fg:#e6e9ef;--mut:#9aa3b2;--card:#1c2028;--ac:#7ea2ff;--bd:#2c323d;--code:#10131a;--hl:#1b2540}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 Georgia,serif}
-main{max-width:760px;margin:auto;padding:16px}
-h1,h2,h3,nav{font-family:system-ui,sans-serif}
-h1{font-size:1.6rem}h2{font-size:1.3rem;border-bottom:2px solid var(--ac);padding-bottom:4px;margin-top:2rem}h3{font-size:1.05rem;color:var(--ac)}
-pre{background:var(--code);padding:12px;border-radius:8px;overflow-x:auto;font-size:.85rem;line-height:1.45}
-code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.9em}
-.tip{background:var(--hl);border-left:4px solid var(--ac);padding:10px 14px;border-radius:6px;margin:12px 0}
-.w{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left}th{background:var(--hl)}
-nav{display:flex;flex-wrap:wrap;gap:8px}nav a{padding:5px 11px;border:1px solid var(--bd);border-radius:18px;text-decoration:none;color:var(--ac);font-size:.85rem}
-svg text{fill:var(--fg);font:13px system-ui,sans-serif}svg circle{fill:var(--hl);stroke:var(--ac);stroke-width:1.5}svg line{stroke:var(--mut);stroke-width:1.5}
-</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap"><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036;color-scheme:dark}html{background:var(--bg)}body{font:16px/1.7 Inter,system-ui,sans-serif;background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}main{padding:20px 18px 60px}h1{font-size:1.9rem;font-weight:800;line-height:1.2;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}h1 small{display:block;margin-top:6px;font-size:.9rem;-webkit-text-fill-color:var(--mut)}h2{font-size:1.25rem;margin-top:2.4rem;padding:10px 14px;border:0;background:linear-gradient(90deg,#6ee7d822,transparent);border-left:4px solid var(--ac);border-radius:6px}h3{color:var(--ac2)}h1,h2,h3,nav{font-family:Inter,system-ui,sans-serif}b{color:#fff}pre,code{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}pre{border:1px solid var(--bd);border-radius:12px}code{color:var(--ac)}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;box-shadow:0 6px 24px #0006}.warn{border-left-color:#fbbf24}th{background:#1c2845;color:var(--ac)}nav{overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}nav a{white-space:nowrap;background:var(--card);border-color:var(--bd);color:var(--ac)}</style><style>html:root:root{--bg:#13121a;--fg:#ece9f1;--mut:#a09bb3;--card:#1c1b27;--ac:#f2c078;--ac2:#f19bb0;--bd:#2f2d3f;--code:#0f0e15;--hl:#221f31}body{background:radial-gradient(900px 420px at 90% -5%,#4a306a40,transparent),radial-gradient(700px 400px at 0 0,#6a3a2a26,transparent),var(--bg)}h2{background:linear-gradient(90deg,#f2c07820,transparent)}th{background:#272438}b{color:#fff6e6}</style><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036}body{background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#f4f7ff;-webkit-text-fill-color:#f4f7ff;padding-bottom:12px;border-bottom:3px solid var(--ac)}h1 small{-webkit-text-fill-color:var(--ac);color:var(--ac)}h2{color:#fff;background:#17223a;border-left:5px solid var(--ac)}h3{color:#c4b5fd}th{background:#1c2845}b{color:#fff}</style><style>html:root:root{--bg:#0d111c;--fg:#e6eaf3;--mut:#8f9ab0;--card:#121827;--ac:#86e3a3;--ac2:#8fb0f0;--bd:#202840;--code:#0a0e17;--hl:#141c2e}body{background:var(--bg)}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:34px;border-bottom:1px solid var(--bd);font:500 .78rem 'JetBrains Mono',monospace}.top .brand{display:flex;align-items:center;gap:9px;color:#fff;font:700 .9rem Inter,sans-serif}.top i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ac),var(--ac2))}.top a{color:var(--mut);text-decoration:none}h1{display:flex;flex-direction:column;font-size:2.4rem;letter-spacing:-.03em;line-height:1.08;border:0;padding:0;color:#f4f6fb;-webkit-text-fill-color:#f4f6fb}h1 small{order:-1;margin:0 0 14px;font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}h2{font-size:1.4rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:14px 0 0;color:#fff}h3{color:var(--ac2)}code{color:var(--ac2)}pre{border-radius:8px}th{background:var(--hl);color:var(--ac);font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:6px;box-shadow:none}.warn{border-top-color:#f5b85c}nav a{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;color:var(--mut);background:var(--card)}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>html:root:root{--bg:#0f1320;--fg:#e8ebf4;--mut:#9aa3b8;--card:#171c2d;--bd:#2a3148;--hl:#1e2438;--ac:#91d69d;--ac2:#91d69d;--code:#0b0f1a;--f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;--f-body:'IBM Plex Sans',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace}
-html{scroll-padding-top:5rem}body{background:var(--bg);font-family:var(--f-body);line-height:1.6}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-bottom:40px;border-bottom:1px solid var(--bd);background:var(--bg)}
-.bar .brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);white-space:nowrap;text-decoration:none}
-.brand-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--bd);border-radius:7px;background:var(--card);color:var(--ac);font-size:19px}
-.back{color:var(--mut);font-size:.85rem;text-decoration:none}.back:hover{color:var(--ac)}
-h1{display:flex;flex-direction:column;font:700 clamp(2.2rem,6vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.035em;color:var(--fg);-webkit-text-fill-color:var(--fg);background:none;border:0;padding:0;margin:0 0 22px}
-h1 small{order:-1;margin:0 0 15px;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}
-h2,h3,nav{font-family:var(--f-display)}h2{font-size:1.5rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:16px 0 0;color:var(--fg)}h3{color:var(--ac);font-size:1.12rem}b{color:#fff}
-code,pre{font-family:var(--f-mono)}code{color:var(--ac);background:var(--code)}pre{background:var(--code);border:1px solid var(--bd);border-radius:6px}
-th{background:var(--hl);color:var(--ac);font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase}td,th{border-color:var(--bd)}
-.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:0;box-shadow:none}.warn{border-top-color:#f5b85c}
-nav a{font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;border-radius:0;color:var(--mut);background:none;border:1px solid var(--bd)}nav a:hover{color:var(--ac);border-color:var(--ac)}</style></head><body><main><div class="bar"><a class="brand" href="https://sujalcoder359.github.io/JEE-Material/index.html"><span class="brand-symbol">⌬</span><span>JEE MATERIAL</span></a><a class="back" href="https://sujalcoder359.github.io/JEE-Material/hsc-cs.html">← Back to Computer Science</a></div>
-<h1>Data Structures<small>CS-1 · Chapter 02 · 17 marks with options</small></h1>
-<nav><a href="#a">1 Intro</a><a href="#b">2 Operations</a><a href="#c">3 Algorithms</a><a href="#d">4 Control structures</a><a href="#e">5 Arrays</a><a href="#f">6 Linked list</a><a href="#g">7 Trees</a><a href="#h">8 Revision</a></nav>
-<div class="tip">Your syllabus list for this chapter covers: introduction, operations, algorithmic notations, control structures, arrays (memory, traverse, insert, delete, sort, binary search, pointer arrays, records), linked lists and binary trees. The revised syllabus also has <b>stack and queue</b>: see section 8.</div>
+/* Layout: sticky chapter index on the left (desktop), colour-coded chapter sections, formula cards in an auto-fit grid. */
+:root{
+  --bg:#f3f5f9; --surface:#ffffff; --fg:#161b2b; --muted:#5a6275; --line:#dbe0ea; --soft:#e9edf4;
+  --l:0.50; --bl:0.955; --cl:0.30;
+  --f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8; --line:#2a3148; --soft:#1e2438;
+  --l:0.78; --bl:0.26; --cl:0.86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8; --line:#2a3148; --soft:#1e2438;
+  --l:0.78; --bl:0.26; --cl:0.86; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0;padding-inline:16px}
+a{color:inherit}
+.shell{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:1fr;gap:0 40px}
+@media(min-width:1000px){.shell{grid-template-columns:230px minmax(0,1fr)}}
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);display:flex;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);margin-inline:-16px;padding-inline:16px;grid-column:1/-1}
+.bar b{font-family:var(--f-display);font-size:1rem;letter-spacing:.01em;white-space:nowrap}
+.bar input{flex:1;min-width:0;font:inherit;font-size:.95rem;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.bar input:focus-visible,.nav a:focus-visible,.toc a:focus-visible{outline:2px solid oklch(var(--l) .15 262);outline-offset:2px}
+.bar a.home{font-size:.85rem;color:var(--muted);text-decoration:none;white-space:nowrap}
+/* sidebar */
+.nav{display:none}
+@media(min-width:1000px){.nav{display:block;position:sticky;top:calc(3.6rem + env(safe-area-inset-top,0px));align-self:start;max-height:calc(100vh - 5rem);overflow:auto;padding-block:20px 40px;font-size:.88rem}}
+.nav h6{font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:18px 0 6px;color:oklch(var(--l) .13 var(--h))}
+.nav a{display:flex;gap:8px;padding:4px 8px;border-radius:6px;text-decoration:none;color:var(--muted)}
+.nav a span{font:400 .75rem/1.7 var(--f-mono);min-width:1.6em}
+.nav a:hover{background:var(--soft);color:var(--fg)}
+.nav a.on{background:oklch(var(--bl) .05 var(--h));color:var(--fg);font-weight:500}
+/* cover */
+.cover{padding-block:44px 28px;max-width:60rem}
+.eyebrow{font:500 .75rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cover h1{font-family:var(--f-display);font-weight:700;font-size:clamp(2.2rem,6vw,3.9rem);line-height:1;letter-spacing:-.02em;margin:14px 0 14px;text-wrap:balance}
+.cover p{color:var(--muted);max-width:40rem;margin:0}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:20px;padding-bottom:36px}
+.toc section{min-width:0}
+.toc h2{font:500 .72rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px;padding-bottom:8px;border-bottom:2px solid oklch(var(--l) .13 var(--h));color:oklch(var(--l) .13 var(--h))}
+.toc a{display:flex;gap:10px;padding:5px 0;text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{color:oklch(var(--l) .15 var(--h))}
+.toc a span{font:400 .8rem/1.7 var(--f-mono);color:var(--muted);min-width:1.8em}
+/* chapters */
+.ch{padding-top:36px;--h:262}
+.ch[data-g="calc"]{--h:310} .ch[data-g="alg"]{--h:195} .ch[data-g="vec"]{--h:20} .ch[data-g="trig"]{--h:70} .ch[data-g="stat"]{--h:145}
+.toc section[data-g="coord"]{--h:262} .toc section[data-g="calc"]{--h:310} .toc section[data-g="alg"]{--h:195} .toc section[data-g="vec"]{--h:20} .toc section[data-g="trig"]{--h:70} .toc section[data-g="stat"]{--h:145}
+.nav [data-g="coord"]{--h:262} .nav [data-g="calc"]{--h:310} .nav [data-g="alg"]{--h:195} .nav [data-g="vec"]{--h:20} .nav [data-g="trig"]{--h:70} .nav [data-g="stat"]{--h:145}
+.chh{display:flex;align-items:flex-end;gap:16px;padding-bottom:14px;margin-bottom:18px;border-bottom:2px solid oklch(var(--l) .13 var(--h))}
+.chn{font:700 clamp(2.6rem,7vw,4rem)/.85 var(--f-display);color:oklch(var(--l) .13 var(--h));letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.chh h2{margin:0;font:700 clamp(1.5rem,3.6vw,2.1rem)/1.05 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
+.chh small{display:block;font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));gap:14px}
+.c{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px 12px;min-width:0;overflow-x:auto}
+.c.w{grid-column:1/-1}
+.c.m{grid-column:span 2}
+@media(max-width:700px){.c.m{grid-column:1/-1}}
+.c h3{font:600 .72rem/1.25 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;margin:0 0 8px;color:oklch(var(--l) .14 var(--h))}
+.c p{margin:6px 0;font-size:.93rem}
+.c p.n{color:var(--muted);font-size:.85rem}
+.c ul,.c ol{margin:6px 0;padding-left:1.2em;font-size:.93rem}
+.c li{margin:3px 0}
+.c b{font-weight:600}
+.key{background:oklch(var(--bl) .035 var(--h));border-color:oklch(var(--l) .06 var(--h) / .5)}
+.tag{display:inline-block;font:500 .72rem/1 var(--f-mono);padding:3px 6px;border-radius:5px;background:oklch(var(--bl) .05 var(--h));color:oklch(var(--cl) .1 var(--h));margin-right:4px;vertical-align:1px}
+mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden;color:var(--fg)}
+mjx-container[display="true"]{margin:.55em 0 !important}
+table{border-collapse:collapse;font-size:.9rem;margin:8px 0}
+th,td{border:1px solid var(--line);padding:5px 10px;text-align:center}
+th{background:var(--soft);font-weight:500}
+.tree{list-style:none;padding:0 !important;margin:6px 0}
+.tree ul{list-style:none;margin:2px 0 2px 10px;padding:0 0 0 14px;border-left:2px solid oklch(var(--l) .1 var(--h) / .5)}
+.tree li{margin:5px 0}
+.hide{display:none !important}
+.empty{padding:40px 0;color:var(--muted)}
+footer{padding-block:48px 64px;color:var(--muted);font-size:.85rem;grid-column:1/-1;text-align:center}
+@media print{.bar,.nav{display:none}.c{break-inside:avoid}.ch{break-before:page}body{background:#fff}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.subject-back {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: var(--surface);
+  text-decoration: none;
+  font: 500 13px var(--f-body);
+  flex-shrink: 0;
+}
 
-<h2 id="a">1. Introduction to data structures</h2>
-<p><b>Data</b> = raw facts (numbers, names). A <b>data structure</b> is a <b>particular way of storing and organising data in the computer so it can be used efficiently</b>. Think of a cupboard: if clothes are sorted on shelves, finding one is quick; if thrown in a heap, it is slow. Goal: save memory and time.</p>
-<div class="w"><table><tr><th>Primitive</th><th>Non-primitive</th></tr><tr><td>Basic types the language gives: int, float, char</td><td>Built from primitives: arrays, linked lists, trees, records</td></tr></table></div>
-<p><b>Linear</b> structures keep items in a line, one after another (array, linked list). <b>Non-linear</b> structures branch (tree). <b>Static</b> = size fixed in advance (array). <b>Dynamic</b> = size grows and shrinks at run time (linked list).</p>
+.subject-back:hover {
+  color: var(--fg);
+  background: var(--soft);
+  border-color: var(--line);
+}
+/* JEE MATERIAL site header */
+.jm-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-inline:-16px;padding-inline:16px;border-bottom:1px solid var(--line);background:var(--bg)}
+.jm-brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);text-decoration:none;white-space:nowrap}
+.jm-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:oklch(var(--l) .15 262);font-size:19px}
+.jm-main{color:var(--muted);font-size:.85rem;text-decoration:none;transition:color .2s}
+.jm-main:hover{color:oklch(var(--l) .15 262)}
+@media(max-width:600px){.jm-main{font-size:.78rem}}
 
-<h2 id="b">2. Data structure operations</h2>
-<ul><li><b>Traversing</b> – visiting every item once (e.g. to print or add them).</li><li><b>Searching</b> – finding the location of an item with a given value.</li><li><b>Inserting</b> – adding a new item.</li><li><b>Deleting</b> – removing an item.</li><li><b>Sorting</b> – arranging items in order (ascending/descending).</li><li><b>Merging</b> – combining two sorted lists into one sorted list.</li></ul>
-
-<h2 id="c">3. Algorithmic notations</h2>
-<p>An <b>algorithm</b> is a finite, step-by-step list of instructions to solve a problem. Properties: clear input and output, each step definite, ends after finite steps. It is written in plain structured English (not a real language) using these notations:</p>
-<pre>Step 1: Set  K = 1              (assign a value)
+.ch[data-g="cs"],.toc section[data-g="cs"],.nav [data-g="cs"]{--h:145}
+.c pre{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:11px 12px;overflow-x:auto;font:.8rem/1.5 var(--f-mono);margin:8px 0}
+.c code{font-family:var(--f-mono);font-size:.86em;background:var(--soft);padding:1px 5px;border-radius:4px}.c pre code{background:none;padding:0}
+.c dl{margin:6px 0}.c dt{font-weight:600;margin-top:10px}.c dd{margin:2px 0 0 14px;font-size:.93rem}
+.c .w{overflow-x:auto}.c table{width:100%;font-size:.85rem}.c td,.c th{text-align:left}
+.c svg{max-width:100%;height:auto}.c svg text{fill:var(--fg);font:12px var(--f-body)}.c svg rect{fill:var(--surface);stroke:oklch(var(--l) .13 var(--h));stroke-width:1.5;rx:8}.c svg circle{fill:var(--soft);stroke:oklch(var(--l) .13 var(--h));stroke-width:1.5}.c svg line{stroke:var(--muted);stroke-width:1.5}
+details summary{cursor:pointer;color:var(--muted);font-size:.88rem;margin:4px 0}details[open] summary{color:var(--fg)}details{margin:2px 0 8px}</style></head><body>
+<div class="shell" id="top">
+<header class="jm-head">
+<a class="jm-brand" href="index.html"><span class="jm-symbol">⌬</span><span>JEE MATERIAL</span></a>
+<a class="jm-main" href="hsc-cs.html">← Back to Computer Science</a>
+</header>
+<div class="bar">
+<b>Data Structures</b><input aria-label="Search this chapter" autocomplete="off" id="q" placeholder="Search this chapter, e.g. binary search, linked list, tree" type="search"/><a class="home" href="#top">Contents</a></div>
+<nav aria-label="Sections" class="nav" id="nav"></nav>
+<main id="main" style="min-width:0">
+<header class="cover"><div class="eyebrow">CS-1 · Chapter 02 · 17 marks with options</div><h1>Data Structures</h1><p>How data is arranged and handled: arrays, searching, sorting, linked lists and trees, with step-by-step algorithms.</p></header>
+<div class="toc" id="toc"></div>
+<div class="empty hide" id="empty">Nothing matches that search.</div>
+<section class="ch" data-g="cs" id="start"><div class="chh"><span class="chn">0</span><div><small>CS-1 · Chapter 02</small><h2>Start here</h2></div></div><div class="g"><div class="c key w"><h3>How to study this chapter</h3><ol><li>Read the cards in <b>Start here</b> first: the big picture, then the words you need.</li><li>Go through the sections in order. Each one builds on the one before.</li><li>After each section, close the page and explain it out loud in your own words.</li><li>Try <b>Check yourself</b> at the end, then read the same chapter in Balbharati.</li></ol></div>
+<div class="c key m"><h3>The big picture</h3>Data is only useful if you can find it quickly. A data structure is the way you arrange it, like arranging a cupboard. An <b>array</b> is a row of numbered lockers. A <b>linked list</b> is a treasure hunt where each clue tells you where the next one is. A <b>tree</b> is an upside-down family tree. For each structure you learn the same jobs: visit every item, search, insert and delete. An <b>algorithm</b> is just a recipe written as numbered steps.</div>
+<div class="c key m"><h3>Words you need first</h3><b>Memory</b> – a long row of numbered cells; each number is the cell’s <b>address</b>. <b>Pointer</b> – a variable that stores the address of another cell. <b>Index</b> – the position number of an item in an array (starts at 0 or 1). <b>Node</b> – one box of data in a list or tree. <b>Recursive</b> – repeating the same rule on smaller and smaller parts. <b>Algorithm</b> – clear steps to solve a problem.</div>
+<div class="c key m"><h3>What this chapter covers</h3>Your syllabus list for this chapter covers: introduction, operations, algorithmic notations, control structures, arrays (memory, traverse, insert, delete, sort, binary search, pointer arrays, records), linked lists and binary trees. Stacks and queues are <b>not</b> in the syllabus list in your textbook, so they are not covered here.</div>
+</div></section>
+<section class="ch" data-g="cs" id="a"><div class="chh"><span class="chn">1</span><div><small>CS-1 · Chapter 02</small><h2>What is a data structure?</h2></div></div><div class="g">
+<div class="c w"><h3>Data and data structures</h3><p><b>Data</b> = raw facts (numbers, names). A <b>data structure</b> is a <b>particular way of storing and organising data in the computer so it can be used efficiently</b>. Think of a cupboard: if clothes are sorted on shelves, finding one is quick; if thrown in a heap, it is slow. Goal: save memory and time.</p><div class="w"><table><tr><th>Primitive</th><th>Non-primitive</th></tr><tr><td>Basic types the language gives: int, float, char</td><td>Built from primitives: arrays, linked lists, trees, records</td></tr></table></div><p><b>Linear</b> structures keep items in a line, one after another (array, linked list). <b>Non-linear</b> structures branch (tree). <b>Static</b> = size fixed in advance (array). <b>Dynamic</b> = size grows and shrinks at run time (linked list).</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="b"><div class="chh"><span class="chn">2</span><div><small>CS-1 · Chapter 02</small><h2>What can you do with data?</h2></div></div><div class="g">
+<div class="c"><h3>The six operations</h3><ul><li><b>Traversing</b> – visiting every item once (e.g. to print or add them).</li><li><b>Searching</b> – finding the location of an item with a given value.</li><li><b>Inserting</b> – adding a new item.</li><li><b>Deleting</b> – removing an item.</li><li><b>Sorting</b> – arranging items in order (ascending/descending).</li><li><b>Merging</b> – combining two sorted lists into one sorted list.</li></ul></div>
+</div></section>
+<section class="ch" data-g="cs" id="c"><div class="chh"><span class="chn">3</span><div><small>CS-1 · Chapter 02</small><h2>Writing steps clearly: algorithms</h2></div></div><div class="g">
+<div class="c w"><h3>What an algorithm is</h3><p>An <b>algorithm</b> is a finite, step-by-step list of instructions to solve a problem. Properties: clear input and output, each step definite, ends after finite steps. It is written in plain structured English (not a real language) using these notations:</p><pre>Step 1: Set  K = 1              (assign a value)
 Step 2: Read N                  (input)        Write ITEM  (output)
 Step 3: If A[K] = ITEM, then ... else ...
 Step 4: Repeat Steps 5 to 6 for K = 1 to N
 Step 5: Repeat while K ≤ N
-Step 6: Exit                    (stop)</pre>
-<p>Steps are numbered, variables are written in capitals, a name like <code>A[K]</code> means the K-th item of array A, and <code>←</code> or <code>Set</code> means assignment. Example, sum of N numbers:</p>
-<pre>1. Read N
+Step 6: Exit                    (stop)</pre><p>Steps are numbered, variables are written in capitals, a name like <code>A[K]</code> means the K-th item of array A, and <code>←</code> or <code>Set</code> means assignment. Example, sum of N numbers:</p><pre>1. Read N
 2. Set SUM = 0
 3. Repeat for K = 1 to N
       Read X;  Set SUM = SUM + X
 4. Write SUM
-5. Exit</pre>
-
-<h2 id="d">4. Control structures</h2>
-<p>They decide the <b>order</b> in which steps run. Every algorithm uses three kinds:</p>
-<div class="w"><table><tr><th>Structure</th><th>Meaning</th><th>Form</th></tr>
+5. Exit</pre></div>
+</div></section>
+<section class="ch" data-g="cs" id="d"><div class="chh"><span class="chn">4</span><div><small>CS-1 · Chapter 02</small><h2>Three ways to control the steps</h2></div></div><div class="g">
+<div class="c w"><h3>Sequence, selection, iteration</h3><p>They decide the <b>order</b> in which steps run. Every algorithm uses three kinds:</p><div class="w"><table><tr><th>Structure</th><th>Meaning</th><th>Form</th></tr>
 <tr><td><b>Sequence</b></td><td>steps run one after another, top to bottom</td><td>Step 1, Step 2, Step 3</td></tr>
 <tr><td><b>Selection (decision)</b></td><td>choose a path by a condition</td><td>If condition, then … Else …</td></tr>
-<tr><td><b>Iteration (loop)</b></td><td>repeat steps</td><td>Repeat for K = 1 to N … / Repeat while condition …</td></tr></table></div>
-
-<h2 id="e">5. Arrays</h2>
-<h3>What and how it sits in memory</h3>
-<p>An <b>array</b> is a collection of <b>same-type</b> items stored in <b>consecutive memory cells</b> under one name, each reached by an <b>index (subscript)</b>. <b>LB</b> = lower bound (first index), <b>UB</b> = upper bound (last index), length = UB − LB + 1. Because cells are side by side, the computer can calculate the address of any item:</p>
-<pre>LOC(A[K]) = Base + w × (K − LB)
+<tr><td><b>Iteration (loop)</b></td><td>repeat steps</td><td>Repeat for K = 1 to N … / Repeat while condition …</td></tr></table></div></div>
+</div></section>
+<section class="ch" data-g="cs" id="e"><div class="chh"><span class="chn">5</span><div><small>CS-1 · Chapter 02</small><h2>Arrays: a row of lockers</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3>An array is a row of lockers numbered 0, 1, 2… Each holds one item of the same kind. Because the lockers sit side by side, the computer finds locker 5 instantly by simple arithmetic. The price: to insert in the middle, everyone after that spot must shift one locker over.</div>
+<div class="c w"><h3>What and how it sits in memory</h3><p>An <b>array</b> is a collection of <b>same-type</b> items stored in <b>consecutive memory cells</b> under one name, each reached by an <b>index (subscript)</b>. <b>LB</b> = lower bound (first index), <b>UB</b> = upper bound (last index), length = UB − LB + 1. Because cells are side by side, the computer can calculate the address of any item:</p><pre>LOC(A[K]) = Base + w × (K − LB)
 Base = address of first item, w = bytes per item
 
-Example: Base = 1000, w = 2 bytes, LB = 0 → LOC(A[3]) = 1000 + 2×3 = 1006</pre>
-<p><b>Two-dimensional array</b> (rows × columns) is stored row by row (<b>row-major</b>) or column by column (<b>column-major</b>). Row-major: <code>LOC(A[I][J]) = Base + w × (C × (I − 1) + (J − 1))</code> for C columns, indices from 1.</p>
-<h3>Traversing</h3>
-<pre>1. Set K = LB
+Example: Base = 1000, w = 2 bytes, LB = 0 → LOC(A[3]) = 1000 + 2×3 = 1006</pre><p><b>Two-dimensional array</b> (rows × columns) is stored row by row (<b>row-major</b>) or column by column (<b>column-major</b>). Row-major: <code>LOC(A[I][J]) = Base + w × (C × (I − 1) + (J − 1))</code> for C columns, indices from 1.</p></div>
+<div class="c w"><h3>Traversing</h3><pre>1. Set K = LB
 2. Repeat Steps 3 and 4 while K ≤ UB
 3.    Process A[K]                  (print, add, etc.)
 4.    Set K = K + 1
-5. Exit</pre>
-<h3>Inserting an item at position K (array has N items)</h3>
-<p>Items from position K onwards must be <b>shifted one place right</b> (starting from the last) to make room.</p>
-<pre>1. Set J = N
+5. Exit</pre></div>
+<div class="c w"><h3>Inserting an item at position K (array has N items)</h3><p>Items from position K onwards must be <b>shifted one place right</b> (starting from the last) to make room.</p><pre>1. Set J = N
 2. Repeat Steps 3 and 4 while J ≥ K
 3.    Set A[J+1] = A[J]             (shift right)
 4.    Set J = J − 1
 5. Set A[K] = ITEM
 6. Set N = N + 1
-7. Exit</pre>
-<h3>Deleting the item at position K</h3>
-<p>Items after K are <b>shifted one place left</b> to fill the gap.</p>
-<pre>1. Set ITEM = A[K]
+7. Exit</pre></div>
+<div class="c w"><h3>Deleting the item at position K</h3><p>Items after K are <b>shifted one place left</b> to fill the gap.</p><pre>1. Set ITEM = A[K]
 2. Repeat for J = K to N − 1
 3.    Set A[J] = A[J+1]             (shift left)
 4. Set N = N − 1
-5. Exit</pre>
-<p>Drawback: insertion and deletion are slow because many items move, and the size is fixed (this is where linked lists help).</p>
-<h3>Sorting – Bubble sort</h3>
-<p>Compare each pair of neighbours; swap if the left is bigger. After each <b>pass</b> the largest unsorted item reaches its place at the end. For N items, N − 1 passes.</p>
-<pre>Start: 5 3 8 1
+5. Exit</pre><p>Drawback: insertion and deletion are slow because many items move, and the size is fixed (this is where linked lists help).</p></div>
+<div class="c w"><h3>Sorting – Bubble sort</h3><p>Compare each pair of neighbours; swap if the left is bigger. After each <b>pass</b> the largest unsorted item reaches its place at the end. For N items, N − 1 passes.</p><pre>Start: 5 3 8 1
 Pass 1: 3 5 1 8      Pass 2: 3 1 5 8      Pass 3: 1 3 5 8   (sorted)
 
 1. Repeat Steps 2 and 3 for P = 1 to N − 1
 2.    Repeat for K = 1 to N − P
-3.       If A[K] > A[K+1], then swap A[K] and A[K+1]
-4. Exit</pre>
-<h3>Searching – Binary search</h3>
-<p>Works only on a <b>sorted</b> array. Look at the <b>middle</b> item: if it is the one, done; if the target is smaller, search the left half; if larger, the right half. Each step throws away half the items. (<b>Linear search</b> instead checks one by one from the start and works on unsorted data too.)</p>
-<pre>Array: 10 20 30 40 50 60 70 ; search 50
+3.       If A[K] &gt; A[K+1], then swap A[K] and A[K+1]
+4. Exit</pre></div>
+<div class="c w"><h3>Searching – Binary search</h3><p>Works only on a <b>sorted</b> array. Look at the <b>middle</b> item: if it is the one, done; if the target is smaller, search the left half; if larger, the right half. Each step throws away half the items. (<b>Linear search</b> instead checks one by one from the start and works on unsorted data too.)</p><pre>Array: 10 20 30 40 50 60 70 ; search 50
 BEG=1, END=7 → MID=(1+7)/2=4 → A[4]=40 &lt; 50 → BEG=5
 BEG=5, END=7 → MID=6 → A[6]=60 &gt; 50 → END=5
 BEG=5, END=5 → MID=5 → A[5]=50 → found at position 5
@@ -118,9 +199,8 @@ BEG=5, END=5 → MID=5 → A[5]=50 → found at position 5
 3.    If ITEM &lt; A[MID], then END = MID − 1  else BEG = MID + 1
 4.    Set MID = (BEG + END)/2
 5. If A[MID] = ITEM, then LOC = MID  else LOC = NULL (not found)
-6. Exit</pre>
-<h3>Linear search, selection sort, insertion sort (extra)</h3>
-<pre>Linear search
+6. Exit</pre></div>
+<div class="c w"><h3>Linear search, selection sort, insertion sort (extra)</h3><pre>Linear search
 1. Set K = 1
 2. Repeat while K ≤ N and A[K] ≠ ITEM:  Set K = K + 1
 3. If K ≤ N then LOC = K (found) else LOC = NULL
@@ -129,68 +209,71 @@ BEG=5, END=5 → MID=5 → A[5]=50 → found at position 5
 Selection sort: in pass P find the smallest of A[P..N] and swap it into A[P].
    5 3 8 1 → 1 3 8 5 → 1 3 8 5 → 1 3 5 8
 Insertion sort: take A[K] and slide it left into its place among the sorted items before it.
-   5 3 8 1 → 3 5 8 1 → 3 5 8 1 → 1 3 5 8</pre>
-<h3>Pointer arrays</h3>
-<p>An <b>array whose items are pointers</b> (addresses) instead of values. Example: <code>char *name[3] = {"Ram","Sita","Gita"};</code> – each item points to a string of different length, saving memory and making sorting easy (swap pointers, not whole strings).</p>
-<h3>Records and records in memory using arrays</h3>
-<p>A <b>record</b> is a collection of related items (<b>fields</b>) that may be of <b>different types</b>, describing one entity, e.g. a student: Roll, Name, Marks. A <b>file</b> is a collection of records. Since an array holds only one type, records are stored in memory by using <b>parallel arrays</b>, one array per field, where the same index belongs to the same record:</p>
-<pre>Index :   1      2      3
+   5 3 8 1 → 3 5 8 1 → 3 5 8 1 → 1 3 5 8</pre></div>
+<div class="c"><h3>Pointer arrays</h3><p>An <b>array whose items are pointers</b> (addresses) instead of values. Example: <code>char *name[3] = {"Ram","Sita","Gita"};</code> – each item points to a string of different length, saving memory and making sorting easy (swap pointers, not whole strings).</p></div>
+<div class="c w"><h3>Records and records in memory using arrays</h3><p>A <b>record</b> is a collection of related items (<b>fields</b>) that may be of <b>different types</b>, describing one entity, e.g. a student: Roll, Name, Marks. A <b>file</b> is a collection of records. Since an array holds only one type, records are stored in memory by using <b>parallel arrays</b>, one array per field, where the same index belongs to the same record:</p><pre>Index :   1      2      3
 ROLL  :  101    102    103
 NAME  :  Asha   Ravi   Neha
-MARKS :   88     72     95       ← record 2 = ROLL[2], NAME[2], MARKS[2]</pre>
-
-<h2 id="f">6. Linked list</h2>
-<p>A <b>linked list</b> is a <b>linear collection of nodes</b> where the order is given by <b>pointers</b>, not by position in memory. Each <b>node</b> has two parts: <b>INFO</b> (the data) and <b>LINK</b> (address of the next node). A pointer <b>START</b> (head) holds the address of the first node; the last node’s LINK is <b>NULL</b> (0), meaning end.</p>
-<pre>START → [ 10 | •]→[ 20 | •]→[ 30 | NULL ]</pre>
-<h3>Representation in memory</h3>
-<p>Two parallel arrays are used: <code>INFO[ ]</code> for data and <code>LINK[ ]</code> for next-node index, plus <b>START</b>. Unused cells are chained in a <b>free-storage list</b> pointed to by <b>AVAIL</b>; a new node is taken from AVAIL and a deleted node is returned to it.</p>
-<pre>START = 3
+MARKS :   88     72     95       ← record 2 = ROLL[2], NAME[2], MARKS[2]</pre></div>
+</div></section>
+<section class="ch" data-g="cs" id="f"><div class="chh"><span class="chn">6</span><div><small>CS-1 · Chapter 02</small><h2>Linked lists: a treasure hunt</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3>In a linked list the items are not side by side. Each item carries a note saying where the next item is, like a treasure hunt. Inserting is easy: just change two notes. The price: to reach the 5th item you must follow four notes from the start.</div>
+<div class="c w"><h3>What a linked list is</h3><p>A <b>linked list</b> is a <b>linear collection of nodes</b> where the order is given by <b>pointers</b>, not by position in memory. Each <b>node</b> has two parts: <b>INFO</b> (the data) and <b>LINK</b> (address of the next node). A pointer <b>START</b> (head) holds the address of the first node; the last node’s LINK is <b>NULL</b> (0), meaning end.</p><pre>START → [ 10 | •]→[ 20 | •]→[ 30 | NULL ]</pre></div>
+<div class="c w"><h3>Representation in memory</h3><p>Two parallel arrays are used: <code>INFO[ ]</code> for data and <code>LINK[ ]</code> for next-node index, plus <b>START</b>. Unused cells are chained in a <b>free-storage list</b> pointed to by <b>AVAIL</b>; a new node is taken from AVAIL and a deleted node is returned to it.</p><pre>START = 3
 Index :  1     2     3     4     5
 INFO  :  30    —     10    —     20
 LINK  :  0     —     5     —     1
-Read: 3 (10) → 5 (20) → 1 (30) → 0 = end</pre>
-<h3>Operations</h3>
-<ul><li><b>Traversing:</b> Set PTR = START; while PTR ≠ NULL: process INFO[PTR]; PTR = LINK[PTR].</li><li><b>Inserting a node NEW after node P:</b> take NEW from AVAIL, put the data, then <code>LINK[NEW] = LINK[P]; LINK[P] = NEW</code>. Nothing is shifted.</li><li><b>Deleting the node after P:</b> <code>LINK[P] = LINK[LINK[P]]</code>, and return the removed node to AVAIL.</li></ul>
-<div class="w"><table><tr><th>Array</th><th>Linked list</th></tr><tr><td>Fixed size</td><td>Grows and shrinks</td></tr><tr><td>Consecutive memory</td><td>Scattered memory</td></tr><tr><td>Insert/delete slow (shifting)</td><td>Insert/delete fast (change pointers)</td></tr><tr><td>Direct access by index</td><td>Only sequential access from START</td></tr><tr><td>No extra space for pointers</td><td>Extra memory for LINK</td></tr></table></div>
-<p>Types: <b>singly</b> (one LINK), <b>doubly</b> (also a pointer to previous node), <b>circular</b> (last node points back to first).</p>
-
-<h2 id="g">7. Trees and binary trees</h2>
-<p>A <b>tree</b> is a <b>non-linear</b>, <b>hierarchical</b> structure of nodes joined by edges (like a family tree or folders on a disk).</p>
-<svg viewBox="0 0 300 150" width="100%" style="max-width:340px" role="img" aria-label="Binary tree 50, 30, 70, 20, 40, 60, 80"><line x1="150" y1="25" x2="80" y2="70"/><line x1="150" y1="25" x2="220" y2="70"/><line x1="80" y1="70" x2="45" y2="120"/><line x1="80" y1="70" x2="115" y2="120"/><line x1="220" y1="70" x2="185" y2="120"/><line x1="220" y1="70" x2="255" y2="120"/>
-<circle cx="150" cy="25" r="16"/><circle cx="80" cy="70" r="16"/><circle cx="220" cy="70" r="16"/><circle cx="45" cy="120" r="16"/><circle cx="115" cy="120" r="16"/><circle cx="185" cy="120" r="16"/><circle cx="255" cy="120" r="16"/>
-<text x="150" y="30" text-anchor="middle">50</text><text x="80" y="75" text-anchor="middle">30</text><text x="220" y="75" text-anchor="middle">70</text><text x="45" y="125" text-anchor="middle">20</text><text x="115" y="125" text-anchor="middle">40</text><text x="185" y="125" text-anchor="middle">60</text><text x="255" y="125" text-anchor="middle">80</text></svg>
-<h3>Terms (each is asked as “define …”)</h3>
-<dl><dt>Root</dt><dd>topmost node, with no parent (50).</dd><dt>Node</dt><dd>one element (data + links to children).</dd><dt>Parent / child</dt><dd>a node directly above / below another (30 is parent of 20 and 40).</dd><dt>Siblings</dt><dd>children of the same parent (20 and 40).</dd><dt>Leaf (terminal node)</dt><dd>a node with <b>no children</b> (20, 40, 60, 80).</dd><dt>Internal node</dt><dd>a node with at least one child.</dd><dt>Degree</dt><dd>number of children of a node; degree of the tree = largest node degree.</dd><dt>Edge / path</dt><dd>edge = line between two nodes; path = sequence of edges from one node to another.</dd><dt>Level</dt><dd>root is level 0 (some books say 1); its children level 1, and so on.</dd><dt>Depth (height)</dt><dd>maximum number of levels from root down to the deepest leaf.</dd><dt>Subtree</dt><dd>a node with all its descendants.</dd></dl>
-<h3>Binary tree</h3>
-<p>A <b>binary tree</b> is a tree in which <b>every node has at most two children</b>, called the <b>left child</b> and <b>right child</b> (it may also be empty). Kinds: <b>strictly (full) binary</b> – every node has 0 or 2 children; <b>complete</b> – all levels full except maybe the last, filled left to right; <b>binary search tree</b> – left items smaller, right items bigger than the node.</p>
-<p><b>Formulas</b> (depth d = number of levels, counting the root level as 1): maximum nodes at level n (root = level 1) = 2<sup>n−1</sup>; <b>maximum nodes in a tree of depth d = 2<sup>d</sup> − 1</b>. So depth 6 → 2⁶ − 1 = <b>63</b> (past-paper MCQ: options 64, 63, 31, 127). If the book counts the root as depth 0, use 2<sup>d+1</sup> − 1, so check how your textbook defines depth.</p>
-<h3>Representing a binary tree in memory</h3>
-<p><b>1. Sequential (array) representation:</b> put the root in position 1, then number nodes level by level, left to right. For the node at position <b>i</b>: left child at <b>2i</b>, right child at <b>2i + 1</b>, parent at <b>⌊i/2⌋</b>. Empty positions are left blank/NULL (wasteful for lopsided trees).</p>
-<pre>Index :  1   2   3   4   5   6   7
-TREE  : 50  30  70  20  40  60  80     (30 is at 2: children at 4 and 5)</pre>
-<p><b>2. Linked representation:</b> each node has three parts: <b>LEFT</b> pointer, <b>INFO</b>, <b>RIGHT</b> pointer; <b>ROOT</b> points to the root; a missing child is NULL. In memory, three parallel arrays <code>LEFT[ ]</code>, <code>INFO[ ]</code>, <code>RIGHT[ ]</code> plus ROOT and AVAIL are used, like the linked list.</p>
-<h3>Tree traversals (visiting every node once)</h3>
-<div class="w"><table><tr><th>Traversal</th><th>Order</th><th>Result for the tree above</th></tr><tr><td><b>Preorder</b></td><td>Root, Left, Right</td><td>50 30 20 40 70 60 80</td></tr><tr><td><b>Inorder</b></td><td>Left, Root, Right</td><td>20 30 40 50 60 70 80 (sorted for a BST!)</td></tr><tr><td><b>Postorder</b></td><td>Left, Right, Root</td><td>20 40 30 60 80 70 50</td></tr></table></div>
-<p>Remember: the name tells where the <b>root</b> comes: <b>pre</b> = first, <b>in</b> = middle, <b>post</b> = last. Apply the rule to every subtree recursively.</p>
-
-<h2 id="s">8. Stack and queue</h2>
-<h3>Stack: LIFO (Last In, First Out)</h3><p>Items are added and removed only at one end, the <b>top</b> (like a pile of plates). Stored in an array <code>STACK[MAXSTK]</code> with a variable <b>TOP</b> (0 = empty).</p>
-<pre>PUSH (add ITEM)                       POP (remove into ITEM)
-1. If TOP = MAXSTK: print OVERFLOW,   1. If TOP = 0: print UNDERFLOW, exit
-   exit                               2. Set ITEM = STACK[TOP]
-2. Set TOP = TOP + 1                  3. Set TOP = TOP − 1
-3. Set STACK[TOP] = ITEM              4. Exit
-4. Exit</pre>
-<p><b>Overflow</b> = push on a full stack; <b>underflow</b> = pop from an empty stack. <b>Uses:</b> function calls and recursion, undo, reversing a string, checking brackets, converting and evaluating expressions (postfix).</p>
-<h3>Queue: FIFO (First In, First Out)</h3><p>Items join at the <b>rear</b> and leave from the <b>front</b> (like a ticket line). Array <code>Q[MAXQ]</code> with <b>FRONT</b> and <b>REAR</b> (0 = empty).</p>
-<pre>INSERT ITEM                           DELETE
-1. If REAR = MAXQ: OVERFLOW, exit     1. If FRONT = 0: UNDERFLOW, exit
-2. Set REAR = REAR + 1                2. Set ITEM = Q[FRONT]
-3. Set Q[REAR] = ITEM                 3. If FRONT = REAR: set FRONT = REAR = 0
-4. If FRONT = 0: set FRONT = 1           else FRONT = FRONT + 1
-5. Exit                               4. Exit</pre>
-<p><b>Circular queue:</b> after the last cell, REAR wraps to the first so freed space is reused. <b>Deque:</b> insert and delete at both ends. <b>Priority queue:</b> items leave by priority, not arrival. <b>Uses:</b> printer queue, CPU scheduling, waiting lists.</p>
-<h2 id="h">9. Quick revision</h2>
-<div class="tip"><b>Define:</b> data structure, array, record, linked list, node, tree, binary tree, leaf, root, depth, algorithm. <b>Write from memory:</b> traversal, insertion, deletion algorithms, bubble sort (with a 4-item trace), binary search (with trace). <b>Know:</b> address formula, array vs linked list table, binary tree array formulas (2i, 2i+1), maximum nodes 2<sup>d</sup>−1, the three traversals on a drawn tree.</div>
-<p style="color:var(--mut);font-size:.85rem">Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</p>
-</main></body></html>
+Read: 3 (10) → 5 (20) → 1 (30) → 0 = end</pre></div>
+<div class="c w"><h3>Operations</h3><ul><li><b>Traversing:</b> Set PTR = START; while PTR ≠ NULL: process INFO[PTR]; PTR = LINK[PTR].</li><li><b>Inserting a node NEW after node P:</b> take NEW from AVAIL, put the data, then <code>LINK[NEW] = LINK[P]; LINK[P] = NEW</code>. Nothing is shifted.</li><li><b>Deleting the node after P:</b> <code>LINK[P] = LINK[LINK[P]]</code>, and return the removed node to AVAIL.</li></ul><div class="w"><table><tr><th>Array</th><th>Linked list</th></tr><tr><td>Fixed size</td><td>Grows and shrinks</td></tr><tr><td>Consecutive memory</td><td>Scattered memory</td></tr><tr><td>Insert/delete slow (shifting)</td><td>Insert/delete fast (change pointers)</td></tr><tr><td>Direct access by index</td><td>Only sequential access from START</td></tr><tr><td>No extra space for pointers</td><td>Extra memory for LINK</td></tr></table></div><p>Types: <b>singly</b> (one LINK), <b>doubly</b> (also a pointer to previous node), <b>circular</b> (last node points back to first).</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="g"><div class="chh"><span class="chn">7</span><div><small>CS-1 · Chapter 02</small><h2>Trees: a family tree</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3>A binary tree is a family tree where each person has at most two children. <b>Traversal</b> just means “visit everyone once”. The three orders differ only in when the parent is visited: <b>pre</b> = before its children, <b>in</b> = between them, <b>post</b> = after them.</div>
+<div class="c w"><h3>What a tree is</h3><p>A <b>tree</b> is a <b>non-linear</b>, <b>hierarchical</b> structure of nodes joined by edges (like a family tree or folders on a disk).</p><svg aria-label="Binary tree 50, 30, 70, 20, 40, 60, 80" role="img" style="max-width:340px" viewbox="0 0 300 150" width="100%"><line x1="150" x2="80" y1="25" y2="70"></line><line x1="150" x2="220" y1="25" y2="70"></line><line x1="80" x2="45" y1="70" y2="120"></line><line x1="80" x2="115" y1="70" y2="120"></line><line x1="220" x2="185" y1="70" y2="120"></line><line x1="220" x2="255" y1="70" y2="120"></line>
+<circle cx="150" cy="25" r="16"></circle><circle cx="80" cy="70" r="16"></circle><circle cx="220" cy="70" r="16"></circle><circle cx="45" cy="120" r="16"></circle><circle cx="115" cy="120" r="16"></circle><circle cx="185" cy="120" r="16"></circle><circle cx="255" cy="120" r="16"></circle>
+<text text-anchor="middle" x="150" y="30">50</text><text text-anchor="middle" x="80" y="75">30</text><text text-anchor="middle" x="220" y="75">70</text><text text-anchor="middle" x="45" y="125">20</text><text text-anchor="middle" x="115" y="125">40</text><text text-anchor="middle" x="185" y="125">60</text><text text-anchor="middle" x="255" y="125">80</text></svg></div>
+<div class="c w"><h3>Terms (each is asked as “define …”)</h3><dl><dt>Root</dt><dd>topmost node, with no parent (50).</dd><dt>Node</dt><dd>one element (data + links to children).</dd><dt>Parent / child</dt><dd>a node directly above / below another (30 is parent of 20 and 40).</dd><dt>Siblings</dt><dd>children of the same parent (20 and 40).</dd><dt>Leaf (terminal node)</dt><dd>a node with <b>no children</b> (20, 40, 60, 80).</dd><dt>Internal node</dt><dd>a node with at least one child.</dd><dt>Degree</dt><dd>number of children of a node; degree of the tree = largest node degree.</dd><dt>Edge / path</dt><dd>edge = line between two nodes; path = sequence of edges from one node to another.</dd><dt>Level</dt><dd>root is level 0 (some books say 1); its children level 1, and so on.</dd><dt>Depth (height)</dt><dd>maximum number of levels from root down to the deepest leaf.</dd><dt>Subtree</dt><dd>a node with all its descendants.</dd></dl></div>
+<div class="c w"><h3>Binary tree</h3><p>A <b>binary tree</b> is a tree in which <b>every node has at most two children</b>, called the <b>left child</b> and <b>right child</b> (it may also be empty). Kinds: <b>strictly (full) binary</b> – every node has 0 or 2 children; <b>complete</b> – all levels full except maybe the last, filled left to right; <b>binary search tree</b> – left items smaller, right items bigger than the node.</p><p><b>Formulas</b> (depth d = number of levels, counting the root level as 1): maximum nodes at level n (root = level 1) = 2<sup>n−1</sup>; <b>maximum nodes in a tree of depth d = 2<sup>d</sup> − 1</b>. So depth 6 → 2⁶ − 1 = <b>63</b> (past-paper MCQ: options 64, 63, 31, 127). If the book counts the root as depth 0, use 2<sup>d+1</sup> − 1, so check how your textbook defines depth.</p></div>
+<div class="c w"><h3>Representing a binary tree in memory</h3><p><b>1. Sequential (array) representation:</b> put the root in position 1, then number nodes level by level, left to right. For the node at position <b>i</b>: left child at <b>2i</b>, right child at <b>2i + 1</b>, parent at <b>⌊i/2⌋</b>. Empty positions are left blank/NULL (wasteful for lopsided trees).</p><pre>Index :  1   2   3   4   5   6   7
+TREE  : 50  30  70  20  40  60  80     (30 is at 2: children at 4 and 5)</pre><p><b>2. Linked representation:</b> each node has three parts: <b>LEFT</b> pointer, <b>INFO</b>, <b>RIGHT</b> pointer; <b>ROOT</b> points to the root; a missing child is NULL. In memory, three parallel arrays <code>LEFT[ ]</code>, <code>INFO[ ]</code>, <code>RIGHT[ ]</code> plus ROOT and AVAIL are used, like the linked list.</p></div>
+<div class="c w"><h3>Tree traversals (visiting every node once)</h3><div class="w"><table><tr><th>Traversal</th><th>Order</th><th>Result for the tree above</th></tr><tr><td><b>Preorder</b></td><td>Root, Left, Right</td><td>50 30 20 40 70 60 80</td></tr><tr><td><b>Inorder</b></td><td>Left, Root, Right</td><td>20 30 40 50 60 70 80 (sorted for a BST!)</td></tr><tr><td><b>Postorder</b></td><td>Left, Right, Root</td><td>20 40 30 60 80 70 50</td></tr></table></div><p>Remember: the name tells where the <b>root</b> comes: <b>pre</b> = first, <b>in</b> = middle, <b>post</b> = last. Apply the rule to every subtree recursively.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="check"><div class="chh"><span class="chn">8</span><div><small>CS-1 · Chapter 02</small><h2>Check yourself</h2></div></div><div class="g"><div class="c key w"><h3>Four quick questions</h3><p class="n">Answer in your head first, then tap to check.</p><ol><li><b>What is a data structure?</b><details><summary>Show answer</summary>A way of arranging data in memory so it can be used efficiently.</details></li><li><b>Why is inserting in the middle of an array slow?</b><details><summary>Show answer</summary>All items after that spot must shift one place.</details></li><li><b>Which search needs a sorted list?</b><details><summary>Show answer</summary>Binary search.</details></li><li><b>Which tree traversal visits the root first?</b><details><summary>Show answer</summary>Preorder (Root, Left, Right).</details></li></ol></div></div></section><section class="ch" data-g="cs" id="h"><div class="chh"><span class="chn">9</span><div><small>CS-1 · Chapter 02</small><h2>Revise it fast</h2></div></div><div class="g">
+<div class="c key m"><h3>Revision checklist</h3><b>Define:</b> data structure, array, record, linked list, node, tree, binary tree, leaf, root, depth, algorithm. <b>Write from memory:</b> traversal, insertion, deletion algorithms, bubble sort (with a 4-item trace), binary search (with trace). <b>Know:</b> address formula, array vs linked list table, binary tree array formulas (2i, 2i+1), maximum nodes 2<sup>d</sup>−1, the three traversals on a drawn tree.</div>
+</div></section>
+</main>
+<footer>Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</footer>
+</div>
+<script>(function(){
+  var secs=[].slice.call(document.querySelectorAll('section.ch'));
+  var toc=document.getElementById('toc'),nav=document.getElementById('nav');
+  var t=document.createElement('section');t.dataset.g='cs';
+  var h=document.createElement('h2');h.textContent='On this page';t.appendChild(h);
+  var nh=document.createElement('h6');nh.textContent='On this page';nh.dataset.g='cs';nav.appendChild(nh);
+  secs.forEach(function(s){
+    var n=s.querySelector('.chn').textContent,title=s.querySelector('h2').textContent;
+    [t,nav].forEach(function(host){
+      var a=document.createElement('a');a.href='#'+s.id;a.dataset.g='cs';a.dataset.t=s.id;
+      a.innerHTML='<span>'+n+'</span>'+title.replace(/&/g,'&amp;');
+      host.appendChild(a);
+    });
+  });
+  toc.appendChild(t);
+  var cards=[].slice.call(document.querySelectorAll('.c'));
+  cards.forEach(function(c){c.dataset.s=(c.parentNode.parentNode.querySelector('h2').textContent+' '+c.textContent).toLowerCase()});
+  var q=document.getElementById('q'),empty=document.getElementById('empty');
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(),any=false;
+    cards.forEach(function(c){var ok=!v||c.dataset.s.indexOf(v)>-1;c.classList.toggle('hide',!ok);if(ok)any=true});
+    secs.forEach(function(s){s.classList.toggle('hide',!!v&&!s.querySelector('.c:not(.hide)'))});
+    toc.classList.toggle('hide',!!v);document.querySelector('.cover').classList.toggle('hide',!!v);
+    empty.classList.toggle('hide',any||!v);
+  });
+  var links={};[].forEach.call(nav.querySelectorAll('a'),function(a){links[a.dataset.t]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.remove('on')});links[e.target.id].classList.add('on')}
+    })},{rootMargin:'-20% 0px -70% 0px'});
+    secs.forEach(function(s){io.observe(s)});
+  }
+})();</script>
+</body></html>

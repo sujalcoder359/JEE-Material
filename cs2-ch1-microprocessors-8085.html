@@ -1,103 +1,191 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CS-2 Chapter 5: Microprocessors and Organisation of 8085</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap">
+<html data-theme="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#0f1320" name="theme-color"/><title>Introduction to Microprocessors and Organization of 8085 | JEE Material</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;color:var(--fg);font:16px/1.7 Inter,system-ui,sans-serif;background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}
-main{max-width:760px;margin:auto;padding:20px 18px 60px}
-h1{font-size:1.9rem;font-weight:800;line-height:1.2;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
-h1 small{display:block;margin-top:6px;font-size:.9rem;font-weight:400;-webkit-text-fill-color:var(--mut)}
-h2{font-size:1.25rem;margin-top:2.4rem;padding:10px 14px;background:linear-gradient(90deg,#6ee7d822,transparent);border-left:4px solid var(--ac);border-radius:6px}
-h3{color:var(--ac2)}b{color:#fff}h1,h2,h3,nav{font-family:Inter,system-ui,sans-serif}
-pre,code{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}
-pre{background:var(--code);border:1px solid var(--bd);border-radius:12px;padding:12px;overflow-x:auto;font-size:.8rem;line-height:1.45}
-code{color:var(--ac);background:var(--code);padding:1px 5px;border-radius:4px;font-size:.88em}
-.tip{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;padding:12px 16px;margin:14px 0;box-shadow:0 6px 24px #0006}
-.w{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{border:1px solid var(--bd);padding:7px 10px;text-align:left}th{background:#1c2845;color:var(--ac)}
-nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}nav a{white-space:nowrap;padding:6px 13px;background:var(--card);border:1px solid var(--bd);border-radius:20px;color:var(--ac);text-decoration:none;font-size:.85rem}
-svg text{fill:var(--fg);font:12px Inter,sans-serif}svg rect{fill:var(--card);stroke:var(--ac);stroke-width:1.5;rx:8}svg line{stroke:var(--ac2);stroke-width:2}
-</style><style>html:root:root{--bg:#13121a;--fg:#ece9f1;--mut:#a09bb3;--card:#1c1b27;--ac:#f2c078;--ac2:#f19bb0;--bd:#2f2d3f;--code:#0f0e15;--hl:#221f31}body{background:radial-gradient(900px 420px at 90% -5%,#4a306a40,transparent),radial-gradient(700px 400px at 0 0,#6a3a2a26,transparent),var(--bg)}h2{background:linear-gradient(90deg,#f2c07820,transparent)}th{background:#272438}b{color:#fff6e6}</style><style>html:root:root{--bg:#0b0f19;--fg:#e4e8f1;--mut:#8b95a9;--card:#131a2a;--ac:#6ee7d8;--ac2:#a78bfa;--bd:#243049;--code:#0a0e17;--hl:#162036}body{background:radial-gradient(900px 400px at 85% -5%,#1b2a4d55,transparent),radial-gradient(700px 400px at 0 0,#3b1f6a33,transparent),var(--bg)}h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#f4f7ff;-webkit-text-fill-color:#f4f7ff;padding-bottom:12px;border-bottom:3px solid var(--ac)}h1 small{-webkit-text-fill-color:var(--ac);color:var(--ac)}h2{color:#fff;background:#17223a;border-left:5px solid var(--ac)}h3{color:#c4b5fd}th{background:#1c2845}b{color:#fff}</style><style>html:root:root{--bg:#0d111c;--fg:#e6eaf3;--mut:#8f9ab0;--card:#121827;--ac:#86e3a3;--ac2:#8fb0f0;--bd:#202840;--code:#0a0e17;--hl:#141c2e}body{background:var(--bg)}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:34px;border-bottom:1px solid var(--bd);font:500 .78rem 'JetBrains Mono',monospace}.top .brand{display:flex;align-items:center;gap:9px;color:#fff;font:700 .9rem Inter,sans-serif}.top i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ac),var(--ac2))}.top a{color:var(--mut);text-decoration:none}h1{display:flex;flex-direction:column;font-size:2.4rem;letter-spacing:-.03em;line-height:1.08;border:0;padding:0;color:#f4f6fb;-webkit-text-fill-color:#f4f6fb}h1 small{order:-1;margin:0 0 14px;font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}h2{font-size:1.4rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:14px 0 0;color:#fff}h3{color:var(--ac2)}code{color:var(--ac2)}pre{border-radius:8px}th{background:var(--hl);color:var(--ac);font:500 .72rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:6px;box-shadow:none}.warn{border-top-color:#f5b85c}nav a{font:500 .7rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;color:var(--mut);background:var(--card)}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>html:root:root{--bg:#0f1320;--fg:#e8ebf4;--mut:#9aa3b8;--card:#171c2d;--bd:#2a3148;--hl:#1e2438;--ac:#91d69d;--ac2:#91d69d;--code:#0b0f1a;--f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;--f-body:'IBM Plex Sans',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace}
-html{scroll-padding-top:5rem}body{background:var(--bg);font-family:var(--f-body);line-height:1.6}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-bottom:40px;border-bottom:1px solid var(--bd);background:var(--bg)}
-.bar .brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);white-space:nowrap;text-decoration:none}
-.brand-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--bd);border-radius:7px;background:var(--card);color:var(--ac);font-size:19px}
-.back{color:var(--mut);font-size:.85rem;text-decoration:none}.back:hover{color:var(--ac)}
-h1{display:flex;flex-direction:column;font:700 clamp(2.2rem,6vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.035em;color:var(--fg);-webkit-text-fill-color:var(--fg);background:none;border:0;padding:0;margin:0 0 22px}
-h1 small{order:-1;margin:0 0 15px;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ac);-webkit-text-fill-color:var(--ac)}
-h2,h3,nav{font-family:var(--f-display)}h2{font-size:1.5rem;letter-spacing:-.02em;background:none;border:0;border-top:2px solid var(--ac);border-radius:0;padding:16px 0 0;color:var(--fg)}h3{color:var(--ac);font-size:1.12rem}b{color:#fff}
-code,pre{font-family:var(--f-mono)}code{color:var(--ac);background:var(--code)}pre{background:var(--code);border:1px solid var(--bd);border-radius:6px}
-th{background:var(--hl);color:var(--ac);font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase}td,th{border-color:var(--bd)}
-.tip,.warn,.card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:0;box-shadow:none}.warn{border-top-color:#f5b85c}
-nav a{font:500 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;border-radius:0;color:var(--mut);background:none;border:1px solid var(--bd)}nav a:hover{color:var(--ac);border-color:var(--ac)}</style></head><body><main><div class="bar"><a class="brand" href="https://sujalcoder359.github.io/JEE-Material/index.html"><span class="brand-symbol">⌬</span><span>JEE MATERIAL</span></a><a class="back" href="https://sujalcoder359.github.io/JEE-Material/hsc-cs.html">← Back to Computer Science</a></div>
-<h1>Introduction to Microprocessors and Organization of 8085<small>CS-2 · Chapter 01 · 11 marks (21 with options)</small></h1>
-<nav><a href="#a">1 Evolution</a><a href="#b">2 What is a µP</a><a href="#c">3 Generic block diagram</a><a href="#d">4 8085 blocks</a><a href="#e">5 Pins</a><a href="#f">6 Revision</a></nav>
+/* Layout: sticky chapter index on the left (desktop), colour-coded chapter sections, formula cards in an auto-fit grid. */
+:root{
+  --bg:#f3f5f9; --surface:#ffffff; --fg:#161b2b; --muted:#5a6275; --line:#dbe0ea; --soft:#e9edf4;
+  --l:0.50; --bl:0.955; --cl:0.30;
+  --f-display:'Familjen Grotesk','IBM Plex Sans',system-ui,sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8; --line:#2a3148; --soft:#1e2438;
+  --l:0.78; --bl:0.26; --cl:0.86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1320; --surface:#171c2d; --fg:#e8ebf4; --muted:#9aa3b8; --line:#2a3148; --soft:#1e2438;
+  --l:0.78; --bl:0.26; --cl:0.86; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0;padding-inline:16px}
+a{color:inherit}
+.shell{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:1fr;gap:0 40px}
+@media(min-width:1000px){.shell{grid-template-columns:230px minmax(0,1fr)}}
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);display:flex;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);margin-inline:-16px;padding-inline:16px;grid-column:1/-1}
+.bar b{font-family:var(--f-display);font-size:1rem;letter-spacing:.01em;white-space:nowrap}
+.bar input{flex:1;min-width:0;font:inherit;font-size:.95rem;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.bar input:focus-visible,.nav a:focus-visible,.toc a:focus-visible{outline:2px solid oklch(var(--l) .15 262);outline-offset:2px}
+.bar a.home{font-size:.85rem;color:var(--muted);text-decoration:none;white-space:nowrap}
+/* sidebar */
+.nav{display:none}
+@media(min-width:1000px){.nav{display:block;position:sticky;top:calc(3.6rem + env(safe-area-inset-top,0px));align-self:start;max-height:calc(100vh - 5rem);overflow:auto;padding-block:20px 40px;font-size:.88rem}}
+.nav h6{font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:18px 0 6px;color:oklch(var(--l) .13 var(--h))}
+.nav a{display:flex;gap:8px;padding:4px 8px;border-radius:6px;text-decoration:none;color:var(--muted)}
+.nav a span{font:400 .75rem/1.7 var(--f-mono);min-width:1.6em}
+.nav a:hover{background:var(--soft);color:var(--fg)}
+.nav a.on{background:oklch(var(--bl) .05 var(--h));color:var(--fg);font-weight:500}
+/* cover */
+.cover{padding-block:44px 28px;max-width:60rem}
+.eyebrow{font:500 .75rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cover h1{font-family:var(--f-display);font-weight:700;font-size:clamp(2.2rem,6vw,3.9rem);line-height:1;letter-spacing:-.02em;margin:14px 0 14px;text-wrap:balance}
+.cover p{color:var(--muted);max-width:40rem;margin:0}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:20px;padding-bottom:36px}
+.toc section{min-width:0}
+.toc h2{font:500 .72rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px;padding-bottom:8px;border-bottom:2px solid oklch(var(--l) .13 var(--h));color:oklch(var(--l) .13 var(--h))}
+.toc a{display:flex;gap:10px;padding:5px 0;text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{color:oklch(var(--l) .15 var(--h))}
+.toc a span{font:400 .8rem/1.7 var(--f-mono);color:var(--muted);min-width:1.8em}
+/* chapters */
+.ch{padding-top:36px;--h:262}
+.ch[data-g="calc"]{--h:310} .ch[data-g="alg"]{--h:195} .ch[data-g="vec"]{--h:20} .ch[data-g="trig"]{--h:70} .ch[data-g="stat"]{--h:145}
+.toc section[data-g="coord"]{--h:262} .toc section[data-g="calc"]{--h:310} .toc section[data-g="alg"]{--h:195} .toc section[data-g="vec"]{--h:20} .toc section[data-g="trig"]{--h:70} .toc section[data-g="stat"]{--h:145}
+.nav [data-g="coord"]{--h:262} .nav [data-g="calc"]{--h:310} .nav [data-g="alg"]{--h:195} .nav [data-g="vec"]{--h:20} .nav [data-g="trig"]{--h:70} .nav [data-g="stat"]{--h:145}
+.chh{display:flex;align-items:flex-end;gap:16px;padding-bottom:14px;margin-bottom:18px;border-bottom:2px solid oklch(var(--l) .13 var(--h))}
+.chn{font:700 clamp(2.6rem,7vw,4rem)/.85 var(--f-display);color:oklch(var(--l) .13 var(--h));letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.chh h2{margin:0;font:700 clamp(1.5rem,3.6vw,2.1rem)/1.05 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
+.chh small{display:block;font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));gap:14px}
+.c{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px 12px;min-width:0;overflow-x:auto}
+.c.w{grid-column:1/-1}
+.c.m{grid-column:span 2}
+@media(max-width:700px){.c.m{grid-column:1/-1}}
+.c h3{font:600 .72rem/1.25 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;margin:0 0 8px;color:oklch(var(--l) .14 var(--h))}
+.c p{margin:6px 0;font-size:.93rem}
+.c p.n{color:var(--muted);font-size:.85rem}
+.c ul,.c ol{margin:6px 0;padding-left:1.2em;font-size:.93rem}
+.c li{margin:3px 0}
+.c b{font-weight:600}
+.key{background:oklch(var(--bl) .035 var(--h));border-color:oklch(var(--l) .06 var(--h) / .5)}
+.tag{display:inline-block;font:500 .72rem/1 var(--f-mono);padding:3px 6px;border-radius:5px;background:oklch(var(--bl) .05 var(--h));color:oklch(var(--cl) .1 var(--h));margin-right:4px;vertical-align:1px}
+mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden;color:var(--fg)}
+mjx-container[display="true"]{margin:.55em 0 !important}
+table{border-collapse:collapse;font-size:.9rem;margin:8px 0}
+th,td{border:1px solid var(--line);padding:5px 10px;text-align:center}
+th{background:var(--soft);font-weight:500}
+.tree{list-style:none;padding:0 !important;margin:6px 0}
+.tree ul{list-style:none;margin:2px 0 2px 10px;padding:0 0 0 14px;border-left:2px solid oklch(var(--l) .1 var(--h) / .5)}
+.tree li{margin:5px 0}
+.hide{display:none !important}
+.empty{padding:40px 0;color:var(--muted)}
+footer{padding-block:48px 64px;color:var(--muted);font-size:.85rem;grid-column:1/-1;text-align:center}
+@media print{.bar,.nav{display:none}.c{break-inside:avoid}.ch{break-before:page}body{background:#fff}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.subject-back {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: var(--surface);
+  text-decoration: none;
+  font: 500 13px var(--f-body);
+  flex-shrink: 0;
+}
 
-<h2 id="a">1. Evolution of microprocessors</h2>
-<p>Computers once filled rooms using vacuum tubes. Transistors, then <b>Integrated Circuits (ICs)</b> (thousands of transistors on a tiny silicon chip), made it possible to put the whole CPU on <b>one chip</b>. That chip is the <b>microprocessor</b>. Each new generation is faster and handles more bits at a time (a <b>bit</b> is one 0/1; <b>word length</b> = bits processed together).</p>
-<div class="w"><table><tr><th>Year</th><th>Chip (Intel)</th><th>Word size</th><th>Note</th></tr>
+.subject-back:hover {
+  color: var(--fg);
+  background: var(--soft);
+  border-color: var(--line);
+}
+/* JEE MATERIAL site header */
+.jm-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:58px;padding-block:10px;margin-inline:-16px;padding-inline:16px;border-bottom:1px solid var(--line);background:var(--bg)}
+.jm-brand{display:flex;align-items:center;gap:11px;font:700 17px var(--f-display);color:var(--fg);text-decoration:none;white-space:nowrap}
+.jm-symbol{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:oklch(var(--l) .15 262);font-size:19px}
+.jm-main{color:var(--muted);font-size:.85rem;text-decoration:none;transition:color .2s}
+.jm-main:hover{color:oklch(var(--l) .15 262)}
+@media(max-width:600px){.jm-main{font-size:.78rem}}
+
+.ch[data-g="cs"],.toc section[data-g="cs"],.nav [data-g="cs"]{--h:145}
+.c pre{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:11px 12px;overflow-x:auto;font:.8rem/1.5 var(--f-mono);margin:8px 0}
+.c code{font-family:var(--f-mono);font-size:.86em;background:var(--soft);padding:1px 5px;border-radius:4px}.c pre code{background:none;padding:0}
+.c dl{margin:6px 0}.c dt{font-weight:600;margin-top:10px}.c dd{margin:2px 0 0 14px;font-size:.93rem}
+.c .w{overflow-x:auto}.c table{width:100%;font-size:.85rem}.c td,.c th{text-align:left}
+.c svg{max-width:100%;height:auto}.c svg text{fill:var(--fg);font:12px var(--f-body)}.c svg rect{fill:var(--surface);stroke:oklch(var(--l) .13 var(--h));stroke-width:1.5;rx:8}.c svg circle{fill:var(--soft);stroke:oklch(var(--l) .13 var(--h));stroke-width:1.5}.c svg line{stroke:var(--muted);stroke-width:1.5}
+details summary{cursor:pointer;color:var(--muted);font-size:.88rem;margin:4px 0}details[open] summary{color:var(--fg)}details{margin:2px 0 8px}</style></head><body>
+<div class="shell" id="top">
+<header class="jm-head">
+<a class="jm-brand" href="index.html"><span class="jm-symbol">⌬</span><span>JEE MATERIAL</span></a>
+<a class="jm-main" href="hsc-cs.html">← Back to Computer Science</a>
+</header>
+<div class="bar">
+<b>Introduction to Microprocessors and Organization of 8085</b><input aria-label="Search this chapter" autocomplete="off" id="q" placeholder="Search this chapter, e.g. flags, ALE, interrupt" type="search"/><a class="home" href="#top">Contents</a></div>
+<nav aria-label="Sections" class="nav" id="nav"></nav>
+<main id="main" style="min-width:0">
+<header class="cover"><div class="eyebrow">CS-2 · Chapter 01 · 11 marks (21 with options)</div><h1>Introduction to Microprocessors and Organization of 8085</h1><p>What a microprocessor is and how the 8085 is built inside: registers, flags, block diagram and pins.</p></header>
+<div class="toc" id="toc"></div>
+<div class="empty hide" id="empty">Nothing matches that search.</div>
+<section class="ch" data-g="cs" id="start"><div class="chh"><span class="chn">0</span><div><small>CS-2 · Chapter 01</small><h2>Start here</h2></div></div><div class="g"><div class="c key w"><h3>How to study this chapter</h3><ol><li>Read the cards in <b>Start here</b> first: the big picture, then the words you need.</li><li>Go through the sections in order. Each one builds on the one before.</li><li>After each section, close the page and explain it out loud in your own words.</li><li>Try <b>Check yourself</b> at the end, then read the same chapter in Balbharati.</li></ol></div>
+<div class="c key m"><h3>The big picture</h3>Picture a kitchen. The microprocessor is the chef who reads one step of the recipe at a time and does it. The registers are the chopping board in front of the chef, memory is the pantry, I/O devices are the door where orders come in and dishes go out, and the buses are the waiters carrying things between them. The 8085 is one particular, simple chef; it is studied because it is easy to understand and every modern chip works on the same ideas.</div>
+<div class="c key m"><h3>Words you need first</h3><b>Byte</b> = 8 bits. <b>Binary</b> uses only 0 and 1; <b>hexadecimal</b> is a short way to write binary (4 bits = 1 hex digit, e.g. 1111 = F). <b>ROM</b> – permanent memory; <b>RAM</b> – temporary memory. <b>Clock</b> – steady pulses that time the CPU; its speed is in MHz or GHz. <b>Register</b> – a tiny storage cell inside the CPU. <b>Bus</b> – a group of wires carrying signals. <b>Interrupt</b> – a signal that makes the CPU pause and attend to a device. <b>DMA</b> – a device reading or writing memory directly without the CPU. <b>Latch</b> – a circuit that holds a value.</div>
+</div></section>
+<section class="ch" data-g="cs" id="a"><div class="chh"><span class="chn">1</span><div><small>CS-2 · Chapter 01</small><h2>How microprocessors evolved</h2></div></div><div class="g">
+<div class="c w"><h3>From vacuum tubes to chips</h3><p>Computers once filled rooms using vacuum tubes. Transistors, then <b>Integrated Circuits (ICs)</b> (thousands of transistors on a tiny silicon chip), made it possible to put the whole CPU on <b>one chip</b>. That chip is the <b>microprocessor</b>. Each new generation is faster and handles more bits at a time (a <b>bit</b> is one 0/1; <b>word length</b> = bits processed together).</p><div class="w"><table><tr><th>Year</th><th>Chip (Intel)</th><th>Word size</th><th>Note</th></tr>
 <tr><td>1971</td><td>4004</td><td>4-bit</td><td>first microprocessor, used in calculators</td></tr>
 <tr><td>1972</td><td>8008</td><td>8-bit</td><td>first 8-bit</td></tr>
 <tr><td>1974</td><td>8080</td><td>8-bit</td><td>widely used; needed 3 power supplies</td></tr>
 <tr><td>1976</td><td><b>8085</b></td><td>8-bit</td><td>single +5 V supply, on-chip clock generator; your syllabus chip</td></tr>
 <tr><td>1978</td><td>8086 / 8088</td><td>16-bit</td><td>start of the x86 family (Ch. 7)</td></tr>
 <tr><td>1982–85</td><td>80286 / 80386</td><td>16 / 32-bit</td><td>multitasking, protected mode</td></tr>
-<tr><td>1989→</td><td>80486, Pentium…</td><td>32 / 64-bit</td><td>faster, multi-core later</td></tr></table></div>
-<p>Generations: 1st (4-bit), 2nd (8-bit), 3rd (16-bit), 4th (32-bit), 5th (64-bit and multi-core). Technology advanced from SSI → MSI → LSI → VLSI (more transistors per chip).</p>
-
-<h2 id="b">2. What is a microprocessor?</h2>
-<p>A <b>microprocessor (µP)</b> is a <b>programmable electronic chip containing the entire CPU</b> (ALU, registers and control unit) on a single IC (LSI/VLSI). It fetches instructions from memory, decodes and executes them, and produces results. It is the “brain” of a computer. By itself it is not a computer: it needs <b>memory</b> and <b>I/O devices</b> to make a <b>microcomputer</b>.</p>
-<p><b>Features:</b> small size, low cost, low power, high speed, reliable, programmable (general purpose). <b>Specifications:</b> word length, clock speed (MHz/GHz), address-bus width (decides how much memory it can use), instruction set. <b>Uses:</b> PCs, calculators, traffic signals, washing machines, mobiles, cars.</p>
-<div class="tip"><b>Buses</b> are groups of wires that carry signals. <b>Address bus:</b> carries the memory/I/O address, one way (CPU → outside). <b>Data bus:</b> carries data, two way. <b>Control bus:</b> carries timing/control signals such as Read and Write.</div>
-
-<h2 id="c">3. Block diagram of a generic microprocessor system</h2>
-<svg viewBox="0 0 320 170" width="100%" style="max-width:380px" role="img" aria-label="Microprocessor system">
-<rect x="10" y="10" width="170" height="110"/><text x="95" y="28" text-anchor="middle" font-weight="700">Microprocessor (CPU)</text>
-<rect x="22" y="38" width="64" height="30"/><text x="54" y="57" text-anchor="middle">ALU</text>
-<rect x="104" y="38" width="64" height="30"/><text x="136" y="57" text-anchor="middle">Registers</text>
-<rect x="22" y="78" width="146" height="30"/><text x="95" y="97" text-anchor="middle">Control Unit</text>
-<rect x="215" y="10" width="95" height="40"/><text x="262" y="35" text-anchor="middle">Memory</text>
-<rect x="215" y="80" width="95" height="40"/><text x="262" y="105" text-anchor="middle">I/O devices</text>
-<line x1="180" y1="30" x2="215" y2="30"/><line x1="180" y1="100" x2="215" y2="100"/><line x1="10" y1="145" x2="310" y2="145"/>
-<text x="160" y="164" text-anchor="middle">Address bus · Data bus · Control bus</text></svg>
-<dl><dt>ALU (Arithmetic Logic Unit)</dt><dd>does arithmetic (add, subtract) and logic (AND, OR, NOT, compare) operations.</dd>
+<tr><td>1989→</td><td>80486, Pentium…</td><td>32 / 64-bit</td><td>faster, multi-core later</td></tr></table></div><p>Generations: 1st (4-bit), 2nd (8-bit), 3rd (16-bit), 4th (32-bit), 5th (64-bit and multi-core). Technology advanced from SSI → MSI → LSI → VLSI (more transistors per chip).</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="b"><div class="chh"><span class="chn">2</span><div><small>CS-2 · Chapter 01</small><h2>What is a microprocessor?</h2></div></div><div class="g">
+<div class="c m"><h3>Definition and features</h3><p>A <b>microprocessor (µP)</b> is a <b>programmable electronic chip containing the entire CPU</b> (ALU, registers and control unit) on a single IC (LSI/VLSI). It fetches instructions from memory, decodes and executes them, and produces results. It is the “brain” of a computer. By itself it is not a computer: it needs <b>memory</b> and <b>I/O devices</b> to make a <b>microcomputer</b>.</p><p><b>Features:</b> small size, low cost, low power, high speed, reliable, programmable (general purpose). <b>Specifications:</b> word length, clock speed (MHz/GHz), address-bus width (decides how much memory it can use), instruction set. <b>Uses:</b> PCs, calculators, traffic signals, washing machines, mobiles, cars.</p></div>
+<div class="c key"><h3>Buses</h3>are groups of wires that carry signals. <b>Address bus:</b> carries the memory/I/O address, one way (CPU → outside). <b>Data bus:</b> carries data, two way. <b>Control bus:</b> carries timing/control signals such as Read and Write.</div>
+</div></section>
+<section class="ch" data-g="cs" id="c"><div class="chh"><span class="chn">3</span><div><small>CS-2 · Chapter 01</small><h2>Inside any microprocessor system</h2></div></div><div class="g">
+<div class="c w"><h3>The generic block diagram</h3><svg aria-label="Microprocessor system" role="img" style="max-width:380px" viewbox="0 0 320 170" width="100%">
+<rect height="110" width="170" x="10" y="10"></rect><text font-weight="700" text-anchor="middle" x="95" y="28">Microprocessor (CPU)</text>
+<rect height="30" width="64" x="22" y="38"></rect><text text-anchor="middle" x="54" y="57">ALU</text>
+<rect height="30" width="64" x="104" y="38"></rect><text text-anchor="middle" x="136" y="57">Registers</text>
+<rect height="30" width="146" x="22" y="78"></rect><text text-anchor="middle" x="95" y="97">Control Unit</text>
+<rect height="40" width="95" x="215" y="10"></rect><text text-anchor="middle" x="262" y="35">Memory</text>
+<rect height="40" width="95" x="215" y="80"></rect><text text-anchor="middle" x="262" y="105">I/O devices</text>
+<line x1="180" x2="215" y1="30" y2="30"></line><line x1="180" x2="215" y1="100" y2="100"></line><line x1="10" x2="310" y1="145" y2="145"></line>
+<text text-anchor="middle" x="160" y="164">Address bus · Data bus · Control bus</text></svg><dl><dt>ALU (Arithmetic Logic Unit)</dt><dd>does arithmetic (add, subtract) and logic (AND, OR, NOT, compare) operations.</dd>
 <dt>Registers</dt><dd>tiny, very fast memory cells <i>inside</i> the CPU that hold data, addresses and results while working. Examples: accumulator, program counter, stack pointer, general registers.</dd>
 <dt>Control unit</dt><dd>the manager: fetches each instruction, decodes it, and sends timing/control signals to every part to carry it out.</dd>
 <dt>Memory</dt><dd>stores programs and data (ROM = permanent, RAM = temporary).</dd>
-<dt>I/O devices</dt><dd>input (keyboard) and output (display) units connected through interface chips.</dd></dl>
-<p><b>Instruction cycle:</b> <b>Fetch</b> (read the instruction from memory) → <b>Decode</b> (understand it) → <b>Execute</b> (do it). Repeat.</p>
-
-<h3>Microprocessor specifications</h3>
-<p>Features that describe a microprocessor: <b>word length</b> (bits processed at once), <b>clock speed</b>, <b>data-bus width</b>, <b>address-bus width</b> (memory = 2<sup>n</sup>), <b>instruction set</b>, number of registers, <b>cache</b>, power supply and technology.</p>
-<h3>Block diagram of a microcomputer system</h3>
-<pre>            ┌──── Address bus ─────────────────────────┐
+<dt>I/O devices</dt><dd>input (keyboard) and output (display) units connected through interface chips.</dd></dl><p><b>Instruction cycle:</b> <b>Fetch</b> (read the instruction from memory) → <b>Decode</b> (understand it) → <b>Execute</b> (do it). Repeat.</p></div>
+<div class="c"><h3>Microprocessor specifications</h3><p>Features that describe a microprocessor: <b>word length</b> (bits processed at once), <b>clock speed</b>, <b>data-bus width</b>, <b>address-bus width</b> (memory = 2<sup>n</sup>), <b>instruction set</b>, number of registers, <b>cache</b>, power supply and technology.</p></div>
+<div class="c w"><h3>Block diagram of a microcomputer system</h3><pre>            ┌──── Address bus ─────────────────────────┐
 Keyboard ─► Keyboard    ┌──────┐  ┌────────┐  ┌──────────┐ ──► Display
             interface ◄►│ µP   │◄►│ Memory │  │ I/O ports│    interface
 Display  ◄─ Display     │ CPU  │  │ ROM/RAM│  └──────────┘
             interface   └──────┘  └────────┘
-            └──── Data bus ─── Control bus ────────────┘</pre>
-<p><b>Microcomputer</b> = microprocessor + memory (ROM, RAM) + I/O devices joined by the three buses. <b>Keyboard interface:</b> a circuit that detects which key is pressed, converts it to a code and gives it to the CPU. <b>Display interface:</b> a circuit that takes data from the CPU and drives the display (LEDs, seven-segment, screen). A <b>microcontroller</b> puts all of this on one chip.</p>
-<h2 id="d">4. Block diagram and architecture of the 8085</h2>
-<p>The <b>Intel 8085</b> is an <b>8-bit</b> microprocessor: <b>8-bit data bus</b> (handles 8 bits at once), <b>16-bit address bus</b> so it can address 2<sup>16</sup> = <b>65,536 locations (64 KB)</b> of memory. Needs a single <b>+5 V</b> supply, has an on-chip clock generator (crystal of 6 MHz is divided by 2 to give about 3 MHz), 40 pins, 74 instructions (246 opcodes), 5 interrupts and serial I/O lines. Made with NMOS technology.</p>
-<pre>             ┌───────────────────── 8085 ─────────────────────┐
+            └──── Data bus ─── Control bus ────────────┘</pre><p><b>Microcomputer</b> = microprocessor + memory (ROM, RAM) + I/O devices joined by the three buses. <b>Keyboard interface:</b> a circuit that detects which key is pressed, converts it to a code and gives it to the CPU. <b>Display interface:</b> a circuit that takes data from the CPU and drives the display (LEDs, seven-segment, screen). A <b>microcontroller</b> puts all of this on one chip.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="d"><div class="chh"><span class="chn">4</span><div><small>CS-2 · Chapter 01</small><h2>Inside the 8085</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3>Kitchen map: <b>ALU</b> = chopping station (sums and comparisons); <b>Accumulator</b> = the main chopping board; <b>registers B–L</b> = small bowls; <b>Program Counter</b> = a bookmark showing the next recipe line; <b>Stack pointer</b> = the top of a pile of plates; <b>flags</b> = small lights telling the result (zero? negative? carry?).</div>
+<div class="c w"><h3>8085 key facts</h3><p>The <b>Intel 8085</b> is an <b>8-bit</b> microprocessor: <b>8-bit data bus</b> (handles 8 bits at once), <b>16-bit address bus</b> so it can address 2<sup>16</sup> = <b>65,536 locations (64 KB)</b> of memory. Needs a single <b>+5 V</b> supply, has an on-chip clock generator (crystal of 6 MHz is divided by 2 to give about 3 MHz), 40 pins, 74 instructions (246 opcodes), 5 interrupts and serial I/O lines. Made with NMOS technology.</p><pre>             ┌───────────────────── 8085 ─────────────────────┐
  Interrupt → │ Interrupt control     Serial I/O control ← SID/SOD│
              │                                                   │
  Accumulator │ Temp reg ─► ALU ◄─ Flags (5)       Instruction     │
  B C  D E    │ W Z  (temporary)                   register →      │
  H L         │ Program Counter (16)               Instruction     │
  Stack Ptr   │ Stack Pointer   (16)               decoder         │
-             │ Incrementer/Decrementer latch      Timing &        │
+             │ Incrementer/Decrementer latch      Timing &amp;        │
              │ Address buffer | Data/Address buf  Control         │
-             └──── A15–A8 ─────── AD7–AD0 ─────── RD WR ALE ─────┘</pre>
-<h3>Parts and their jobs</h3>
-<dl><dt>ALU</dt><dd>performs arithmetic/logic. One input is always the <b>accumulator</b>, the other a <b>temporary register</b>; result goes back to the accumulator.</dd>
+             └──── A15–A8 ─────── AD7–AD0 ─────── RD WR ALE ─────┘</pre></div>
+<div class="c w"><h3>Parts and their jobs</h3><dl><dt>ALU</dt><dd>performs arithmetic/logic. One input is always the <b>accumulator</b>, the other a <b>temporary register</b>; result goes back to the accumulator.</dd>
 <dt>Accumulator (A)</dt><dd>8-bit main register; holds one operand and the result of most operations; used for I/O data.</dd>
 <dt>Flag register</dt><dd>8 bits, of which <b>5 flags</b> are used. They show the result of the last operation:
 <div class="w"><table><tr><th>Bit</th><th>D7</th><th>D6</th><th>D5</th><th>D4</th><th>D3</th><th>D2</th><th>D1</th><th>D0</th></tr><tr><td>Flag</td><td>S</td><td>Z</td><td>—</td><td>AC</td><td>—</td><td>P</td><td>—</td><td>CY</td></tr></table></div>
-<b>S (Sign):</b> 1 if result is negative (bit D7 = 1). <b>Z (Zero):</b> 1 if result is zero. <b>AC (Auxiliary Carry):</b> 1 if a carry goes from bit 3 to bit 4 (used for BCD). <b>P (Parity):</b> 1 if the number of 1s in the result is even. <b>CY (Carry):</b> 1 if a carry/borrow comes out of the top bit.<br><b>Examples:</b> 7FH + 01H = 80H gives S = 1 · 05H − 05H = 00H gives Z = 1 · 0FH + 01H = 10H gives AC = 1 · result 03H (two 1s) gives P = 1 · FFH + 01H = 00H gives CY = 1 and Z = 1.</dd>
+<b>S (Sign):</b> 1 if result is negative (bit D7 = 1). <b>Z (Zero):</b> 1 if result is zero. <b>AC (Auxiliary Carry):</b> 1 if a carry goes from bit 3 to bit 4 (used for BCD). <b>P (Parity):</b> 1 if the number of 1s in the result is even. <b>CY (Carry):</b> 1 if a carry/borrow comes out of the top bit.<br/><b>Examples:</b> 7FH + 01H = 80H gives S = 1 · 05H − 05H = 00H gives Z = 1 · 0FH + 01H = 10H gives AC = 1 · result 03H (two 1s) gives P = 1 · FFH + 01H = 00H gives CY = 1 and Z = 1.</dd>
 <dt>General-purpose registers</dt><dd><b>B, C, D, E, H, L</b>: six 8-bit registers, used singly or as 16-bit <b>pairs BC, DE, HL</b>. <b>HL</b> often holds a memory address (it is called <b>M</b>, the memory pseudo-register).</dd>
 <dt>Temporary registers W and Z</dt><dd>used internally by the CPU during some instructions; the programmer cannot use them.</dd>
 <dt>Program Counter (PC)</dt><dd>16-bit register holding the <b>address of the next instruction</b>; increases automatically after each fetch.</dd>
@@ -106,11 +194,11 @@ Display  ◄─ Display     │ CPU  │  │ ROM/RAM│  └──────�
 <dt>Timing and control unit</dt><dd>generates all timing and control signals (RD, WR, ALE, IO/M) and synchronises everything with the clock.</dd>
 <dt>Interrupt control</dt><dd>handles requests from outside devices (TRAP, RST 7.5, 6.5, 5.5, INTR).</dd>
 <dt>Serial I/O control</dt><dd>sends/receives data bit by bit through <b>SOD</b> and <b>SID</b>.</dd>
-<dt>Address buffer and data/address buffer</dt><dd>drive the address lines A8–A15 and the shared AD0–AD7 lines.</dd></dl>
-
-<h2 id="e">5. Pins of the 8085 and their functions</h2>
-<p>The 8085 has <b>40 pins</b> in six groups.</p>
-<div class="w"><table><tr><th>Group</th><th>Pins</th><th>Function</th></tr>
+<dt>Address buffer and data/address buffer</dt><dd>drive the address lines A8–A15 and the shared AD0–AD7 lines.</dd></dl></div>
+</div></section>
+<section class="ch" data-g="cs" id="e"><div class="chh"><span class="chn">5</span><div><small>CS-2 · Chapter 01</small><h2>The 8085’s pins</h2></div></div><div class="g">
+<div class="c key"><h3>In simple words</h3>Pins are the chip’s legs that connect it to the outside; think of groups of doors. <b>Address pins</b> say which house (memory location) to visit, <b>data pins</b> carry the parcel, <b>control pins</b> say read or write, <b>interrupt pins</b> are doorbells asking for attention.</div>
+<div class="c w"><h3>Pin groups</h3><p>The 8085 has <b>40 pins</b> in six groups.</p><div class="w"><table><tr><th>Group</th><th>Pins</th><th>Function</th></tr>
 <tr><td>Address bus</td><td><b>A15–A8</b></td><td>higher-order 8 bits of the 16-bit address; one-way (output)</td></tr>
 <tr><td>Multiplexed address/data</td><td><b>AD7–AD0</b></td><td>carry the <b>lower-order address</b> first, then the <b>data</b> (same pins shared to save pins)</td></tr>
 <tr><td>Control and status</td><td><b>ALE</b></td><td>Address Latch Enable: <b>1</b> = AD lines carry an address, <b>0</b> = they carry data</td></tr>
@@ -123,11 +211,46 @@ Display  ◄─ Display     │ CPU  │  │ ROM/RAM│  └──────�
 <tr><td>DMA</td><td><b>HOLD, HLDA</b></td><td>a device asks to use the buses (HOLD); CPU grants (HLDA)</td></tr>
 <tr><td>Reset</td><td><b>RESET IN̅, RESET OUT</b></td><td>RESET IN restarts the CPU (PC = 0000H); RESET OUT tells peripherals the CPU is resetting</td></tr>
 <tr><td>Clock</td><td><b>X1, X2, CLK OUT</b></td><td>crystal connects here; CLK OUT gives the system clock</td></tr>
-<tr><td>Power</td><td><b>Vcc, Vss</b></td><td>+5 V and ground</td></tr></table></div>
-<h3>Demultiplexing AD7–AD0</h3>
-<p>AD7–AD0 carry the low address in the first clock period and data afterwards. An external <b>latch (74LS373)</b> controlled by <b>ALE</b> catches and holds the low address, so A15–A8 (direct) plus the latch output (A7–A0) give the full 16-bit address, while the same AD lines are then free for data.</p>
-
-<h2 id="f">6. Quick revision</h2>
-<div class="tip"><b>Learn:</b> evolution table; definition of microprocessor; generic block diagram with ALU, registers and control unit; 8085 facts (8-bit data, 16-bit address, 64 KB, +5 V, 40 pins, 3 MHz); the 5 flags with meaning; PC, SP, A, B–L and pairs; pin groups, ALE and IO/M̄; interrupt order. <b>Draw</b> the 8085 block diagram and pin diagram neatly; these are standard long answers.</div>
-<p style="color:var(--mut);font-size:.85rem">Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</p>
-</main></body></html>
+<tr><td>Power</td><td><b>Vcc, Vss</b></td><td>+5 V and ground</td></tr></table></div></div>
+<div class="c"><h3>Demultiplexing AD7–AD0</h3><p>AD7–AD0 carry the low address in the first clock period and data afterwards. An external <b>latch (74LS373)</b> controlled by <b>ALE</b> catches and holds the low address, so A15–A8 (direct) plus the latch output (A7–A0) give the full 16-bit address, while the same AD lines are then free for data.</p></div>
+</div></section>
+<section class="ch" data-g="cs" id="check"><div class="chh"><span class="chn">6</span><div><small>CS-2 · Chapter 01</small><h2>Check yourself</h2></div></div><div class="g"><div class="c key w"><h3>Four quick questions</h3><p class="n">Answer in your head first, then tap to check.</p><ol><li><b>How many address lines does the 8085 have, and how much memory is that?</b><details><summary>Show answer</summary>16 lines; 64 KB.</details></li><li><b>What does ALE tell you?</b><details><summary>Show answer</summary>1 means AD0–AD7 carry an address; 0 means data.</details></li><li><b>Name the 5 flags.</b><details><summary>Show answer</summary>S, Z, AC, P, CY.</details></li><li><b>Which interrupt has the highest priority?</b><details><summary>Show answer</summary>TRAP.</details></li></ol></div></div></section><section class="ch" data-g="cs" id="f"><div class="chh"><span class="chn">7</span><div><small>CS-2 · Chapter 01</small><h2>Revise it fast</h2></div></div><div class="g">
+<div class="c key m"><h3>Revision checklist</h3><b>Learn:</b> evolution table; definition of microprocessor; generic block diagram with ALU, registers and control unit; 8085 facts (8-bit data, 16-bit address, 64 KB, +5 V, 40 pins, 3 MHz); the 5 flags with meaning; PC, SP, A, B–L and pairs; pin groups, ALE and IO/M̄; interrupt order. <b>Draw</b> the 8085 block diagram and pin diagram neatly; these are standard long answers.</div>
+</div></section>
+</main>
+<footer>Study aid based on the board syllabus listing; match exact wording and diagrams with your Balbharati textbook.</footer>
+</div>
+<script>(function(){
+  var secs=[].slice.call(document.querySelectorAll('section.ch'));
+  var toc=document.getElementById('toc'),nav=document.getElementById('nav');
+  var t=document.createElement('section');t.dataset.g='cs';
+  var h=document.createElement('h2');h.textContent='On this page';t.appendChild(h);
+  var nh=document.createElement('h6');nh.textContent='On this page';nh.dataset.g='cs';nav.appendChild(nh);
+  secs.forEach(function(s){
+    var n=s.querySelector('.chn').textContent,title=s.querySelector('h2').textContent;
+    [t,nav].forEach(function(host){
+      var a=document.createElement('a');a.href='#'+s.id;a.dataset.g='cs';a.dataset.t=s.id;
+      a.innerHTML='<span>'+n+'</span>'+title.replace(/&/g,'&amp;');
+      host.appendChild(a);
+    });
+  });
+  toc.appendChild(t);
+  var cards=[].slice.call(document.querySelectorAll('.c'));
+  cards.forEach(function(c){c.dataset.s=(c.parentNode.parentNode.querySelector('h2').textContent+' '+c.textContent).toLowerCase()});
+  var q=document.getElementById('q'),empty=document.getElementById('empty');
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(),any=false;
+    cards.forEach(function(c){var ok=!v||c.dataset.s.indexOf(v)>-1;c.classList.toggle('hide',!ok);if(ok)any=true});
+    secs.forEach(function(s){s.classList.toggle('hide',!!v&&!s.querySelector('.c:not(.hide)'))});
+    toc.classList.toggle('hide',!!v);document.querySelector('.cover').classList.toggle('hide',!!v);
+    empty.classList.toggle('hide',any||!v);
+  });
+  var links={};[].forEach.call(nav.querySelectorAll('a'),function(a){links[a.dataset.t]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.remove('on')});links[e.target.id].classList.add('on')}
+    })},{rootMargin:'-20% 0px -70% 0px'});
+    secs.forEach(function(s){io.observe(s)});
+  }
+})();</script>
+</body></html>
