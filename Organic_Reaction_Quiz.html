@@ -344,7 +344,33 @@ function fin(tu){clearInterval(tmr);var sc=score(),p=Math.max(0,Math.round(sc/mx
   $('#ml').innerHTML=ms.map(function(q){return '<div class="ms"><p><span class="tag t'+q.d+'" style="margin:0 8px 0 0">'+DL[q.d]+'</span>'+q.q.replace(/\{\{(.+?)\}\}/g,function(_,m){var p=m.split('~~');return p[1]||p[0]})+'</p><p class="a">'+q.a.map(function(x){return nm(q.o[x])}).join(' + ')+(ST[Q.indexOf(q)]?' <small style="opacity:.7">(scored '+ST[Q.indexOf(q)].pts+' / 4)</small>':' <small style="opacity:.7">(not attempted, 0 marks)</small>')+'</p><p class="w">'+q.w+'</p></div>'}).join('');
   ATT[key]={t:Date.now(),mode:MODE,d:cfg.d,sc:sc,mx:mx(),items:Q.map(function(q,k){return{q:q.q,o:q.o,a:q.a,s:ST[k]?ST[k].s:null,p:ST[k]?ST[k].pts:null,d:q.d,ch:q.ch,w:q.w}})};svA();
   $('#mh').hidden=false;$('#mh').textContent='Your questions and answers';$('#ml').innerHTML=listHTML(ATT[key]);dr();
-  show('end')}
+  var saveStatus = $('#scoreSaveStatus');
+
+if (MODE === 'test') {
+  saveStatus.textContent = 'Saving your score...';
+
+  saveTestScoreToFirebase({
+    testName: cid < 0 ? 'Mixed round' : C[cid].n,
+    score: sc,
+    total: mx(),
+    percentage: p,
+    difficulty: cfg.d === 0 ? 'Mixed' : DL[cfg.d],
+    attempted: nans()
+  }).then(function(result) {
+    if (result === true) {
+      saveStatus.textContent = 'Score saved to your account.';
+    } else if (result === null) {
+      saveStatus.textContent = 'Score kept on this device. Sign in with a verified account to sync it.';
+    } else {
+      saveStatus.textContent = 'Could not sync your score. Your local result is still saved.';
+    }
+  });
+} else {
+  saveStatus.textContent = 'Practice results are saved on this device.';
+}
+
+show('end');
+}
 document.addEventListener('keydown',function(e){
   if($('#quiz').hidden)return;var kk=e.key.toLowerCase();
   var k=e.key.length===1?('123456'.indexOf(kk)>-1?'123456'.indexOf(kk):'abcdef'.indexOf(kk)):-1;
