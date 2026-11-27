@@ -433,6 +433,20 @@ footer {
 .auth-btn:hover{border-color:#a9c9fa;color:#a9c9fa}
 #user{color:var(--muted);font-size:.8rem}
 @media(max-width:600px){#user{display:none}}
+
+.dash{margin:0 0 40px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.dash[hidden]{display:none}
+.dash h2{margin:0 0 4px;font:700 1.3rem var(--f-display)}
+.dash p{margin:0 0 14px;color:var(--muted);font-size:.9rem}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.stat{padding:12px;border:1px solid var(--line);border-radius:8px}
+.stat b{display:block;font:700 1.5rem var(--f-display);color:#64d8d0}
+.stat span{color:var(--muted);font-size:.75rem}
+.recent{margin:0;padding:0;list-style:none;font-size:.85rem;color:var(--muted)}
+.recent li{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--line)}
+.search{width:100%;max-width:340px;padding:9px 12px;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:7px;font:inherit;font-size:.85rem}
+.search:focus{outline:2px solid #64d8d0;outline-offset:2px}
+.noresult{color:var(--muted);padding-bottom:40px}
 </style>
 </head>
 
@@ -473,6 +487,17 @@ footer {
   </p>
 </header>
 
+<section class="dash" id="dash" hidden>
+  <h2 id="dash-title">Your dashboard</h2>
+  <p id="dash-sub"></p>
+  <div class="dash-grid">
+    <div class="stat"><b id="st-n">0</b><span>Tests taken</span></div>
+    <div class="stat"><b id="st-avg">–</b><span>Average score</span></div>
+    <div class="stat"><b id="st-best">–</b><span>Best score</span></div>
+  </div>
+  <ul class="recent" id="recent"></ul>
+</section>
+
 <section id="subjects">
 
   <div class="library-heading">
@@ -482,6 +507,7 @@ footer {
     </div>
     <span class="count">04 SUBJECTS</span>
   </div>
+  <input class="search" id="search" type="search" placeholder="Search subjects…" aria-label="Search subjects" style="margin-bottom:20px">
 
   <div class="subjects">
 
@@ -539,6 +565,7 @@ footer {
 
   </div>
 </section>
+<p class="noresult" id="noresult" hidden>No subjects match your search.</p>
 
 <section class="info" id="about">
   <div class="info-block">
@@ -561,5 +588,37 @@ footer {
 
 </div>
 <script type="module" src="auth.js"></script>
+<script>
+document.getElementById("search")?.addEventListener("input",function(e){
+  var t=e.target.value.toLowerCase().trim(),n=0;
+  document.querySelectorAll(".subject").forEach(function(c){var m=c.textContent.toLowerCase().includes(t);c.style.display=m?"":"none";if(m)n++});
+  var nr=document.getElementById("noresult");if(nr)nr.hidden=n>0;
+});
+</script>
+<script type="module">
+import { auth, getProfile } from "./auth.js";
+import { loadScores } from "./scores.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+const $=(i)=>document.getElementById(i);
+async function render(u){
+  const d=$("dash");
+  if(!u||!u.emailVerified){d.hidden=true;return}
+  try{
+    const [p,sc]=await Promise.all([getProfile(u.uid),loadScores()]);
+    if(!p){d.hidden=true;return}
+    $("dash-title").textContent="Hi, "+p.name.split(" ")[0];
+    $("dash-sub").textContent="Preparing for "+p.exam+" · Class "+p.classLevel+(p.exam==="NEET"?" · Biology material is coming soon.":"");
+    const pc=sc.map(x=>Math.round(x.score/x.total*100));
+    $("st-n").textContent=sc.length;
+    $("st-avg").textContent=pc.length?Math.round(pc.reduce((a,b)=>a+b,0)/pc.length)+"%":"–";
+    $("st-best").textContent=pc.length?Math.max(...pc)+"%":"–";
+    const r=$("recent");r.textContent="";
+    sc.slice(0,5).forEach(x=>{const li=document.createElement("li");const a=document.createElement("span");a.textContent=x.test;const b=document.createElement("span");b.textContent=x.score+" / "+x.total;li.append(a,b);r.append(li)});
+    d.hidden=false;
+  }catch(e){d.hidden=true}
+}
+onAuthStateChanged(auth,render);
+window.addEventListener("profile-saved",()=>render(auth.currentUser));
+</script>
 </body>
 </html>

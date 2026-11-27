@@ -266,6 +266,7 @@ function next(){if(i+1<Q.length){i++;draw()}else if(MODE==='test')fs();else fin(
 function fs(){var un=Q.length-nans();if(MODE==='test'&&un&&!confirm('You have '+un+' unanswered question'+(un>1?'s':'')+'. Submit anyway?'))return;sub()}
 function sub(tu){clearInterval(tmr);if(MODE==='test'){Q.forEach(function(q,k){ST[k]=ANS[k].length?{s:ANS[k],pts:ptsOf(q,ANS[k]),ok:ptsOf(q,ANS[k])==4}:null})}fin(tu)}
 function fin(tu){clearInterval(tmr);var sc=score(),p=Math.round(sc/mx()*100),key=cid<0?'mix':cid;
+  import('./scores.js').then(function(m){m.saveScore('Organic Chemistry'+(cid<0?' (mixed)':' – '+C[cid].n),sc,mx())}).catch(function(){});
   if(cfg.d===0&&p>(B[key]||0)){B[key]=p;sv()}
   var bd=[1,2,3].map(function(d){var t=Q.filter(function(q){return q.d===d}),c=t.reduce(function(a,q){var r=ST[Q.indexOf(q)];return a+(r?r.pts:0)},0);return t.length?DL[d]+' '+c+'/'+t.length*4:''}).filter(Boolean).join(' · ');
   var un=ST.filter(function(x){return!x}).length;
