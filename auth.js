@@ -1,4 +1,3 @@
-
 // auth.js: login, signup, email verification and profile setup.
 // Include on every page with: <script type="module" src="auth.js"></script>
 
@@ -142,7 +141,7 @@ style.textContent = `
 .am-or{margin-top:14px;text-align:center;font-size:.8rem;color:var(--muted,#9aa3b8)}
 .am-err{min-height:1.2em;margin-top:12px;color:#ff8f8f;font-size:.85rem}
 
-.auth-btn{background:var(--surface,#171c2d);color:var(--fg,#e8ebf4);border:1px solid var(--line,#2a3148);border-radius:7px;padding:6px 12px;font:500 .8rem var(--f-body,system-ui,sans-serif);cursor:pointer;transition:.2s}
+.auth-btn{background:var(--surface,#171c2d);color:var(--fg,#e8ebf4);border:1px solid var(--line,#2a3148);border-radius:7px;padding:6px 12px;font:500 .8rem var(--f-body,system-ui,sans-serif);cursor:pointer;transition:.2s;white-space:nowrap;flex:none}
 .auth-btn:hover{border-color:#64d8d0;color:#64d8d0}
 
 .auth-controls{
@@ -321,7 +320,9 @@ try {
   dismissed = sessionStorage.getItem("am-dismissed") === "1";
 } catch {}
 
-const isHome = /\/(index\.html)?$/.test(location.pathname);
+// Pages where the sign-up popup opens automatically for signed-out visitors:
+// the home page and the tests page (with or without ".html").
+const isHome = /\/(index(\.html)?|tests(\.html)?)?$/.test(location.pathname);
 
 function open(screen, opts = {}) {
   closable = opts.closable ?? true;
