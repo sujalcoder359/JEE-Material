@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,6 +102,12 @@ a {
 .bar-right a:hover {
   color:var(--accent);
 }
+
+/* SIGN IN / SIGN OUT (same as index) */
+
+.auth-btn{background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:7px;padding:6px 12px;font:500 .8rem var(--f-body);cursor:pointer;transition:.2s}
+.auth-btn:hover{border-color:#a9c9fa;color:#a9c9fa}
+#user{color:var(--muted);font-size:.8rem}
 
 /* HERO */
 
@@ -290,7 +295,7 @@ footer {
 </style>
 </head>
 
-<body>
+<body data-auto-signin>
 
 <div class="shell">
 
@@ -304,6 +309,9 @@ footer {
     <a href="tests.html">Tests</a>
     <a href="index.html">Library</a>
     <a href="index.html#about">About</a>
+    <span id="user"></span>
+    <button id="login" class="auth-btn">Sign in</button>
+    <button id="logout" class="auth-btn" style="display:none">Sign out</button>
   </nav>
 </header>
 
@@ -368,4 +376,3 @@ footer {
 <script type="module" src="auth.js"></script>
 </body>
 </html>
-

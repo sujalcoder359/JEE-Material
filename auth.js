@@ -322,7 +322,10 @@ try {
 
 // Pages where the sign-up popup opens automatically for signed-out visitors:
 // the home page and the tests page (with or without ".html").
-const isHome = /\/(index(\.html)?|tests(\.html)?)?$/.test(location.pathname);
+// A page can also opt in with <body data-auto-signin>, which works for any URL.
+const isHome =
+  document.body.hasAttribute("data-auto-signin") ||
+  /\/(index(\.html)?|tests(\.html)?)?$/.test(location.pathname);
 
 function open(screen, opts = {}) {
   closable = opts.closable ?? true;
